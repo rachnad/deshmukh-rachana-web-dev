@@ -30,40 +30,32 @@
 
 </head>
 <body>
+<div class="navbar navbar-default navbar-fixed-top">
+    <h3>Edit Page
+        <span class="glyphicon glyphicon-chevron-left pull-left"></span>
+        <span class="glyphicon glyphicon-ok pull-right"></span>
+    </h3>
 
-    <div class="navbar navbar-default navbar-fixed-top">
-            <h3>Profile
-                <span class="glyphicon glyphicon-ok pull-right"></span>
-            </h3>
+</div>
+
+<form>
+    <div class="form-group">
+        <label for="appname">Name</label>
+        <input type="text" class="form-control" id="appname" placeholder="Name">
     </div>
-
-    <form>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" id="username">
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="text" class="form-control" id="email">
-        </div>
-        <div class="form-group">
-            <label for="firstname">First Name</label>
-            <input type="text" class="form-control" id="firstname">
-        </div>
-        <div class="form-group">
-            <label for="lastname">Last Name</label>
-            <input type="text" class="form-control" id="lastname">
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Applications</button>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-danger">Logout</button>
-        </div>
-    </form>
+    <div class="form-group">
+        <label for="appdescr">Title</label>
+        <input type="text" class="form-control" id="appdescr" placeholder="Page Title">
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </div>
 
     <div class="navbar navbar-default navbar-fixed-bottom">
-        <span class="glyphicon glyphicon-user pull-right center"></span>
+        <span class="glyphicon glyphicon-user pull-right"></span>
     </div>
+
+
+</form>
 </body>
 </html>

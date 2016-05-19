@@ -1,14 +1,70 @@
-body{
+h1, h3 {
+    margin-left: 20px;
+}
+
+.center {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.row {
+    padding-bottom: 10px;
+    padding-top:10px;
     padding-left: 10px;
-    padding-right: 10px;
+}
+
+h2 {
+    color: blue;
+}
+
+.button-right {
+    padding-right: 60px;
+}
+
+
+.navbar {
+    color: dimgray;
+    padding-bottom: 10px;
+}
+
+body {
+    padding-top: 75px;
+    height: 100%
+}
+
+.pull-right {
+    margin-right: 15px;
+}
+.pull-left {
+    margin-right: 20px;
+}
+
+.bottom-left {
+    margin-left: 20px;
 }
 
 .btn {
     width:100%;
     margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 .form-group {
+    padding-left: 15px;
+    padding-right: 15px;
     margin-bottom: 5px;
+}
 
+.header {
+    background-color: #e7e7e7;
+    margin-top: 0px;
+}
+
+.glyphicon-user {
+    color: dodgerblue;
+
+}
+
+.list-item {
+    color: dodgerblue;
 }

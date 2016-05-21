@@ -1,20 +1,22 @@
-h1, h3 {
+h3.heading {
     margin-left: 20px;
+}
+
+h1.heading {
+    margin-left:20px;
+}
+
+.widget-button {
+    padding: 5px;
+}
+
+.container-bottom {
+    margin-bottom: 75px;
 }
 
 .center {
     margin-top: 15px;
     margin-bottom: 10px;
-}
-
-.row {
-    padding-bottom: 10px;
-    padding-top:10px;
-    padding-left: 10px;
-}
-
-h2 {
-    color: blue;
 }
 
 .button-right {
@@ -32,7 +34,7 @@ body {
     height: 100%
 }
 
-.pull-right {
+.list-button {
     margin-right: 15px;
 }
 .pull-left {
@@ -45,14 +47,8 @@ body {
 
 .btn {
     width:100%;
-    margin-bottom: 5px;
-    margin-top: 5px;
-}
-
-.form-group {
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+;
 }
 
 .header {
@@ -65,6 +61,23 @@ body {
 
 }
 
-.list-item {
-    color: dodgerblue;
+.list-group.special .list-group-item {
+    border-width:0px;
+}
+
+.rd-widget-tool {
+    position: absolute;
+    right: 15px;
+    background-color: white;
+    padding: 5px;
+    border-bottom-left-radius: 8px;
+    opacity: 0.9;
+}
+
+.rd-widget {
+    padding-bottom: 5px;
+}
+
+a {
+ text-decoration: none !important
 }

@@ -1,6 +1,9 @@
 h3.heading {
     margin-left: 20px;
 }
+h4.heading {
+    margin-left: 20px;
+}
 
 h1.heading {
     margin-left:20px;
@@ -16,7 +19,7 @@ h1.heading {
 
 .center {
     margin-top: 15px;
-    margin-bottom: 10px;
+
 }
 
 .button-right {
@@ -26,6 +29,7 @@ h1.heading {
 
 .navbar {
     color: dimgray;
+    background-color: #e7e7e7;
     padding-bottom: 10px;
 }
 
@@ -48,6 +52,7 @@ body {
 .btn {
     width:100%;
     margin-bottom: 10px;
+    border-radius: 20px;
 ;
 }
 
@@ -58,8 +63,8 @@ body {
 
 .glyphicon-user {
     color: dodgerblue;
-
 }
+
 
 .list-group.special .list-group-item {
     border-width:0px;
@@ -80,4 +85,24 @@ body {
 
 a {
  text-decoration: none !important
+}
+
+.btn {
+    border: none;
+}
+
+.btn-primary {
+    background-color: lightseagreen;
+}
+
+.btn-primary:hover {
+    background-color: darkcyan;
+}
+
+.btn-danger {
+    background-color: lightcoral;
+}
+
+.btn-success {
+    background-color: darkseagreen;
 }

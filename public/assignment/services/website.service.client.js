@@ -17,13 +17,27 @@
             { "_id": "789", "name": "Chess",       "developerId": "234" }
         ];
         var api = {
-            "createWebsite"   : "createWebsite",
-            "findWebsiteById" : "findWebsiteById",
-            "findWebsiteByUser" : "findWebsiteByUser",
-            "updateWebsite" : "updateWebsite",
-            "deleteWebsite" : "deleteWebsite"
+            createWebsite   : createWebsite,
+            findWebsiteById : findWebsiteById,
+            findWebsiteByUser : findWebsiteByUser,
+            updateWebsite : updateWebsite,
+            deleteWebsite : deleteWebsite
         };
         return api;
+
+        function createWebsite(website) {
+            websites.push(website);
+        }
+
+        function findWebsiteById(websiteID) {
+            for (var i in websites) {
+                if (websites[i]._id === websiteID) {
+                    return websites[i];
+                }
+            }
+            return null;
+        }
+
 
         function findWebsiteByUser(userId) {
             var result = [];
@@ -34,6 +48,29 @@
             }
             return result;
         }
+
+
+
+        function updateWebsite(websiteID, newWebsite) {
+            for (var i in websites)  {
+                if (websites[i]._id === userID) {
+                    websites[i].name = newWebsite.name;
+                    websites[i].developerId= newWebsite.developerId;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function deleteWebsite(websiteID) {
+            for (var i in websites) {
+                if (websites[i]._id === websiteID) {
+                    websites.splice(websites[i], 1)
+                }
+            }
+            return null;
+        }
+
 
     }
 })();

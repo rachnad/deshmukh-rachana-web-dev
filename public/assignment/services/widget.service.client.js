@@ -19,15 +19,59 @@
             { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
         ];
         var api = {
-            "createWidget"   : "createWidget",
-            "findWidgetByPageId" : "findWidgetByPageId",
-            "findWidgetById" : "findWidgetById",
-            "updateWidget" : "updateWidget",
-            "deleteWidget" : "deleteWidget"
+            createWidget   : createWidget,
+            findWidgetByPageId : findWidgetByPageId,
+            findWidgetById : findWidgetById,
+            updateWidget : updateWidget,
+            deleteWidget : deleteWidget
         };
         return api;
-        function createUser(user) { }
-        function findUserById(id) { }
+
+        function createWidget(pageID, widget) {
+            widgets.pageId = pageID;
+            widgets.push(widget);
+        }
+
+        function findWidgetByPageId(pageID) {
+            for (var i in widgets) {
+                if (widgets[i].pageId === pageID) {
+                    return widgets[i];
+                }
+            }
+            return null;
+        }
+
+        function findWidgetById(widgetID) {
+            for (var i in widgets) {
+                if (widgets[i]._id === widgetID) {
+                    return widgets[i];
+                }
+            }
+            return null;
+        }
+
+
+        function updateWidget(widgetID, newWidget) {
+            for (var i in widgets)  {
+                if (widgets[i]._id === widgetID) {
+                    widgets[i].widgetType = newWidget.widgetType;
+                    widgets[i].pageId = newWidget.pageId;
+                    widgets[i].size = newWidget.size;
+                    widgets[i].text = newWidget.text;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function deleteWidget(widgetID) {
+            for (var i in widgets) {
+                if (widgets[i]._id === widgetID) {
+                    widgets.splice(widgets[i], 1)
+                }
+            }
+            return null;
+        }
 
     }
 })();

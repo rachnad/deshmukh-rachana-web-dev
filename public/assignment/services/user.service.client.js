@@ -28,18 +28,54 @@
         }
 
         function findUserById(userID) {
-
+            for (var i in users) {
+                if (users[i]._id === userID) {
+                    return users[i];
+                }
+            }
+            return null;
         }
+
+        function findUserByUsername(username) {
+            for (var i in users) {
+                if (users[i].username === username) {
+                    return users[i];
+                }
+            }
+            return null;
+        }
+
+
 
         function findUserByCredentials(username, password) {
             for (var i in users) {
                 if(users[i].username === username && users[i].password === password) {
                     return users[i];
                 }
-                else {
-                    return null;
+            }
+            return null;
+        }
+
+        function updateUser(userID, newUser) {
+            for (var i in users)  {
+                if (users[i]._id === userID) {
+                    users[i].firstName = newUser.firstName;
+                    users[i].lastName = newUser.lastName;
+                    users[i].password = newUser.password;
+                    users[i].username = newUser.username;
+                    return true;
                 }
             }
+            return false;
+        }
+
+        function deleteUser(userID) {
+            for (var i in users) {
+                if (users[i]._id === userID) {
+                    users.splice(users[i], 1)
+                }
+            }
+            return null;
         }
     }
 })();

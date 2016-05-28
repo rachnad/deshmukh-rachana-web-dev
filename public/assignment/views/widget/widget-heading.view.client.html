@@ -2,15 +2,15 @@
 <form>
     <div class="form-group">
         <label for="widgetname">Name</label>
-        <input ng-model = "model.widget.name" type="text" class="form-control" id="widgetname" placeholder="Name" value="WidgetName">
+        <input ng-model = "model.widget.name" required type="text" class="form-control" id="widgetname" placeholder="Name" value="WidgetName">
     </div>
     <div class="form-group">
         <label for="widgettext">Text</label>
-        <input ng-model="model.widget.text" type="text" class="form-control" id="widgettext" placeholder="Text" value="WidgetText">
+        <input ng-model="model.widget.text" required type="text" class="form-control" id="widgettext" placeholder="Text" value="WidgetText">
     </div>
     <div class="form-group">
         <label for="size">Size</label>
-        <select ng-model="model.widget.size" class="form-control" id="size"">
+        <select ng-model="model.widget.size" required class="form-control" id="size"">
             <option>1</option>
             <option>2</option>
             <option>3</option>

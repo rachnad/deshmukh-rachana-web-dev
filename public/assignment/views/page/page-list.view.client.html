@@ -1,10 +1,10 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <h3 class="heading">Pages
-        <a href="page-new.view.client.html">
+        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new">
             <span class="glyphicon glyphicon-plus pull-right list-button"></span>
         </a>
-        <a href="../website/website-list.view.client.html">
+        <a href="#/user/{{model.userId}}/website">
             <span class="glyphicon glyphicon-chevron-left pull-left"></span>
         </a>
     </h3>
@@ -13,41 +13,19 @@
 
 <div class="container container-bottom">
     <ul class="list-group special">
+        <div ng-repeat="page in model.pages">
         <li class="list-group-item">
-            <a href="../widget/widget-list.view.client.html">Blog Post</a>
-            <a href="page-edit.view.client.html" class="pull-right">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">{{page.name}}</a>
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}" class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
         </li>
-        <li class="list-group-item">
-            <a href="../widget/widget-list.view.client.html">Blogs</a>
-            <a href="page-edit.view.client.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../widget/widget-list.view.client.html">Home</a>
-            <a href="page-edit.view.client.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../widget/widget-list.view.client.html">About</a>
-            <a href="page-edit.view.client.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../widget/widget-list.view.client.html">Contact Us</a>
-            <a href="page-edit.view.client.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
+        </div>
     </ul>
 </div>
 
 <div class="navbar navbar-default navbar-fixed-bottom">
-    <a href="../views/user/profile.view.html">
+    <a href="#/user/{{model.userId}}">
         <span class="glyphicon glyphicon-user pull-right center list-button"></span>
     </a>
 </div>

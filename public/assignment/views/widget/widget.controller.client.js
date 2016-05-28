@@ -18,7 +18,6 @@
 
         function init() {
             vm.widgets = WidgetService.findWidgetByPageId(vm.pageId);
-            console.log(vm.widgets);
         }
         init();
 
@@ -35,8 +34,25 @@
         }
     }
 
-    function NewWidgetController() {
+    function NewWidgetController($routeParams, $location, WidgetService) {
         var vm = this
+        vm.userId = $routeParams.uid;
+        vm.websiteId = $routeParams.wid;
+        vm.pageId = $routeParams.pid;
+
+        vm.addWidget = addWidget;
+
+        function addWidget(widgetType) {
+            var newWidget = {
+                "widgetType": widgetType,
+                "_id": (new Date).getTime().toString()
+            };
+            WidgetService.createWidget(vm.pageId, newWidget);
+            $location.url("/user/" + vm.userId + "/website/"+ vm.websiteId + "/page/" + vm.pageId + "/widget/" + newWidget._id);
+        }
+
+
+
     }
 
     function EditWidgetController($routeParams, WidgetService, $location) {
@@ -50,8 +66,7 @@
         vm.deleteWidget = deleteWidget;
 
         function init() {
-            vm.widget = WidgetService.findWidgetById(vm.widgetId);
-            console.log(vm.widget.widgetType);
+            vm.widget = angular.copy(WidgetService.findWidgetById(vm.widgetId));
         }
         init();
 

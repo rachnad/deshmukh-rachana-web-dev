@@ -7,6 +7,16 @@
 </nav>
 
 <div class="container container-bottom">
+
+    <div ng-show="model.success" class="alert alert-success">
+        {{model.success}}
+    </div>
+
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
+
     <form>
         <div class="form-group">
             <label for="username">Username</label>
@@ -36,7 +46,7 @@
     </div>
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
-        <a href="#">
+        <a href="#/user/{{model.userId}}">
             <span class="glyphicon glyphicon-user pull-right list-button center"></span>
         </a>
     </nav>

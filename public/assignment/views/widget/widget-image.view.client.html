@@ -1,50 +1,31 @@
-
-<nav class="navbar navbar-default navbar-fixed-top">
-    <h3 class="heading">Widget Edit
-        <a href="widget-list.view.client.html">
-            <span class="glyphicon glyphicon-chevron-left pull-left"></span>
-        </a>
-        <a href="widget-list.view.client.html">
-            <span class="glyphicon glyphicon-ok pull-right list-button"></span>
-        </a>
-    </h3>
-
-</nav>
-
 <div class="container container-bottom">
 <form>
     <div class="form-group">
         <label for="widgetname">Name</label>
-        <input type="text" class="form-control" id="widgetname" placeholder="Name" value="WidgetName">
+        <input ng-model= "model.widget.name" type="text" class="form-control" id="widgetname" placeholder="Name" value="WidgetName">
     </div>
     <div class="form-group">
         <label for="widgettext">Text</label>
-        <input type="text" class="form-control" id="widgettext" placeholder="Text" value="WidgetText">
+        <input ng-model= "model.widget.text" type="text" class="form-control" id="widgettext" placeholder="Text" value="WidgetText">
     </div>
     <div class="form-group">
         <label for="widgeturl">URL</label>
-        <input type="url" class="form-control" id="widgeturl" placeholder="URL" value="WidgetURL">
+        <input ng-model= "model.widget.url" type="url" class="form-control" id="widgeturl" placeholder="URL" value="WidgetURL">
     </div>
     <div class="form-group">
         <label for="widgetwidth">Width</label>
-        <input type="text" class="form-control" id="widgetwidth" placeholder="%" value="WidgetWidth">
+        <input ng-model= "model.widget.width" type="text" class="form-control" id="widgetwidth" placeholder="%" value="WidgetWidth">
     </div>
     <div class="form-group">
-        <label for="widgetsize">Upload</label>
-        <input type="file" class="form-control" id="widgetsize" placeholder="Choose File">
+        <label for="widgetfile">Upload</label>
+        <input type="file" class="form-control" id="widgetfile" placeholder="Choose File">
     </div>
     </form>
 
-    <a href="widget-list.view.client.html">
+    <a>
         <button type="submit" class="btn btn-primary">Upload Image</button>
     </a>
     <a href="widget-list.view.client.html">
-        <button type="submit" class="btn btn-danger">Delete</button>
+        <button ng-click="model.deleteWidget()" type="submit" class="btn btn-danger">Delete</button>
     </a>
-
-    <nav class="navbar navbar-default navbar-fixed-bottom">
-        <a href="../views/user/profile.view.html">
-        <span class="glyphicon glyphicon-user pull-right center list-button"></span>
-            </a>
-    </nav>
 </div>

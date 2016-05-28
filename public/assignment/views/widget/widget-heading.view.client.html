@@ -1,46 +1,28 @@
-
-<nav class="navbar navbar-default navbar-fixed-top">
-    <h3 class="heading">Widget Edit
-        <a href="widget-list.view.client.html">
-            <span class="glyphicon glyphicon-chevron-left pull-left"></span>
-        </a>
-        <a href="widget-list.view.client.html">
-            <span class="glyphicon glyphicon-ok pull-right list-button"></span>
-        </a>
-    </h3>
-
-</nav>
-
 <div class="container container-bottom">
 <form>
     <div class="form-group">
         <label for="widgetname">Name</label>
-        <input type="text" class="form-control" id="widgetname" placeholder="Name" value="WidgetName">
+        <input ng-model = "model.widget.name" type="text" class="form-control" id="widgetname" placeholder="Name" value="WidgetName">
     </div>
     <div class="form-group">
         <label for="widgettext">Text</label>
-        <input type="text" class="form-control" id="widgettext" placeholder="Text" value="WidgetText">
+        <input ng-model="model.widget.text" type="text" class="form-control" id="widgettext" placeholder="Text" value="WidgetText">
     </div>
     <div class="form-group">
         <label for="size">Size</label>
-        <select class="form-control" id="size">
+        <select ng-model="model.widget.size" class="form-control" id="size"">
             <option>1</option>
             <option>2</option>
             <option>3</option>
             <option>4</option>
         </select>
     </div>
-
 </form>
 
-    <a href="widget-list.view.client.html">
-        <button type="submit" class="btn btn-danger">Delete</button>
+    <a >
+        <button ng-click="model.deleteWidget()" type="submit" class="btn btn-danger">Delete</button>
     </a>
 
-    <nav class="navbar navbar-default navbar-fixed-bottom">
-        <a href="../views/user/profile.view.html">
-            <span class="glyphicon glyphicon-user pull-right center list-button"></span>
-        </a>
-    </nav>
+
 
 </div>

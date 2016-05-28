@@ -1,9 +1,9 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <h3 class="heading">New Website
-        <a href="website-list.view.client.html">
+        <a href="#/user/{{model.userId}}/website">
             <span class="glyphicon glyphicon-chevron-left pull-left"></span>
         </a>
-        <a href="website-list.view.client.html">
+        <a ng-show="!model.added" ng-click="model.createWebsite()">
             <span class="glyphicon glyphicon-ok pull-right list-button"></span>
         </a>
     </h3>
@@ -13,16 +13,16 @@
 <form>
     <div class="form-group">
         <label for="inputname">Name</label>
-        <input type="text" class="form-control" id="inputname" placeholder="Name" value="WebsiteName">
+        <input ng-model= "model.website.name" type="text" class="form-control" id="inputname" placeholder="Name" value="WebsiteName">
     </div>
     <div class="form-group">
         <label for="inputdescr">Description</label>
-        <textarea class="form-control" rows="5" id="inputdescr" placeholder="Description"></textarea>
+        <textarea ng-model = "model.website.description" class="form-control" rows="5" id="inputdescr" placeholder="Description"></textarea>
     </div>
     </form>
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
-        <a href="../views/user/profile.view.html">
+        <a href="#/user/{{model.userId}}">
             <span class="glyphicon glyphicon-user pull-right center list-button"></span>
         </a>
     </nav>

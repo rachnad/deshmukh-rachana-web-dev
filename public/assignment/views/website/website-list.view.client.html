@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <h3 class="heading">Websites
-        <a href="website-new.view.client.html">
+        <a href="#/user/{{model.userId}}/website/new">
         <span class="glyphicon glyphicon-plus pull-right list-button"></span>
         </a>
     </h3>
@@ -10,30 +10,9 @@
 
 <div class="container container-bottom">
     <ul class="list-group special">
-        <li class="list-group-item">
-            <a href="../views/page/page-list.view.html">Blogging App</a>
-            <a href="website-edit.view.client.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-                <span class="glyphicon glyphicon-play"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../views/page/page-list.view.html">Address Book App</a>
-            <a href="website-edit.view.client.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-                <span class="glyphicon glyphicon-play"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../views/page/page-list.view.html">Script Testing App</a>
-            <a href="website-edit.view.client.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-                <span class="glyphicon glyphicon-play"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../views/page/page-list.view.html">Blogger</a>
-            <a href="website-edit.view.client.html" class="pull-right">
+        <li ng-repeat="website in model.websites" class="list-group-item">
+            <a href="#/user/{{website.developerId}}/website/{{website._id}}/page">{{website.name}}</a>
+            <a href="#/user/{{website.developerId}}/website/{{website._id}}" class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
                 <span class="glyphicon glyphicon-play"></span>
             </a>
@@ -43,7 +22,7 @@
 
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
-    <a href="../views/user/profile.view.html">
+    <a href="#/user/{{model.userId}}">
         <span class="glyphicon glyphicon-user pull-right list-button center"></span>
     </a>
 </nav>

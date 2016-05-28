@@ -1,32 +1,41 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <h3 class="heading">Edit Website
-        <a href="website-list.view.client.html">
+        <a href="#/user/{{model.website.developerId}}/website">
             <span class="glyphicon glyphicon-chevron-left pull-left"></span>
         </a>
-        <a href="website-list.view.client.html">
+        <a ng-click="model.updateWebsite()">
             <span class="glyphicon glyphicon-ok pull-right list-button"></span>
         </a>
     </h3>
 </nav>
 
 <div class="container container-bottom">
+
+    <div ng-show="model.success" class="alert alert-success">
+        {{model.success}}
+    </div>
+
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
 <form>
     <div class="form-group">
         <label for="appname">Application Name</label>
-        <input type="text" class="form-control" id="appname" placeholder="Name" value="AppName">
+        <input ng-model="model.website.name" type="text" class="form-control" id="appname" placeholder="Name" value="AppName">
     </div>
     <div class="form-group">
         <label for="appdescr">Application Description</label>
-        <textarea class="form-control" rows="5" id="appdescr" placeholder="Description"></textarea>
+        <textarea ng-model="model.website.description" class="form-control" rows="5" id="appdescr" placeholder="Description"></textarea>
     </div>
 </form>
 
-    <a href="website-list.view.client.html">
+    <a ng-click="model.deleteWebsite()">
         <button type="submit" class="btn btn-danger">Delete</button>
     </a>
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
-        <a href="../views/user/profile.view.html">
+        <a href="#/user/{{model.userId}}">
             <span class="glyphicon glyphicon-user pull-right list-button center"></span>
         </a>
         <span class="glyphicon glyphicon-share-alt pull-left bottom-left center"></span>

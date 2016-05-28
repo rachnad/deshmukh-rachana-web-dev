@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default navbar-fixed-top z-depth-0">
             <h3 class="heading">Profile
-                <a href="#">
+                <a ng-click= "model.updateUser()">
                 <span class="glyphicon glyphicon-ok pull-right list-button"></span>
                 </a>
             </h3>
@@ -10,23 +10,23 @@
     <form>
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" value="rachana">
+            <input ng-model="model.user.username" type="text" class="form-control" id="username" value="rachana">
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" value="deshmukh.r@husky.neu.edu">
+            <input ng-model="model.user.email" type="email" class="form-control" id="email" value="deshmukh.r@husky.neu.edu">
         </div>
         <div class="form-group">
             <label for="firstname">First Name</label>
-            <input type="text" class="form-control" id="firstname" value="Rachana">
+            <input ng-model="model.user.firstName" type="text" class="form-control" id="firstname" value="Rachana">
         </div>
         <div class="form-group">
             <label for="lastname">Last Name</label>
-            <input type="text" class="form-control" id="lastname" value="Deshmukh">
+            <input ng-model="model.user.lastName" type="text" class="form-control" id="lastname" value="Deshmukh">
         </div>
     </form>
 
-        <a href="#/user/:uid/website">
+        <a href="#/user/{{model.userId}}/website">
             <button type="submit" class="btn btn-primary">Applications</button>
         </a>
         <a href="#/login">

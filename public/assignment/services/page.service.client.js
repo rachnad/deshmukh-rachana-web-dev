@@ -10,7 +10,8 @@
         var pages = [
             { "_id": "321", "name": "Post 1", "websiteId": "456" },
             { "_id": "432", "name": "Post 2", "websiteId": "456" },
-            { "_id": "543", "name": "Post 3", "websiteId": "456" }
+            { "_id": "543", "name": "Post 3", "websiteId": "456" },
+            { "_id": "549", "name": "Post 4", "websiteId": "567" }
         ];
         var api = {
             createPage   : createPage,
@@ -28,12 +29,13 @@
         }
 
         function findPageByWebsiteId(websiteID) {
+            var result = [];
             for (var i in pages) {
                 if (pages[i].websiteId === websiteID) {
-                    return pages[i];
+                    result.push(pages[i]);
                 }
             }
-            return null;
+            return result;
         }
 
         function findPageById(pageID) {
@@ -47,8 +49,8 @@
 
 
         function updatePage(pageID, newPage) {
-            for (var i in users)  {
-                if (pages[i]._id === userID) {
+            for (var i in pages)  {
+                if (pages[i]._id === pageID) {
                     pages[i].name = newPage.name;
                     pages[i].websiteId = newPage.websiteId;
                     return true;
@@ -60,7 +62,7 @@
         function deletePage(pageID) {
             for (var i in pages) {
                 if (pages[i]._id === pageID) {
-                    pages.splice(pages[i], 1)
+                    pages.splice(i, 1)
                 }
             }
             return null;

@@ -33,12 +33,13 @@
         }
 
         function findWidgetByPageId(pageID) {
+            var result = [];
             for (var i in widgets) {
                 if (widgets[i].pageId === pageID) {
-                    return widgets[i];
+                    result.push(widgets[i]);
                 }
             }
-            return null;
+            return result;
         }
 
         function findWidgetById(widgetID) {

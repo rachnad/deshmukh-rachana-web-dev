@@ -61,8 +61,8 @@
                 if (users[i]._id === userID) {
                     users[i].firstName = newUser.firstName;
                     users[i].lastName = newUser.lastName;
-                    users[i].password = newUser.password;
                     users[i].username = newUser.username;
+                    console.log(users[i]);
                     return true;
                 }
             }

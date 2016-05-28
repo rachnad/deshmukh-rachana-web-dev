@@ -7,6 +7,7 @@
     angular
         .module("WebAppMaker")
         .factory("WebsiteService", WebsiteService);
+
     function WebsiteService() {
         var websites = [
             { "_id": "123", "name": "Facebook",    "developerId": "456" },
@@ -21,7 +22,7 @@
             findWebsiteById : findWebsiteById,
             findWebsiteByUser : findWebsiteByUser,
             updateWebsite : updateWebsite,
-            deleteWebsite : deleteWebsite
+            deleteWebsite : deleteWebsite,
         };
         return api;
 
@@ -53,7 +54,7 @@
 
         function updateWebsite(websiteID, newWebsite) {
             for (var i in websites)  {
-                if (websites[i]._id === userID) {
+                if (websites[i]._id === websiteID) {
                     websites[i].name = newWebsite.name;
                     websites[i].developerId= newWebsite.developerId;
                     return true;
@@ -65,7 +66,7 @@
         function deleteWebsite(websiteID) {
             for (var i in websites) {
                 if (websites[i]._id === websiteID) {
-                    websites.splice(websites[i], 1)
+                    websites.splice(i, 1);
                 }
             }
             return null;

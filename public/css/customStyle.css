@@ -106,3 +106,7 @@ a {
 .btn-success {
     background-color: darkseagreen;
 }
+
+:required {
+    box-shadow: 0  0 5px rgba(255,0,0,0.5);
+}

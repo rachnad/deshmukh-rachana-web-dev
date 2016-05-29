@@ -20,12 +20,22 @@
         init();
 
         function updateUser() {
-            var result = UserService.updateUser(vm.userId, vm.user);
-            if(result === true) {
-                vm.success = "User successfully updated";
-            } else {
-                vm.error = "User not found";
+            console.log(vm.user);
+            vm.success = "";
+            if (vm.user.username == undefined || vm.user.firstName == undefined || vm.user.lastName == undefined) {
+                vm.error = "All fields are not filled out"
             }
+            else {
+                vm.error = "";
+                var result = UserService.updateUser(vm.userId, vm.user);
+                if (result === true) {
+
+                    vm.success = "User successfully updated";
+                } else {
+                    vm.error = "User not found";
+                }
+            }
+
         }
     }
 

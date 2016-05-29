@@ -22,16 +22,24 @@
         }
         init();
 
+        function headerValidation() {
+            return (vm.widget.name == undefined || vm.widget.text == undefined ||
+                vm.widget.size == undefined)
+        }
+
+        function imageValidation() {
+            return (vm.widget.name == undefined || vm.widget.text == undefined
+            || vm.widget.url == undefined || vm.widget.width == undefined)
+        }
+
         function updateWidget() {
 
-            if (vm.widget.widgetType === "HEADER" &&
-                (vm.widget.name == undefined || vm.widget.text == undefined || vm.widget.size == undefined)) {
-                vm.success = "";
+            if (vm.widget.widgetType === "HEADER" && headerValidation()){
+                 vm.success = "";
                 vm.error = "Fill out all required fields"
             }
             else if ((vm.widget.widgetType === "IMAGE" || vm.widget.widgetType === "YOUTUBE") &&
-                (vm.widget.name == undefined || vm.widget.text == undefined
-                || vm.widget.url == undefined || vm.widget.width == undefined)) {
+                imageValidation()) {
                 vm.success = "";
                 vm.error = "Fill out all required fields"
             }

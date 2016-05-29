@@ -18,7 +18,8 @@
             var newWidget = {
                 "widgetType": widgetType,
                 "_id": (new Date).getTime().toString(),
-                "pageId": vm.pageId
+                "pageId": vm.pageId,
+                "name": "New Widget"
             };
 
             WidgetService.createWidget(vm.pageId, newWidget);

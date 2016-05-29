@@ -13,15 +13,24 @@
         vm.added = false;
 
         function createWebsite() {
-            var website = {"_id": (new Date).getTime().toString(),
-                "name": vm.website.name,
-                "developerId": vm.userId,
-                "description": vm.website.description};
+            if (vm.website == undefined) {
+                vm.error = "Fill out all required fields"
+            }
 
-            if (!vm.added) {
-                var result = WebsiteService.createWebsite(website);
-                vm.success = "New Website has been added";
-                vm.added = true;
+            else {
+                vm.error = "";
+                var website = {
+                    "_id": (new Date).getTime().toString(),
+                    "name": vm.website.name,
+                    "developerId": vm.userId,
+                    "description": vm.website.description
+                };
+
+                if (!vm.added) {
+                    var result = WebsiteService.createWebsite(website);
+                    vm.success = "New Website has been added";
+                    vm.added = true;
+                }
             }
         }
 

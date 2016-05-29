@@ -22,11 +22,19 @@
 
 
         function updateWebsite() {
-            var result = WebsiteService.updateWebsite(vm.websiteId, vm.website);
-            if(result === true) {
-                vm.success = "Website successfully updated";
-            } else {
-                vm.error = "Website not updated";
+            if (vm.website == undefined || vm.website.name == undefined) {
+                vm.success = "";
+                vm.error = "Fill out all required fields";
+            }
+
+            else {
+                vm.error = "";
+                var result = WebsiteService.updateWebsite(vm.websiteId, vm.website);
+                if (result === true) {
+                    vm.success = "Website successfully updated";
+                } else {
+                    vm.error = "Website not updated";
+                }
             }
 
         }

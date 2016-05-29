@@ -19,7 +19,8 @@
                 "widgetType": widgetType,
                 "_id": (new Date).getTime().toString(),
                 "pageId": vm.pageId,
-                "name": "New Widget"
+                "name": "New Widget",
+                "text" : "New Text"
             };
 
             WidgetService.createWidget(vm.pageId, newWidget);

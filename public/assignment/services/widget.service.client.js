@@ -57,8 +57,14 @@
                 if (widgets[i]._id === widgetID) {
                     widgets[i].widgetType = newWidget.widgetType;
                     widgets[i].pageId = newWidget.pageId;
-                    widgets[i].size = newWidget.size;
                     widgets[i].text = newWidget.text;
+                    widgets[i].name = newWidget.name;
+                    widgets[i].size = newWidget.size;
+                    if(newWidget.widgetType === "IMAGE" || newWidget.widgetType === "YOUTUBE") {
+                        console.log('testing');
+                        widgets[i].url = newWidget.url;
+                        widgets[i].width = newWidget.width+"%";
+                    }
                     return true;
                 }
             }
@@ -68,7 +74,7 @@
         function deleteWidget(widgetID) {
             for (var i in widgets) {
                 if (widgets[i]._id === widgetID) {
-                    widgets.splice(widgets[i], 1)
+                    widgets.splice(i, 1)
                 }
             }
             return null;

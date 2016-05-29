@@ -15,18 +15,25 @@
         vm.added = false;
 
         function createPage() {
-            var newPage = {"_id": (new Date).getTime().toString(),
-                "name": vm.page.name,
-                "websiteId": vm.websiteId,
-                "title": vm.page.title
-            };
+            if (vm.page == undefined || vm.page.name == undefined || vm.page.title == undefined) {
+                vm.success = ""
+                vm.error = "Fill out all required fields"
+            }
 
-            console.log(newPage);
+            else {
+                var newPage = {
+                    "_id": (new Date).getTime().toString(),
+                    "name": vm.page.name,
+                    "websiteId": vm.websiteId,
+                    "title": vm.page.title
+                };
 
-            if (!vm.added) {
-                PageService.createPage(newPage, vm.websiteId);
-                vm.success = "New Page has been added";
-                vm.added = true;
+                if (!vm.added) {
+                    PageService.createPage(newPage, vm.websiteId);
+                    vm.error = "";
+                    vm.success = "New Page has been added";
+                    vm.added = true;
+                }
             }
         }
 

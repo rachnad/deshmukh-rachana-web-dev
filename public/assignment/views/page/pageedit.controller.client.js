@@ -21,11 +21,19 @@
 
 
         function updatePage() {
-            var result = PageService.updatePage(vm.pageId, vm.page);
-            if(result === true) {
-                vm.success = "Website successfully updated";
-            } else {
-                vm.error = "Website not updated";
+            if (vm.page == undefined || vm.page.name == undefined || vm.page.title == undefined) {
+                vm.success = "";
+                vm.error = "Fill out all required fields"
+            }
+
+            else {
+                var result = PageService.updatePage(vm.pageId, vm.page);
+                if (result === true) {
+                    vm.error = ""
+                    vm.success = "Website successfully updated";
+                } else {
+                    vm.error = "Website not updated";
+                }
             }
 
         }

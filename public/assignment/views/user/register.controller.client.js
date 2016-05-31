@@ -23,20 +23,25 @@
                     vm.error = "Passwords do not match"
                 }
                 else {
-                    var result = UserService.findUserByCredentials(vm.user.username, vm.user.password);
 
-                    if (result !== null) {
-                        vm.error = "User already exists"
-                    }
-                    else {
-                        var newUser = {
-                            "_id": (new Date).getTime().toString(),
-                            "username": vm.user.username,
-                            "password": vm.user.password
-                        };
-                        UserService.createUser(newUser);
-                        $location.url("/user/" + newUser._id);
-                    }
+                    UserService
+                        .findUserByCredentials(vm.user.username, vm.user.password)
+                        .then(function(response) {
+                            var result = response.data;
+                            console.log(result);
+                            if (result) {
+                                vm.error = "User already exists"
+                            }
+                            else {
+                                var newUser = {
+                                    "_id": (new Date).getTime().toString(),
+                                    "username": vm.user.username,
+                                    "password": vm.user.password
+                                };
+                                UserService.createUser(newUser);
+                                $location.url("/user/" + newUser._id);
+                            }
+                        });
                 }
             }
         }

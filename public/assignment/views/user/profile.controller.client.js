@@ -14,29 +14,34 @@
 
 
         function init() {
-            vm.user = angular.copy(UserService.findUserById(vm.userId));
-            console.log(vm.user);
+            UserService
+                .findUserById(vm.userId)
+                .then(function(response) {
+                    console.log(response.data);
+                    vm.user = angular.copy(response.data);
+                });
         }
         init();
 
         function updateUser() {
-            console.log(vm.user);
             vm.success = "";
             if (vm.user.username == undefined || vm.user.firstName == undefined || vm.user.lastName == undefined) {
                 vm.error = "All fields are not filled out"
             }
             else {
                 vm.error = "";
-                var result = UserService.updateUser(vm.userId, vm.user);
-                if (result === true) {
+                UserService
+                    .updateUser(vm.userId, vm.user)
+                    .then(function(response) {
+                        var result = response.data;
+                        if (result) {
+                            vm.success = "User successfully updated";
+                        } else {
+                            vm.error = "User not found";
+                        }
 
-                    vm.success = "User successfully updated";
-                } else {
-                    vm.error = "User not found";
-                }
+                    });
             }
-
         }
     }
-
 })();

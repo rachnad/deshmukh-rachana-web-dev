@@ -17,7 +17,6 @@
             UserService
                 .findUserById(vm.userId)
                 .then(function(response) {
-                    console.log(response.data);
                     vm.user = angular.copy(response.data);
                 });
         }

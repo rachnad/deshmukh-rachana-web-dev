@@ -12,8 +12,6 @@
         vm.addUser = addUser;
 
         function addUser() {
-            console.log(vm.user);
-
             if (vm.user == undefined || vm.user.username == undefined || vm.user.password == undefined || vm.user.password == undefined) {
                 vm.error = "Fill out all required fields"
             }
@@ -28,7 +26,6 @@
                         .findUserByCredentials(vm.user.username, vm.user.password)
                         .then(function(response) {
                             var result = response.data;
-                            console.log(result);
                             if (result) {
                                 vm.error = "User already exists"
                             }

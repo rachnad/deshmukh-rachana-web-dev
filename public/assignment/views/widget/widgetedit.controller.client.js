@@ -18,7 +18,11 @@
         vm.deleteWidget = deleteWidget;
 
         function init() {
-            vm.widget = angular.copy(WidgetService.findWidgetById(vm.widgetId));
+            WidgetService
+                .findWidgetById(vm.widgetId)
+                .then(function(response) {
+                    vm.widget = angular.copy(response.data);
+                });
         }
         init();
 
@@ -44,22 +48,28 @@
                 vm.error = "Fill out all required fields"
             }
             else {
-                var result = WidgetService.updateWidget(vm.widgetId, vm.widget);
-                console.log(vm.widget);
-                if (result === true) {
-                    vm.error = "";
-                    vm.success = "Website successfully updated";
-                } else {
-                    vm.success = "";
-                    vm.error = "Website not updated";
-                }
+                WidgetService
+                    .updateWidget(vm.widgetId, vm.widget)
+                    .then(function(response) {
+                        var result = response.data;
+                        if (result) {
+                            vm.error = "";
+                            vm.success = "Website successfully updated";
+                        } else {
+                            vm.success = "";
+                            vm.error = "Website not updated";
+                        }
+                    })
             }
 
         }
 
         function deleteWidget(){
-            WidgetService.deleteWidget(vm.widgetId);
-            $location.url("/user/"+vm.userId + "/website/"+vm.websiteId + "/page/" + vm.pageId + "/widget");
+            WidgetService
+                .deleteWidget(vm.widgetId)
+                .then(function(response) {
+                    $location.url("/user/"+vm.userId + "/website/"+vm.websiteId + "/page/" + vm.pageId + "/widget");
+                })
         }
     }
 })();

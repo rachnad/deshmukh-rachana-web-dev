@@ -23,7 +23,11 @@
                 "text" : "New Text"
             };
 
-            WidgetService.createWidget(vm.pageId, newWidget);
+            WidgetService
+                .createWidget(vm.pageId, newWidget).
+                then(function(response) {
+
+            });
             $location.url("/user/" + vm.userId + "/website/"+ vm.websiteId + "/page/" + vm.pageId + "/widget/" + newWidget._id);
         }
 

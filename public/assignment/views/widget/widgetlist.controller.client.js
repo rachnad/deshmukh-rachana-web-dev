@@ -7,7 +7,7 @@
         .controller("WidgetListController", WidgetListController);
 
     function WidgetListController($routeParams, $sce, WidgetService) {
-        var vm = this
+        var vm = this;
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
         vm.pageId = $routeParams.pid;
@@ -15,7 +15,11 @@
         vm.getHtml = getHtml;
 
         function init() {
-            vm.widgets = WidgetService.findWidgetByPageId(vm.pageId);
+            WidgetService
+                .findWidgetByPageId(vm.pageId)
+                .then(function(response) {
+                    vm.widgets = response.data;
+                })
         }
         init();
 
@@ -28,7 +32,6 @@
 
         function getHtml(html) {
             return $sce.trustAsHtml(html);
-
         }
     }
 })();

@@ -15,7 +15,12 @@
         vm.deletePage = deletePage;
 
         function init() {
-            vm.page = angular.copy(PageService.findPageById(vm.pageId));
+            PageService
+                .findPageById(vm.pageId)
+                .then(function(response) {
+                    vm.page = angular.copy(response.data);
+                    console.log(vm.page);
+                })
         }
         init();
 
@@ -27,23 +32,27 @@
             }
 
             else {
-                var result = PageService.updatePage(vm.pageId, vm.page);
-                if (result === true) {
-                    vm.error = ""
-                    vm.success = "Website successfully updated";
-                } else {
-                    vm.error = "Website not updated";
-                }
+                PageService
+                    .updatePage(vm.pageId, vm.page)
+                    .then(function(response) {
+                        var result = response.data;
+                        if (result) {
+                            vm.error = "";
+                            vm.success = "Website successfully updated";
+                        } else {
+                            vm.error = "Website not updated";
+                        }
+                    })
             }
 
         }
 
         function deletePage() {
-            PageService.deletePage(vm.pageId);
-            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+            PageService.deletePage(vm.pageId)
+                .then(function(response) {
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                });
         }
-
-
     }
 
 })();

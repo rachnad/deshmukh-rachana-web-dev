@@ -16,7 +16,7 @@
 
         function createPage() {
             if (vm.page == undefined || vm.page.name == undefined || vm.page.title == undefined) {
-                vm.success = ""
+                vm.success = "";
                 vm.error = "Fill out all required fields"
             }
 
@@ -29,10 +29,14 @@
                 };
 
                 if (!vm.added) {
-                    PageService.createPage(newPage, vm.websiteId);
-                    vm.error = "";
-                    vm.success = "New Page has been added";
-                    vm.added = true;
+                    PageService
+                        .createPage(newPage, vm.websiteId)
+                        .then(function(response) {
+                            console.log(response);
+                            vm.error = "";
+                            vm.success = "New Page has been added";
+                            vm.added = true;
+                        })
                 }
             }
         }

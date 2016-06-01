@@ -22,16 +22,32 @@ module.exports = function(app) {
     function createWebsite(req, res) {
         var newWebsite = req.body;
         websites.push(newWebsite);
+        res.send(newWebsite);
+    }
+
+    function findWebsites(req, res) {
+        var userId = req.query["userId"];
+        var websiteId = req.query["websiteId"];
+        if(userId) {
+            return findAllWebsitesForUser(userId, res)
+        }
+        if(websiteId) {
+            return findWebsiteById(websiteId, res)
+        }
+        else {
+            return res.send(null);
+        }
+
     }
 
     function findWebsiteById(req, res) {
         var websiteID = req.params.websiteId;
         for (var i in websites) {
             if (websites[i]._id === websiteID) {
-                res.send(websites[i]);
+                return res.send(websites[i]);
             }
         }
-        return null;
+        res.send(null);
     }
 
 
@@ -43,7 +59,7 @@ module.exports = function(app) {
                 result.push(websites[i]);
             }
         }
-        res.send(results);
+        return res.send(result);
     }
 
 
@@ -55,7 +71,7 @@ module.exports = function(app) {
             if (websites[i]._id === websiteID) {
                 websites[i].name = newWebsite.name;
                 websites[i].developerId= newWebsite.developerId;
-                return true;
+                return res.send(websites[i]);
             }
         }
         return false;
@@ -66,9 +82,10 @@ module.exports = function(app) {
         for (var i in websites) {
             if (websites[i]._id === websiteID) {
                 websites.splice(i, 1);
+                return res.send(websites);
             }
         }
-        return null;
+        res.send(null);
     }
 };
 

@@ -22,7 +22,7 @@ module.exports = function(app) {
     function createUser(req, res) {
         var newUser = req.body;
         users.push(newUser);
-        res.send(users);
+        res.send(user);
     }
 
 
@@ -34,7 +34,7 @@ module.exports = function(app) {
                 return res.send(users[i]);
             }
         }
-        res.send({});
+        res.send(null);
     }
 
     function findUserByUsername(username, res) {
@@ -69,7 +69,7 @@ module.exports = function(app) {
                 return res.send(users[i]);
             }
         }
-        false;
+        return false;
     }
 
     function deleteUser(req, res) {
@@ -79,7 +79,7 @@ module.exports = function(app) {
                 users.splice(users[i], 1)
             }
         }
-        res.send({});
+        res.send(null);
     }
 
     function getUsers(req, res) {

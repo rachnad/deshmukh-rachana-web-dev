@@ -23,6 +23,7 @@ module.exports = function(app) {
         var widget = req.body;
         widget.pageId = req.params.pageId;
         widgets.push(widget);
+        res.send(widget);
     }
 
     function findAllWidgetsForPage(req, res) {
@@ -33,17 +34,17 @@ module.exports = function(app) {
                 result.push(widgets[i]);
             }
         }
-        res.send(result);
+        return res.send(result);
     }
 
     function findWidgetById(req, res) {
         var widgetID = req.params.widgetId;
         for (var i in widgets) {
             if (widgets[i]._id === widgetID) {
-                res.send(widgets[i]);
+                return res.send(widgets[i]);
             }
         }
-        return null;
+        return res.send(null);
     }
 
 
@@ -57,12 +58,13 @@ module.exports = function(app) {
                 widgets[i].text = newWidget.text;
                 widgets[i].name = newWidget.name;
                 widgets[i].size = newWidget.size;
+
                 if(newWidget.widgetType === "IMAGE" || newWidget.widgetType === "YOUTUBE") {
                     console.log('testing');
                     widgets[i].url = newWidget.url;
                     widgets[i].width = newWidget.width+"%";
                 }
-                return true;
+                return res.send(widgets[i]);
             }
         }
         return false;
@@ -72,10 +74,10 @@ module.exports = function(app) {
         var widgetID = req.params.widgetId;
         for (var i in widgets) {
             if (widgets[i]._id === widgetID) {
-                widgets.splice(i, 1)
+                widgets.splice(i, 1);
+                return res.send(widgets);
             }
         }
-        return null;
+        return res.send(null);
     }
-
 };

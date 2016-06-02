@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <h3 class="heading">Widgets
         <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
@@ -10,9 +9,18 @@
     </h3>
 </nav>
 
+<style>
 
-<div class="container container-bottom">
-    <div ng-repeat="widget in model.widgets"  class="rd-widget">
+</style>
+
+<script>
+    $(function() {
+        $("#sortable-1").sortable();
+    });
+</script>
+
+<div class="container container-bottom" id="sortable-1">
+    <div ng-repeat="widget in model.widgets" class="rd-widget">
         <div class="rd-widget-tool">
             <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
                 <span class="glyphicon glyphicon-cog"></span>

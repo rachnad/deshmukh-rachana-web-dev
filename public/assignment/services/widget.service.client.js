@@ -37,6 +37,5 @@
             console.log(widgetID);
             return $http.delete("/api/widget/" +widgetID);
         }
-
     }
 })();

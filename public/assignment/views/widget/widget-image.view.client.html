@@ -16,15 +16,24 @@
         <label for="widgetwidth">Width (Enter Number)</label>
         <input ng-model= "model.widget.width" required type="text" class="form-control" id="widgetwidth" placeholder="%" value="WidgetWidth">
     </div>
-    <div class="form-group">
-        <label for="widgetfile">Upload</label>
-        <input type="file" class="form-control" id="widgetfile" placeholder="Choose File">
-    </div>
+</form>
+    <div class = "form-group">
+    <form action="/api/upload" method="post" enctype="multipart/form-data">
+        <input  name="myFile"   value="{{model.widget.widgetFile}}" type="file" class="form-control"/>
+        <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
+        <input  name="widgetId" value="{{model.widgetId}}"     style="display: none"/>
+        <input  name="pageId" value="{{model.pageId}}"     style="display: none"/>
+        <input  name="userId" value="{{model.userId}}"     style="display: none"/>
+        <input  name="websiteId" value="{{model.websiteId}}"     style="display: none"/>
+        <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
     </form>
+    </div>
 
-    <a>
-        <button type="submit" class="btn btn-primary">Upload Image</button>
+    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/search">
+    <button class="btn btn-block btn-primary">Search</button>
     </a>
+
+
     <a ng-click="model.deleteWidget()">
         <button ng-click="model.deleteWidget()" type="submit" class="btn btn-danger">Delete</button>
     </a>

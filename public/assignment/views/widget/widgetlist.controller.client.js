@@ -19,6 +19,7 @@
                 .findWidgetByPageId(vm.pageId)
                 .then(function(response) {
                     vm.widgets = response.data;
+                    console.log(vm.widgets);
                 })
         }
         init();

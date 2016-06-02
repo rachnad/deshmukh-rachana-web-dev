@@ -1,3 +1,8 @@
+<link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+
 <nav class="navbar navbar-default navbar-fixed-top">
     <h3 class="heading">Widgets
         <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
@@ -15,11 +20,11 @@
 
 <script>
     $(function() {
-        $("#sortable-1").sortable();
+        $( "#sortable" ).sortable();
     });
 </script>
 
-<div class="container container-bottom" id="sortable-1">
+<div class="container container-bottom" id="sortable">
     <div ng-repeat="widget in model.widgets" class="rd-widget">
         <div class="rd-widget-tool">
             <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">

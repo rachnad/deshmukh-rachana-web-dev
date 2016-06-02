@@ -110,3 +110,24 @@ a {
 :required {
     box-shadow: 0  0 5px rgba(255,0,0,0.5);
 }
+
+.input-group{
+    margin-left: 5px;
+}
+
+.btn-primary {
+    margin-top: 5px;
+}
+
+.ta-editor {
+    min-height: 300px;
+    height: auto;
+    overflow: auto;
+    font-family: inherit;
+    font-size: 100%;
+}
+
+.flickr {
+    margin: 0px;
+    padding:0px;
+}

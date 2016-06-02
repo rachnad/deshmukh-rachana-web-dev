@@ -7,7 +7,7 @@
         .controller("EditWidgetController", EditWidgetController);
 
 
-    function EditWidgetController($routeParams, WidgetService, $location) {
+    function EditWidgetController($scope, $routeParams, WidgetService, $location, $http) {
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
@@ -16,6 +16,8 @@
 
         vm.updateWidget = updateWidget;
         vm.deleteWidget = deleteWidget;
+        vm.uploadImage = uploadImage;
+
 
         function init() {
             WidgetService
@@ -70,6 +72,11 @@
                 .then(function(response) {
                     $location.url("/user/"+vm.userId + "/website/"+vm.websiteId + "/page/" + vm.pageId + "/widget");
                 })
+        }
+
+        function uploadImage() {
+            console.log(vm.widget);
+            $http.post("/api/upload", vm.widget);
         }
     }
 })();

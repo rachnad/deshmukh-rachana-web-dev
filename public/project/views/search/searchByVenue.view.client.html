@@ -1,10 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Search by Venue</h1>
-</body>
-</html>
+<div class="container">
+    <h2>Search by Venue</h2>
+    <div class="input-group">
+        <input ng-model="model.venue" type="text"  class="form-control" placeholder="Search"/>
+        <span class="input-group-addon">
+            <a ng-click="model.searchVenue()">
+                <i class="glyphicon glyphicon-search"></i>
+            </a>
+        </span>
+    </div>
+</div>
+
+<div ng-show = "model.searched" class="container">
+    <hgroup class="mb20">
+        <h2>Search Results</h2>
+        <h3 class="lead"><strong class="text-danger">3</strong> results were found for the search for <strong class="text-danger">{{model.venue}}</strong></h3>
+    </hgroup>
+
+    <div>
+        <section ng-repeat="event in model.events" class="col-xs-12 col-sm-6 col-md-12">
+            <article class="search-result row">
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                    <ul class="meta-search">
+                        <li><i class="glyphicon glyphicon-usd"></i> <span>{{event.price}}</span></li>
+                        <li><i class="glyphicon glyphicon-time"></i> <span>4:28 pm</span></li>
+                        <li><i class="glyphicon glyphicon-tags"></i> <span>{{event.type}}</span></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-9">
+                    <h3><a href="#/user/{{model.userId}}/searchVenue/{{model.venue}}/details/{{event.id}}" title="">{{event.title}}</a></h3>
+                </div>
+                <span class="clearfix borda"></span>
+            </article>
+        </section>
+    </div>
+</div>

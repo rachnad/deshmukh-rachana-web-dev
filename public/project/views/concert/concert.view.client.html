@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<section class="col-xs-12 col-sm-6 col-md-12">
+    <article class="search-result row">
+        <div class="col-xs-5 col-sm-12 col-md-3">
+            <ul class="meta-search">
+                <li><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i><span>{{model.event.location.city}}</span></li>
+                <li><i class="glyphicon glyphicon-time"></i> <span>{{model.event.start.date}}</span></li>
+                <li><i class="glyphicon glyphicon-time"></i> <span>{{model.event.start.time}}</span></li>
+                <li><i class="fa fa-camera-retro fa-2x"></i>{{model.event.start.time}}</li>
 
-</body>
-</html>
+            </ul>
+        </div>
+        <div class="col-xs-7 col-sm-12 col-md-9">
+            <h3>{{model.event.displayName}}</h3>
+            <img src="{{model.artistImage}}">
+        </div>
+        <span class="clearfix borda"></span>
+    </article>
+</section>

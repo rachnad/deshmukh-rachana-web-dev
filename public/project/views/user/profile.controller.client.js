@@ -8,13 +8,20 @@
 
     function ProfileController($rootScope, $routeParams, UserService) {
         var vm = this;
+        $rootScope.landing = false;
+        $rootScope.loggedIn = true;
         vm.updateUser = updateUser;
         //get userID from url
         vm.userId = $routeParams["uid"];
 
 
         function init() {
-            vm.user = angular.copy(UserService.findUserById(vm.userId));
+            UserService
+                .findUserById(vm.userId)
+                .then(function(response) {
+                    vm.user = angular.copy(response.data);
+                });
+            $rootScope.currentUser = vm.user;
         }
         init();
 
@@ -25,13 +32,18 @@
             }
             else {
                 vm.error = "";
-                var result = UserService.updateUser(vm.userId, vm.user);
-                if (result === true) {
+                UserService
+                    .updateUser(vm.userId, vm.user)
+                    .then(function(response) {
+                        var result = response.data;
 
-                    vm.success = "User successfully updated";
-                } else {
-                    vm.error = "User not found";
-                }
+                        if (result === true) {
+
+                            vm.success = "User successfully updated";
+                        } else {
+                            vm.error = "User not found";
+                        }
+                    })
             }
 
         }

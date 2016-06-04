@@ -7,52 +7,46 @@
     <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
     <meta charset="UTF-8">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
     <link href="css/customStyle.css" rel="stylesheet">
+    <link href="css/search-result.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
     <script src="app.js"></script>
     <script src="config.js"></script>
 
     <script src="services/user.service.client.js"></script>
+    <script src="services/eventful.service.client.js"></script>
+    <script src="services/lastfm.service.client.js"></script>
     <script src="views/user/login.controller.client.js"></script>
     <script src="views/user/register.controller.client.js"></script>
-    <script src="views/main.controller.client.js"></script>
     <script src="views/user/profile.controller.client.js"></script>
-    <script src="views/main.controller.client.js"></script>
     <script src="views/search/search.controller.client.js"></script>
-
-
+    <script src="views/landing/landing.controller.js"></script>
+    <script src="views/search/search.artist.controller.client.js"></script>
+    <script src="views/search/search.venue.controller.client.js"></script>
+    <script src="views/header/header.controller.js"></script>
+    <script src="views/concert/concert.controller.client.js"></script>
 
     <title>Vibe</title>
 </head>
-<body>
-<div ng-controller="MainController">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Vibe</a>
-            </div>
 
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a>About</a></li>
-                    <li><a ng-hide="currentUser" href="#/register">Register</a></li>
-                    <li><a ng-hide="currentUser" href="#/login">Login</a></li>
-                    <li><a ng-show="currentUser" href="#/user/{{currentUser._id}}">USER</a></li>
-                    <li><a ng-show="currentUser" href="#/search">SEARCH</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<script>
+    $(document).on('click','.navbar-collapse.in',function(e) {
+        if( $(e.target).is('a') ) {
+            $(this).collapse('hide');
+        }
+    });
+</script>
+
+<body ng-class="{'landing-page': landing}">
+<div>
+
+    <div ng-include="'views/header/header.view.client.html'"></div>
 
     <div ng-view></div>
-
 
 </div>
 </body>

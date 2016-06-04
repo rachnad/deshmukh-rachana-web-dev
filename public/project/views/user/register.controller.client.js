@@ -7,7 +7,8 @@
         .controller("RegisterController", RegisterController);
 
 
-    function RegisterController($location, UserService) {
+    function RegisterController($rootScope, $location, UserService) {
+        $rootScope.landing = false;
         var vm = this;
         vm.addUser = addUser;
 
@@ -23,20 +24,30 @@
                     vm.error = "Passwords do not match"
                 }
                 else {
-                    var result = UserService.findUserByCredentials(vm.user.username, vm.user.password);
+                    UserService
+                        .findUserByCredentials(vm.user.username, vm.user.password)
+                        .then(function(response) {
+                            var result = response.data;
 
-                    if (result !== null) {
-                        vm.error = "User already exists"
-                    }
-                    else {
-                        var newUser = {
-                            "_id": (new Date).getTime().toString(),
-                            "username": vm.user.username,
-                            "password": vm.user.password
-                        };
-                        UserService.createUser(newUser);
-                        $location.url("/user/" + newUser._id);
-                    }
+                            if (result) {
+                                vm.error = "User already exists"
+                            }
+                            else {
+                                var newUser = {
+                                    "_id": (new Date).getTime().toString(),
+                                    "username": vm.user.username,
+                                    "password": vm.user.password
+                                };
+                                UserService
+                                    .createUser(newUser)
+                                    .then(function(response) {
+                                        $rootScope.currentUser = newUser;
+                                        $rootScope.loggedIn = true;
+                                        $location.url("/user/" + newUser._id);
+                                    })
+                            }
+                        })
+
                 }
             }
         }

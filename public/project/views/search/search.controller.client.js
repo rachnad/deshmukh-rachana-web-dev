@@ -6,8 +6,20 @@
         .module("Vibe")
         .controller("SearchController", SearchController);
 
-    function SearchController($rootScope, $location) {
+    function SearchController($rootScope, $routeParams, $location, UserService) {
         var vm = this;
+        $rootScope.loggedIn = true;
+        $rootScope.landing = false;
+        vm.userId = $routeParams.uid;
 
+        function init() {
+            UserService
+                .findUserById(vm.userId)
+                .then(function(response) {
+                    vm.user = response.data;
+                    $rootScope.currentUser = vm.user;
+                })
+        }
+        init();
     }
 })();

@@ -1,15 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>SEARCH</title>
-</head>
-<body>
-<a href="#/searchArtist">
-    <button type="submit" class="btn">Search by Artist</button>
-</a>
-<a href="#/searchVenue">
-    <button type="submit" class="btn">Search by Venue</button>
-</a>
-</body>
-</html>
+<div class="container">
+
+        <h2 class="center">Search for Upcoming Concerts!</h2>
+
+        <img class="img-responsive img-circle center-block"
+             src="http://previews.123rf.com/images/dervish37/dervish371210/dervish37121000201/16007658-silhouette-singing-people-Stock-Vector-singer.jpg"
+             alt="Generic placeholder image" width="140" height="140"><br>
+
+    <a href="#/user/{{currentUser._id}}/searchArtist">
+        <button class="center-block btn btn-primary">Search By Artist</button>
+    </a>
+
+        <img class="img-circle center-block"
+             src="http://previews.123rf.com/images/lenm/lenm1012/lenm101200279/8427172-Party-Invitation-Featuring-Musical-Instruments-Sitting-on-an-Empty-Stage-Stock-Photo.jpg"
+             alt="Generic placeholder image" width="140" height="140"><br>
+
+    <a href="#/user/{{currentUser._id}}/searchVenue">
+        <button class="center-block btn btn-primary">Search By Venue</button>
+    </a>
+
+
+
+</div>
+
+

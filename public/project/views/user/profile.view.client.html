@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>
 
-</body>
-</html>
+
+<div>
+    <div class="col-sm-3 col-md-2">
+        <ul class="nav nav-sidebar nav-pills nav-stacked">
+            <li ng-show = "!isGuest" class="active"><a href=""><span class="glyphicon glyphicon-user"></span>  Profile</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-lock"></span> Favorites</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Attented</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-list"></span>  Upcoming</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-signal"></span>  Following</a></li>
+        </ul>
+    </div>
+
+    <div class="col-sm-9 col-md-10">
+        <h1>{{currentUser}}</h1>
+    </div>
+</div>

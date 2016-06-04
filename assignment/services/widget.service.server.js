@@ -104,7 +104,7 @@ module.exports = function(app) {
 
         for(var i in widgets) {
             if(widgets[i]._id === widgetId) {
-                widgets[i].url = path;
+                widgets[i].url = "/uploads/"+filename;
             }
         }
         console.log(widgets[i]);

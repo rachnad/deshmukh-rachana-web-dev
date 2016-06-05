@@ -183,3 +183,7 @@ a.link {
 a.contact {
     color: midnightblue;
 }
+
+.glyphicon-envelope {
+    margin-right: 5px
+}

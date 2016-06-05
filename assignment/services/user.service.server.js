@@ -22,7 +22,7 @@ module.exports = function(app) {
     function createUser(req, res) {
         var newUser = req.body;
         users.push(newUser);
-        res.send(user);
+        res.send(newUser);
     }
 
 

@@ -31,12 +31,16 @@
                             }
                             else {
                                 var newUser = {
-                                    "_id": (new Date).getTime().toString(),
                                     "username": vm.user.username,
                                     "password": vm.user.password
                                 };
-                                UserService.createUser(newUser);
-                                $location.url("/user/" + newUser._id);
+                                UserService
+                                    .createUser(newUser)
+                                    .then(function(response) {
+                                        var user = response.data;
+                                        $location.url("/user/" + user._id);
+                                    })
+
                             }
                         });
                 }

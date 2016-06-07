@@ -22,7 +22,6 @@
 
             else {
                 var newPage = {
-                    "_id": (new Date).getTime().toString(),
                     "name": vm.page.name,
                     "websiteId": vm.websiteId,
                     "title": vm.page.title

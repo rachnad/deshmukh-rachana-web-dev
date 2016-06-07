@@ -22,7 +22,7 @@
             </a>
             <span class="glyphicon glyphicon-align-justify"></span>
         </div>
-            <div ng-switch="widget.widgetType" class="rd-widget">
+            <div ng-switch="widget.type" class="rd-widget">
                 <div ng-switch-when="HEADER">
                      <div ng-switch="widget.size">
                         <h1 ng-switch-when="1">{{widget.text}}</h1>
@@ -34,7 +34,7 @@
                      </div>
                 </div>
                 <div ng-switch-when="IMAGE">
-                    <img width="{{widget.width}}" ng-src="{{widget.url}}">
+                    <img width={{widget.width}}% ng-src="{{widget.url}}">
                 </div>
                 <div ng-switch-when="YOUTUBE" class="youtube-widget">
                     <iframe width="{{widget.width}}" ng-src="{{model.embeddedUrl(widget.url)}}" frameborder="0" allowfullscreen>

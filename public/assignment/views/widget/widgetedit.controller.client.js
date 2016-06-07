@@ -20,6 +20,7 @@
 
 
         function init() {
+            console.log(vm.widgetId);
             WidgetService
                 .findWidgetById(vm.widgetId)
                 .then(function(response) {
@@ -39,12 +40,13 @@
         }
 
         function updateWidget() {
+            console.log(vm.widget.width);
 
-            if (vm.widget.widgetType === "HEADER" && headerValidation()){
+            if (vm.widget.type === "HEADER" && headerValidation()){
                  vm.success = "";
                 vm.error = "Fill out all required fields"
             }
-            else if ((vm.widget.widgetType === "IMAGE" || vm.widget.widgetType === "YOUTUBE") &&
+            else if ((vm.widget.type === "IMAGE" || vm.widget.type === "YOUTUBE") &&
                 imageValidation()) {
                 vm.success = "";
                 vm.error = "Fill out all required fields"

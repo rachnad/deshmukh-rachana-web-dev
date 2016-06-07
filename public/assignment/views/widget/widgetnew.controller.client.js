@@ -16,19 +16,18 @@
 
         function addWidget(widgetType) {
             var newWidget = {
-                "widgetType": widgetType,
-                "_id": (new Date).getTime().toString(),
+                "type": widgetType,
                 "pageId": vm.pageId,
                 "name": "New Widget",
                 "text" : "New Text"
             };
-
             WidgetService
                 .createWidget(vm.pageId, newWidget).
                 then(function(response) {
+                console.log(response.data._id);
+                $location.url("/user/" + vm.userId + "/website/"+ vm.websiteId + "/page/" + vm.pageId + "/widget/" + response.data._id);
 
             });
-            $location.url("/user/" + vm.userId + "/website/"+ vm.websiteId + "/page/" + vm.pageId + "/widget/" + newWidget._id);
         }
 
     }

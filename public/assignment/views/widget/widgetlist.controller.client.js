@@ -14,6 +14,7 @@
         vm.embeddedUrl = embeddedUrl;
         vm.getHtml = getHtml;
 
+
         function init() {
             WidgetService
                 .findWidgetByPageId(vm.pageId)

@@ -31,7 +31,7 @@ module.exports = function(app, models) {
                     res.json(user);
                 },
                 function(error) {
-                    res.send(error);
+                    res.status(400).send(error);
                     //res.status(400).send("Username " + newUser.username + " is already in use");
                 }
             );
@@ -132,7 +132,7 @@ module.exports = function(app, models) {
     function deleteUser(req, res) {
         var userID = req.params.userId;
         userModel
-            .findByIdAndRemove(userID)
+            .deleteUser(userID)
             .then(
                 function(users) {
                     res.send(users);

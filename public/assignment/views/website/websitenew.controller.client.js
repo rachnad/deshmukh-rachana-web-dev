@@ -20,7 +20,6 @@
             else {
                 vm.error = "";
                 var website = {
-                    "_id": (new Date).getTime().toString(),
                     "name": vm.website.name,
                     "developerId": vm.userId,
                     "description": vm.website.description

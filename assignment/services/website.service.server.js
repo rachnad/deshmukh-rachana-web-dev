@@ -2,7 +2,9 @@
  * Created by rachanadeshmukh on 5/31/16.
  */
 
-module.exports = function(app) {
+module.exports = function(app, models) {
+    var websiteModel = models.websiteModel;
+
     var websites = [
         { "_id": "123", "name": "Facebook",    "developerId": "456" },
         { "_id": "234", "name": "Tweeter",     "developerId": "456" },
@@ -21,8 +23,18 @@ module.exports = function(app) {
 
     function createWebsite(req, res) {
         var newWebsite = req.body;
-        websites.push(newWebsite);
-        res.send(newWebsite);
+        var userID = req.params.userId;
+        websiteModel
+            .createWebsiteForUser(userID, newWebsite)
+            .then(
+                function(website) {
+                    res.send(website);
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            );
+
     }
 
     function findWebsites(req, res) {
@@ -42,17 +54,42 @@ module.exports = function(app) {
 
     function findWebsiteById(req, res) {
         var websiteID = req.params.websiteId;
+        websiteModel
+            .findWebsiteById(websiteID)
+            .then(
+                function(website) {
+                    res.send(website);
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            );
+
+        /*
         for (var i in websites) {
             if (websites[i]._id === websiteID) {
                 return res.send(websites[i]);
             }
         }
         res.send(null);
+        */
     }
 
 
     function findAllWebsitesForUser(req, res) {
         var userId = req.params.userId;
+        websiteModel
+            .findAllWebsitesForUser(userId)
+            .then(
+                function(websites) {
+                    res.send(websites);
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            );
+
+        /*
         var result = [];
         for (var i in websites) {
             if (websites[i].developerId === userId) {
@@ -60,6 +97,7 @@ module.exports = function(app) {
             }
         }
         return res.send(result);
+        */
     }
 
 
@@ -67,6 +105,18 @@ module.exports = function(app) {
     function updateWebsite(req, res) {
         var websiteID = req.params.websiteId;
         var newWebsite = req.body;
+        websiteModel
+            .updateWebsite(websiteID, newWebsite)
+            .then(
+                function(website) {
+                    res.send(website);
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            );
+
+        /*
         for (var i in websites)  {
             if (websites[i]._id === websiteID) {
                 websites[i].name = newWebsite.name;
@@ -75,10 +125,23 @@ module.exports = function(app) {
             }
         }
         return false;
+        */
     }
 
     function deleteWebsite(req, res) {
         var websiteID = req.params.websiteId;
+        websiteModel
+            .deleteWebsite(websiteID)
+            .then(
+                function(websites) {
+                    res.send(websites);
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            )
+
+        /*
         for (var i in websites) {
             if (websites[i]._id === websiteID) {
                 websites.splice(i, 1);
@@ -86,6 +149,7 @@ module.exports = function(app) {
             }
         }
         res.send(null);
+        */
     }
 };
 

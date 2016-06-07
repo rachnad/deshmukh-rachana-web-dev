@@ -25,7 +25,7 @@
                     UserService
                         .findUserByCredentials(vm.user.username, vm.user.password)
                         .then(function(response) {
-                            var result = response.data;
+                            var result = response.data[0];
                             if (result) {
                                 vm.error = "User already exists"
                             }

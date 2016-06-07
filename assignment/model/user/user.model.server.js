@@ -34,7 +34,7 @@ module.exports = function() {
         return User.findByIdAndUpdate(userId,newUser);
     }
 
-    function deleteUser() {
-
+    function deleteUser(userId) {
+        return User.findByIdAndRemove(userId);
     }
 };

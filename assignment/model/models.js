@@ -1,15 +1,20 @@
 module.exports = function() {
 
     var mongoose = require('mongoose');
-    var url = '127.0.0.1:27017/' + process.env.OPENSHIFT_APP_NAME;
+    var connectionString = 'mongodb://127.0.0.1:27017/web-dev';
 
-    // if OPENSHIFT env variables are present, use the available connection info:
-    if (process.env.OPENSHIFT_MONGODB_DB_URL) {
-        url = process.env.OPENSHIFT_MONGODB_DB_URL +
+    if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
+        connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
+            process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
+            process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
+            process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
             process.env.OPENSHIFT_APP_NAME;
     }
 
-// Connect to mongodb
+    var mongoose = require("mongoose");
+    mongoose.connect(connectionString);
+
+   // Connect to mongodb
     var connect = function () {
         mongoose.connect(url);
     };

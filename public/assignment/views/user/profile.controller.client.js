@@ -39,8 +39,10 @@
             }
             else {
                 vm.error = "";
+                vm.updatedUser = vm.user;
+                delete vm.updatedUser._id;
                 UserService
-                    .updateUser(vm.userId, vm.user)
+                    .updateUser(vm.userId, vm.updatedUser)
                     .then(function(response) {
                         var result = response.data;
                         if (result) {

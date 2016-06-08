@@ -41,8 +41,10 @@
             url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
             vm.widget.url = url;
             vm.widget.width = 100;
+            vm.updatedWidget = vm.widget;
+            delete vm.updatedWidget._id;
             WidgetService
-                .updateWidget(vm.widgetId, vm.widget)
+                .updateWidget(vm.widgetId, vm.updatedWidget)
                 .then(function (response) {
                     $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+vm.widgetId);
                 })

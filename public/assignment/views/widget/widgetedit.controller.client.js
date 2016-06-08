@@ -79,8 +79,9 @@
         }
 
         function uploadImage() {
-            console.log(vm.widget);
-            $http.post("/api/upload", vm.widget);
+            vm.updatedWidget = vm.widget;
+            delete vm.updatedWidget._id;
+            $http.post("/api/upload", vm.updatedWidget);
         }
     }
 })();

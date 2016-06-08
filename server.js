@@ -15,7 +15,7 @@ mongoose.connect(connectionString);
 
 // Connect to mongodb
 var connect = function () {
-    mongoose.connect(url);
+    mongoose.connect(connectionString);
 };
 connect();
 

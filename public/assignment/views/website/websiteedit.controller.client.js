@@ -32,8 +32,10 @@
             }
             else {
                 vm.error = "";
+                vm.updatedWebsite = vm.website;
+                delete vm.updatedWebsite._id;
                 WebsiteService
-                    .updateWebsite(vm.websiteId, vm.website)
+                    .updateWebsite(vm.websiteId, vm.updatedWebsite)
                     .then(function(response) {
                         var result = response.data;
                         if (result) {

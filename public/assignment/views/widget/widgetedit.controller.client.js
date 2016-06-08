@@ -52,8 +52,10 @@
                 vm.error = "Fill out all required fields"
             }
             else {
+                vm.updatedWidget = vm.widget;
+                delete vm.updatedWidget._id;
                 WidgetService
-                    .updateWidget(vm.widgetId, vm.widget)
+                    .updateWidget(vm.widgetId, vm.updatedWidget)
                     .then(function(response) {
                         var result = response.data;
                         if (result) {

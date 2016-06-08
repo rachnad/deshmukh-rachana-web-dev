@@ -32,8 +32,10 @@
             }
 
             else {
+                vm.updatedPage = vm.page;
+                delete vm.updatedPage._id;
                 PageService
-                    .updatePage(vm.pageId, vm.page)
+                    .updatePage(vm.pageId, vm.updatedPage)
                     .then(function(response) {
                         var result = response.data;
                         if (result) {

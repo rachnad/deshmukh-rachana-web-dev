@@ -34,6 +34,9 @@ module.exports = function() {
     }
 
     function updateWidget(widgetID, widget) {
+        if(widget.formatted === undefined) {
+            widget.formatted = false;
+        }
         return Widget.findByIdAndUpdate(widgetID, widget);
     }
 
@@ -43,6 +46,7 @@ module.exports = function() {
     }
 
     function reorderWidget(pageId, start, end) {
+
 
     }
 };

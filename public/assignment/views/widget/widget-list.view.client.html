@@ -10,7 +10,18 @@
 </nav>
 <script>
     $(function() {
-        $( "#sortable" ).sortable();
+        $("#sortable")
+                .sortable({
+                    start: function(event, ui) {
+                        model.startIndex = ui.item.index();
+                        console.log(model.startIndex);
+                    },
+                    stop: function(event, ui) {
+                        model.stopIndex = ui.item.index();
+                        console.log(model.stopIndex);
+
+                    }
+                });
     });
 </script>
 
@@ -43,7 +54,16 @@
                 <div ng-switch-when="HTML">
                     <div ng-bind-html="model.getHtml(widget.text)"></div>
                 </div>
+                <div ng-switch-when="TEXT">
+                    <div ng-model="widget.placeholder" ng-if="widget.formatted" text-angular ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],['ul','ol'], ['justifyLeft','justifyCenter','justifyRight','justifyFull'],['indent','outdent'],['html']]"></div>
+                    <input ng-if="!widget.formatted && (!widget.rows || widget.rows===1)"
+                           placeholder="{{widget.textInput.placeholder}}" class="form-control"/>
+                <textarea ng-if="!widget.formatted && (widget.rows > 1)"
+                          rows="{{widget.rows}}" placeholder="{{widget.placeholder}}"
+                          class="form-control">{{widget.text}}</textarea>
+                </div>
              </div>
+
     </div>
 </div>
 

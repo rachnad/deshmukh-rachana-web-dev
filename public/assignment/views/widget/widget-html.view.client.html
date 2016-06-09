@@ -7,10 +7,12 @@
 
 </form>
 
-    <div ng-model="model.widget.text">
-         <text-angular ng-model="htmlContent" name="demo-editor" ta-text-editor-class="border-around" ta-html-editor-class="border-around"></text-angular>
-</div>
+    <div text-angular ng-model="model.widget.text"
+         ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],['ul','ol'], ['justifyLeft','justifyCenter','justifyRight','justifyFull'],['indent','outdent'],['html']]"></div>
 
+    <a ng-click="model.deleteWidget()">
+        <button ng-click="model.deleteWidget()" type="submit" class="btn btn-danger">Delete</button>
+    </a>
 
 </div>
 

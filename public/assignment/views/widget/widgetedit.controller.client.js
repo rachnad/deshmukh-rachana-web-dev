@@ -9,6 +9,7 @@
 
     function EditWidgetController($scope, $routeParams, WidgetService, $location, $http) {
         var vm = this;
+        vm.format = false;
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
         vm.pageId = $routeParams.pid;
@@ -17,6 +18,7 @@
         vm.updateWidget = updateWidget;
         vm.deleteWidget = deleteWidget;
         vm.uploadImage = uploadImage;
+        vm.checkFormat = checkFormat;
 
 
         function init() {
@@ -25,6 +27,7 @@
                 .findWidgetById(vm.widgetId)
                 .then(function(response) {
                     vm.widget = angular.copy(response.data);
+                    vm.formatted = vm.widget.formatted;
                 });
         }
         init();
@@ -40,8 +43,6 @@
         }
 
         function updateWidget() {
-            console.log(vm.widget.width);
-
             if (vm.widget.type === "HEADER" && headerValidation()){
                  vm.success = "";
                 vm.error = "Fill out all required fields"
@@ -54,6 +55,7 @@
             else {
                 vm.updatedWidget = vm.widget;
                 delete vm.updatedWidget._id;
+
                 WidgetService
                     .updateWidget(vm.widgetId, vm.updatedWidget)
                     .then(function(response) {
@@ -82,6 +84,11 @@
             vm.updatedWidget = vm.widget;
             delete vm.updatedWidget._id;
             $http.post("/api/upload", vm.updatedWidget);
+        }
+
+        function checkFormat(check) {
+            console.log(check.checked);
+
         }
     }
 })();

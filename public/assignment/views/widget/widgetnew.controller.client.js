@@ -21,13 +21,20 @@
                 "name": "New Widget",
                 "text" : "New Text"
             };
-            WidgetService
-                .createWidget(vm.pageId, newWidget).
-                then(function(response) {
-                console.log(response.data._id);
-                $location.url("/user/" + vm.userId + "/website/"+ vm.websiteId + "/page/" + vm.pageId + "/widget/" + response.data._id);
 
-            });
+            WidgetService
+                .findWidgetByPageId(vm.pageId)
+                .then(function(response) {
+                    newWidget.order = response.data.length;
+                    WidgetService
+                        .createWidget(vm.pageId, newWidget)
+                        .then(function(response) {
+                        $location.url("/user/" + vm.userId + "/website/"+ vm.websiteId + "/page/" + vm.pageId + "/widget/" + response.data._id);
+
+                    });
+                });
+
+
         }
 
     }

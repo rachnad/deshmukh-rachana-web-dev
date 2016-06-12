@@ -46,7 +46,25 @@ module.exports = function() {
     }
 
     function reorderWidget(pageId, start, end) {
+        var startIndex = parseInt(start);
+        var endIndex = parseInt(end);
 
+        //use temp order value of -1 to switch orders of start and end index
+        return Widget
+            .update({order : startIndex, _page: pageId}, {order : -1})
+            .then(function(widget) {
+                return Widget
+                    .update({order : endIndex, _page: pageId}, {order: startIndex})
+                    .then(function(widget) {
+                        return Widget
+                            .update({order : -1, _page: pageId}, {order : endIndex})
+                            .then(function(widget) {
+                                console.log('reordering in widget model done')
+                            });
+                    }
+                );
+            }
+        );
 
     }
 };

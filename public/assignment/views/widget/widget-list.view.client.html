@@ -8,25 +8,14 @@
         </a>
     </h3>
 </nav>
-<script>
-    $(function() {
-        $("#sortable")
-                .sortable({
-                    start: function(event, ui) {
-                        model.startIndex = ui.item.index();
-                        console.log(model.startIndex);
-                    },
-                    stop: function(event, ui) {
-                        model.stopIndex = ui.item.index();
-                        console.log(model.stopIndex);
 
-                    }
-                });
-    });
-</script>
 
 <div class="container container-bottom" id="sortable">
-    <div ng-repeat="widget in model.widgets">
+
+    <wam-directive sorted="model.sorted(start, end)"
+                  data="model.widgets">
+
+    <div ng-repeat="widget in model.widgets | orderBy : 'order'">
         <div class="rd-widget-tool">
             <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
                 <span class="glyphicon glyphicon-cog"></span>
@@ -63,8 +52,8 @@
                           class="form-control">{{widget.text}}</textarea>
                 </div>
              </div>
-
     </div>
+    </wam-directive>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

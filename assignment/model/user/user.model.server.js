@@ -18,6 +18,8 @@ module.exports = function() {
         return User.create(user);
     }
 
+
+
     function findUserById(userId) {
         return User.findById(userId);
     }

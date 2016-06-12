@@ -13,6 +13,7 @@
         vm.pageId = $routeParams.pid;
         vm.embeddedUrl = embeddedUrl;
         vm.getHtml = getHtml;
+        vm.sorted = sorted;
 
 
         function init() {
@@ -20,7 +21,6 @@
                 .findWidgetByPageId(vm.pageId)
                 .then(function(response) {
                     vm.widgets = response.data;
-                    console.log(vm.widgets);
                 })
         }
         init();
@@ -34,6 +34,20 @@
 
         function getHtml(html) {
             return $sce.trustAsHtml(html);
+        }
+
+
+        function sorted(start, end) {
+            WidgetService
+                .reorderWidget(vm.pageId, start, end)
+                .then(
+                    function(response) {
+                        console.log(response.data);
+                    },
+                    function(error) {
+                        console.log('error in reordering');
+                    }
+                )
         }
     }
 })();

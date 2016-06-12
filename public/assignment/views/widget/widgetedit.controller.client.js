@@ -18,7 +18,6 @@
         vm.updateWidget = updateWidget;
         vm.deleteWidget = deleteWidget;
         vm.uploadImage = uploadImage;
-        vm.checkFormat = checkFormat;
 
 
         function init() {
@@ -27,7 +26,6 @@
                 .findWidgetById(vm.widgetId)
                 .then(function(response) {
                     vm.widget = angular.copy(response.data);
-                    vm.formatted = vm.widget.formatted;
                 });
         }
         init();
@@ -84,11 +82,6 @@
             vm.updatedWidget = vm.widget;
             delete vm.updatedWidget._id;
             $http.post("/api/upload", vm.updatedWidget);
-        }
-
-        function checkFormat(check) {
-            console.log(check.checked);
-
         }
     }
 })();

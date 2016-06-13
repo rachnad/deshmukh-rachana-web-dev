@@ -5,7 +5,7 @@
 module.exports = function() {
     var mongoose = require("mongoose");
 
-    var UserSchema = mongoose.Schema({
+    var VibeUserSchema = mongoose.Schema({
         username: String,
         password: String,
         firstName: String,
@@ -15,5 +15,5 @@ module.exports = function() {
         dateCreated: {type: Date, default: Date.now},
     }, {collection: "project.user"});
 
-    return UserSchema
+    return VibeUserSchema;
 };

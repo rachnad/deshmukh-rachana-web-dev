@@ -11,7 +11,7 @@ module.exports = function() {
             process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
             process.env.OPENSHIFT_APP_NAME;
     }
-    mongoose.connect(url);
+    //mongoose.connect(url);
 
     var userModel = require("./user/user.model.server.js")();
     //var favoritesModel = require("./website/website.model.server.js")();

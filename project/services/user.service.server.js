@@ -2,7 +2,7 @@
  * Created by rachanadeshmukh on 6/3/16.
  */
 
-module.exports = function(app) {
+module.exports = function(app, models) {
 
     var userModel = models.userModel;
 
@@ -26,7 +26,6 @@ module.exports = function(app) {
 
     function createUser(req, res) {
         var newUser = req.body;
-
         userModel
             .createUser(newUser)
             .then(
@@ -98,12 +97,16 @@ module.exports = function(app) {
 
     function deleteUser(req, res) {
         var userID = req.params.userId;
-        for (var i in users) {
-            if (users[i]._id === userID) {
-                users.splice(users[i], 1)
-            }
-        }
-        res.send(null);
+        userModel
+            .deleteUser(userID)
+            .then(
+                function(users) {
+                    res.send(users);
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            );
     }
 
     function getUsers(req, res) {

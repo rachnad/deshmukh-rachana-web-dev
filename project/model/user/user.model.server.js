@@ -4,8 +4,8 @@
 module.exports = function() {
 
     var mongoose = require("mongoose");
-    var UserSchema = require("./user.schema.server")();
-    var User = mongoose.model("UserModel", UserSchema);
+    var VibeUserSchema = require("./user.schema.server")();
+    var User = mongoose.model("VibeUserModel", VibeUserSchema);
 
     var api = {
         createUser: createUser,

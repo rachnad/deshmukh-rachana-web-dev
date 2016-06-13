@@ -35,9 +35,6 @@ module.exports = function(app, models) {
                     //res.status(400).send("Username " + newUser.username + " is already in use");
                 }
             );
-
-        //users.push(newUser);
-        //res.send(newUser);
     }
 
 

@@ -3,6 +3,7 @@
  */
 module.exports = function(app, models) {
     var widgetModel = models.widgetModel;
+    var pageModel = models.pageModel;
 
     var multer = require('multer');
     var upload = multer({ dest: __dirname +'/../../public/uploads'});
@@ -22,6 +23,7 @@ module.exports = function(app, models) {
             .createWidget(pageId, widget)
             .then(
                 function(widget) {
+                    pageModel.addWidgetForPage(pageId, widget._id);
                     res.send(widget)
                 },
                 function(error) {

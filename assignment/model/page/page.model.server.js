@@ -12,7 +12,9 @@ module.exports = function() {
         findAllPagesForWebsite: findAllPagesForWebsite,
         findPageById: findPageById,
         updatePage: updatePage,
-        deletePage: deletePage
+        deletePage: deletePage,
+        addWidgetForPage: addWidgetForPage,
+        deleteWidgetForPage: deleteWidgetForPage
     };
     return api;
 
@@ -20,6 +22,20 @@ module.exports = function() {
         page._website = websiteID;
         return Page.create(page);
     }
+
+    function addWidgetForPage(pageId, widgetId) {
+        Page
+            .findPageById(pageId)
+            .then(function(page) {
+                page.widgets.push(widgetId);
+                page.save();
+            })
+    }
+
+    function deleteWidgetForPage(pageId, widgetId) {
+
+    }
+
 
     function findAllPagesForWebsite(websiteId) {
         return Page.find({_website: websiteId});

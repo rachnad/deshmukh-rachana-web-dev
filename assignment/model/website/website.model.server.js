@@ -12,13 +12,28 @@ module.exports = function() {
         findAllWebsitesForUser: findAllWebsitesForUser,
         findWebsiteById: findWebsiteById,
         updateWebsite: updateWebsite,
-        deleteWebsite: deleteWebsite
+        deleteWebsite: deleteWebsite,
+        addPageForWebsite: addPageForWebsite,
+        deletePageForWebsite: deletePageForWebsite
     };
     return api;
 
     function createWebsiteForUser(userId, website) {
         website._user = userId;
         return Website.create(website)
+    }
+
+    function addPageForWebsite(pageId, websiteId) {
+        return Website
+            .findWebsiteById(websiteId)
+            .then(function(website) {
+                website.pages.push(pageId);
+                website.save();
+            })
+    }
+
+    function deletePageForWebsite(pageId, websiteId) {
+
     }
 
     function findAllWebsitesForUser(userId) {

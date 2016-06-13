@@ -10,7 +10,9 @@ module.exports = function() {
         findUserByUsername: findUserByUsername,
         findUserById: findUserById,
         updateUser: updateUser,
-        deleteUser: deleteUser
+        deleteUser: deleteUser,
+        addWebsiteForUser: addWebsiteForUser,
+        deleteWebsiteForUser: deleteWebsiteForUser
     };
     return api;
 
@@ -18,7 +20,24 @@ module.exports = function() {
         return User.create(user);
     }
 
+    function addWebsiteForUser(websiteId, userId) {
+        return User
+            .findById(userId)
+            .then(function(user) {
+                user.websites.push(websiteId);
+                user.save();
+            })
+    }
 
+    function deleteWebsiteForUser(websiteId, userId) {
+        return User
+            .find({_id: userId})
+            .then(function(user) {
+                var removeIndex = user.websites.indexOf(websiteId);
+                console.log(removeIndex);
+                user.save();
+            })
+    }
 
     function findUserById(userId) {
         return User.findById(userId);

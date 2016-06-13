@@ -19,22 +19,20 @@
                 vm.success = "";
                 vm.error = "Fill out all required fields"
             }
-
             else {
                 var newPage = {
                     "name": vm.page.name,
                     "websiteId": vm.websiteId,
                     "title": vm.page.title
                 };
-
                 if (!vm.added) {
+                    vm.added = true;
                     PageService
                         .createPage(newPage, vm.websiteId)
                         .then(function(response) {
-                            console.log(response);
                             vm.error = "";
                             vm.success = "New Page has been added";
-                            vm.added = true;
+
                         })
                 }
             }

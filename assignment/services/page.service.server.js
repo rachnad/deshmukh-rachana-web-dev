@@ -19,7 +19,7 @@ module.exports = function(app, models) {
             .createPage(websiteId, page)
             .then(
                 function(page) {
-                    websiteModel.addPageForWebsite(websiteId, page._id);
+                    //websiteModel.addPageForWebsite(websiteId, page._id);
                     res.send(page);
                 },
                 function(error) {

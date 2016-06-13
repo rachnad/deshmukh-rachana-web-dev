@@ -23,10 +23,11 @@ module.exports = function() {
         return Website.create(website)
     }
 
-    function addPageForWebsite(pageId, websiteId) {
+    function addPageForWebsite(websiteId, pageId) {
         return Website
             .findWebsiteById(websiteId)
-            .then(function(website) {
+            .then(
+                function(website) {
                 website.pages.push(pageId);
                 website.save();
             })

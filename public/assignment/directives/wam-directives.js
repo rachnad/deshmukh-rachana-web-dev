@@ -15,7 +15,7 @@
             $(element)
                 .sortable({
                     axis: "y",
-
+                    handle: ".rd-widget-tool",
                     start: function(event, ui) {
                         startIndex = ui.item.index();
                     },

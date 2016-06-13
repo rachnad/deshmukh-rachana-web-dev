@@ -23,13 +23,14 @@ module.exports = function(app, models) {
             .createWidget(pageId, widget)
             .then(
                 function(widget) {
-                    pageModel.addWidgetForPage(pageId, widget._id);
-                    res.send(widget)
+                    //pageModel.addWidgetForPage(pageId, widget._id);
+                    res.send(widget);
+
                 },
                 function(error) {
                     res.status(400).send(error);
                 }
-            );
+            )
     }
 
     function findAllWidgetsForPage(req, res) {

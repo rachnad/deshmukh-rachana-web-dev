@@ -59,7 +59,7 @@ module.exports = function() {
                         return Widget
                             .update({order : -1, _page: pageId}, {order : endIndex})
                             .then(function(widget) {
-                                console.log('reordering in widget model done')
+                                //console.log('reordering in widget model done')
                             });
                     }
                 );

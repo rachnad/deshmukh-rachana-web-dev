@@ -29,7 +29,6 @@
                     WebsiteService
                         .createWebsite(website)
                         .then(function(response) {
-                            console.log(response.data);
                         });
                     vm.success = "New Website has been added";
                     vm.added = true;

@@ -75,7 +75,6 @@ module.exports = function(app, models) {
     }
 
 
-
     function updateWebsite(req, res) {
         var websiteID = req.params.websiteId;
         var newWebsite = req.body;

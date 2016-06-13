@@ -7,7 +7,7 @@
         .controller("SearchArtistController", SearchArtistController)
         .controller("ArtistListController", ArtistListController);
 
-    function SearchArtistController($rootScope, $routeParams, $location, UserService, EventfulService) {
+    function SearchArtistController($rootScope, $routeParams, $location, ProjectUserService) {
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.searched = false;
@@ -17,7 +17,7 @@
         $rootScope.loggedIn = true;
 
         function init() {
-            UserService
+            ProjectUserService
                 .findUserById(vm.userId)
                 .then(function(response) {
                     vm.user = response.data;
@@ -32,11 +32,22 @@
         }
     }
 
-    function ArtistListController($routeParams, EventfulService) {
+    function ArtistListController($routeParams, FMService, SongkickService) {
         vm = this;
         vm.userId = $routeParams.uid;
         vm.searched = true;
         vm.artist = $routeParams.artist;
-        vm.events = EventfulService.searchArtist(vm.artist);
+
+        SongkickService.searchArtist(vm.artist)
+            .then(function(response) {
+                vm.searchedArtist = response.data.resultsPage.results.artist[0]
+                SongkickService.getartistCalender(vm.searchedArtist.id)
+                    .then(function(response) {
+                        vm.artistCalender = response.data.resultsPage.results.event;
+                        console.log(vm.artistCalender)
+                    })
+            })
+
+
     }
 })();

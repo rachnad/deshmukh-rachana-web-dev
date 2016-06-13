@@ -6,7 +6,7 @@
         .module("Vibe")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($rootScope, $routeParams, UserService) {
+    function ProfileController($rootScope, $routeParams, ProjectUserService) {
         var vm = this;
         $rootScope.landing = false;
         $rootScope.loggedIn = true;
@@ -16,7 +16,7 @@
 
 
         function init() {
-            UserService
+            ProjectUserService
                 .findUserById(vm.userId)
                 .then(function(response) {
                     vm.user = angular.copy(response.data);
@@ -32,7 +32,7 @@
             }
             else {
                 vm.error = "";
-                UserService
+                ProjectUserService
                     .updateUser(vm.userId, vm.user)
                     .then(function(response) {
                         var result = response.data;

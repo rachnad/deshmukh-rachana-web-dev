@@ -14,15 +14,14 @@
         var baseURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=ARTIST&api_key=APIKEY&format=json";
 
         var api={
-            getArtistImage : getArtistImage
+            getArtistInfo : getArtistInfo
         };
         return api;
 
-        function getArtistImage(artist) {
+        function getArtistInfo(artist) {
             var url = baseURL.replace("APIKEY", key).replace("ARTIST", artist);
             return $http.get(url);
         }
-
 
     }
 })();

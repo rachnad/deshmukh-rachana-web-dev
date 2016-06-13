@@ -6,9 +6,9 @@
 (function() {
     angular
         .module("Vibe")
-        .factory("UserService", UserService);
+        .factory("ProjectUserService", ProjectUserService);
 
-    function UserService($http) {
+    function ProjectUserService($http) {
         var api = {
             createUser   : createUser,
             findUserById : findUserById,
@@ -19,27 +19,27 @@
         };
         return api;
         function createUser(user) {
-            return $http.post("/api/user/", user);
+            return $http.post("/project/user/", user);
         }
 
         function findUserById(userID) {
-            return $http.get("/api/user/"+userID);
+            return $http.get("/project/user/"+userID);
         }
 
         function findUserByUsername(username) {
-            return $http.get("/api/user?username="+userID);
+            return $http.get("/project/user?username="+userID);
         }
 
         function findUserByCredentials(username, password) {
-            return $http.get("/api/user?username=" +username +"&password=" +password);
+            return $http.get("/project/user?username=" +username +"&password=" +password);
         }
 
         function updateUser(userID, newUser) {
-            return $http.put("/api/user/" +userID, newUser);
+            return $http.put("/project/user/" +userID, newUser);
         }
 
         function deleteUser(userID) {
-            return $http.delete("/api/user/" + userID);
+            return $http.delete("/project/user/" + userID);
         }
     }
 })();

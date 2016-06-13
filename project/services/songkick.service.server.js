@@ -1,56 +1,60 @@
 /**
+ * Created by rachanadeshmukh on 6/13/16.
+ */
+/**
  * Created by rachanadeshmukh on 6/3/16.
  */
 
-(function() {
-    angular
-        .module("Vibe")
-        .factory("EventfulService", EventfulService);
-    function EventfulService($http) {
+module.exports = function(app) {
 
-        var key = "Rhm84vLVz8ZW2wvT";
-        //oAuth Consumer Key: 62429a093e18b1f83293
-        //oAuth Consumer Secret: e7ed1b287e6c9ac9e5b1
+        var $http = require("request");
 
-        var urlArtistBase = "http://api.eventful.com/json/events/search?app_key=APPKEY&performer=ARTIST";
+        var key = "dSe9uKf7px4Vlnty";
 
-        var api={
-            searchArtist: searchArtist,
-            searchVenue: searchVenue,
-            getEventDetails : getEventDetails
-        };
-        return api;
+        var artistCalenderURL = "http://api.songkick.com/api/3.0/artists/ARTISTID/calendar.json?apikey=APIKEY";
+        var artistSearchURL = "http://api.songkick.com/api/3.0/search/artists.json?query=ARTISTNAME&apikey=APIKEY";
+
+        app.get("/artist/:aid/search",  searchArtist);
+
+        function searchArtist(req, res) {
+            var artistName = req.params.aid;
+            var artistUrl = artistSearchURL.replace("ARTISTNAME", artistName).replace("APIKEY", key);
+            $http(artistUrl, function(data) {
+                res.send(data);
+            });
 
 
-        function searchArtist(artistName) {
-            //var url = urlArtistBase.replace("APPKEY", key).replace("ARTIST", artistName);
-            //var url = "http://api.eventful.com/rest/events/search?APPKEY&keywords=books&location=San+Diego&date=Future".replace("APPKEY, key");
-            //return $http.get(url);
 
-            var events = [{
-                "id": 1,
-                "artist": "Rihanna",
-                "date": (new Date).getDate().toString(),
-                "price": 100,
-                "title": "Rihanna Concert",
-                "location": "Boston, MA",
-                "type": "Concert"
-            }, {"id": 2,
-                "artist": "Rihanna",
-                "date": (new Date).getDate().toString(),
-                "price": 100,
-                "title": "Rihanna Concert",
-                "location": "New York, NY",
-                "type": "Concert"
-            }, {"id": 3,
-                "artist": "Rihanna",
-                "date": (new Date).getDate().toString(),
-                "price": 100,
-                "title": "Rihanna Concert",
-                "location": "DC",
-                "type": "Concert"}];
 
-            return events;
+
+
+
+            /*
+             var events = [{
+             "id": 1,
+             "artist": "Rihanna",
+             "date": (new Date).getDate().toString(),
+             "price": 100,
+             "title": "Rihanna Concert",
+             "location": "Boston, MA",
+             "type": "Concert"
+             }, {"id": 2,
+             "artist": "Rihanna",
+             "date": (new Date).getDate().toString(),
+             "price": 100,
+             "title": "Rihanna Concert",
+             "location": "New York, NY",
+             "type": "Concert"
+             }, {"id": 3,
+             "artist": "Rihanna",
+             "date": (new Date).getDate().toString(),
+             "price": 100,
+             "title": "Rihanna Concert",
+             "location": "DC",
+             "type": "Concert"}];
+
+             return events;
+             */
         }
 
         function searchVenue(venueName) {
@@ -152,4 +156,3 @@
 
         }
     }
-})();

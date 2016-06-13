@@ -11,15 +11,23 @@ body {
     width:100%;
     height: 100%;
     background-size: cover;
+    padding-top: 40px;
 }
+
 
 .landing-text {
     text-align: center;
-    margin-top: 5px;
+    padding-top: 20px;
+    padding-bottom: 10px;
     position: relative;
-    margin: 30px;
+    width: 100%;
     background-color: #ffffff;
     opacity: 0.6;
+}
+
+.title {
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
 }
 
 .btn {
@@ -78,5 +86,22 @@ hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; 
 
 
 .fa-2x {
+    vertical-align: middle;
+}
+
+/*for mobile, prevent horizontal scroll*/
+@media screen and (max-width: 667px) {
+    body {
+        overflow-x: hidden !important;
+    }
+    .container {
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+}
+
+.fa-user {
+    display:inline-block;
+    text-align: center;
     vertical-align: middle;
 }

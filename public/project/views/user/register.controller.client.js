@@ -7,7 +7,7 @@
         .controller("RegisterController", RegisterController);
 
 
-    function RegisterController($rootScope, $location, UserService) {
+    function RegisterController($rootScope, $location, ProjectUserService) {
         $rootScope.landing = false;
         var vm = this;
         vm.addUser = addUser;
@@ -24,7 +24,7 @@
                     vm.error = "Passwords do not match"
                 }
                 else {
-                    UserService
+                    ProjectUserService
                         .findUserByCredentials(vm.user.username, vm.user.password)
                         .then(function(response) {
                             var result = response.data;
@@ -38,7 +38,7 @@
                                     "username": vm.user.username,
                                     "password": vm.user.password
                                 };
-                                UserService
+                                ProjectUserService
                                     .createUser(newUser)
                                     .then(function(response) {
                                         $rootScope.currentUser = newUser;

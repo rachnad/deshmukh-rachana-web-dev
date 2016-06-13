@@ -7,7 +7,7 @@
         .controller("SearchVenueController", SearchVenueController)
         .controller("VenueListController", VenueListController);
 
-    function SearchVenueController($routeParams, $rootScope, $location, UserService) {
+    function SearchVenueController($routeParams, $rootScope, $location, ProjectUserService) {
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.searched = false;
@@ -17,7 +17,7 @@
         $rootScope.loggedIn = true;
 
         function init() {
-            UserService
+            ProjectUserService
                 .findUserById(vm.userId)
                 .then(function(response) {
                     vm.user = response.data;

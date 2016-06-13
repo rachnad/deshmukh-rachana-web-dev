@@ -7,27 +7,47 @@
         .module("Vibe")
         .controller("ConcertController", ConcertController);
 
-    function ConcertController($routeParams, $location, EventfulService, FMService) {
+    function ConcertController($routeParams, $rootScope, SongkickService, FMService, FollowingService) {
         var vm = this;
         vm.getArtistImage = getArtistImage;
+        vm.followArtist = followArtist;
         vm.eventId = $routeParams.eid;
 
         function init() {
-            vm.event = EventfulService.getEventDetails(vm.eventId);
-            vm.artist = vm.event.performance[0].artist.displayName;
+            $rootScope.loggedIn = true;
+            vm.userId = $routeParams.uid;
+            SongkickService
+                .getEventDetails(vm.eventId)
+                .then(function(response) {
+                    vm.concert = response.data.resultsPage.results.event;
+                    vm.artist = vm.concert.performance[0].artist.displayName;
+                    //vm.getArtistImage();
+                });
 
-            vm.getArtistImage();
         }
-        init()
+        init();
 
 
         function getArtistImage() {
             FMService
-                .getArtistImage(vm.artist)
+                .getArtistInfo(vm.artist)
                 .then(function(response) {
                     vm.artistImage = response.data.artist.image[3]['#text'];
                     vm.artistImageMobile = response.data.artist.image[1]['#text'];
                 })
+
+        }
+
+        function followArtist() {
+            FollowingService
+                .followArtist(vm.userId, vm.artist)
+                .then(function(response) {
+                console.log("Following: " + response.data);
+            })
+
+        }
+
+        function favoriteEvent() {
 
         }
     }

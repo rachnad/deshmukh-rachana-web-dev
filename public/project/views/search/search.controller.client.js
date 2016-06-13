@@ -6,14 +6,14 @@
         .module("Vibe")
         .controller("SearchController", SearchController);
 
-    function SearchController($rootScope, $routeParams, $location, UserService) {
+    function SearchController($rootScope, $routeParams, $location, ProjectUserService) {
         var vm = this;
         $rootScope.loggedIn = true;
         $rootScope.landing = false;
         vm.userId = $routeParams.uid;
 
         function init() {
-            UserService
+            ProjectUserService
                 .findUserById(vm.userId)
                 .then(function(response) {
                     vm.user = response.data;

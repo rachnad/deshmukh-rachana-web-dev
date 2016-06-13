@@ -6,7 +6,7 @@
         .module("Vibe")
         .controller("LoginController", LoginController);
 
-    function LoginController($rootScope, $location, UserService) {
+    function LoginController($rootScope, $location, ProjectUserService) {
         $rootScope.landing = false;
         $rootScope.loggedIn = false;
         var vm = this;
@@ -15,7 +15,7 @@
 
 
         function login(username, password) {
-            UserService
+            ProjectUserService
                 .findUserByCredentials(username, password)
                 .then(function(response) {
                     var user = response.data;

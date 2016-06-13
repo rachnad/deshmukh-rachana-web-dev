@@ -32,6 +32,16 @@
                 controller: "ProfileController",
                 controllerAs: "model"
             })
+            .when("/user/:uid/favorites", {
+                templateUrl: "views/user/favorites.view.client.html",
+                controller: "FavoritesController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid/following", {
+                templateUrl: "views/user/following.view.client.html",
+                controller: "FollowingController",
+                controllerAs: "model"
+            })
             .when("/user/:uid/search", {
                 templateUrl: "views/search/searchMain.view.client.html",
                 controller: "SearchController",

@@ -1,0 +1,23 @@
+<div class=row>
+    <div class="col-sm-3 col-md-2 col-lg-2">
+        <ul class="nav nav-sidebar nav-pills nav-stacked">
+            <li ng-show = "!isGuest"><a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span>  Profile</a></li>
+            <li><a href="#/user/{{model.userId}}/favorites"><span class="glyphicon glyphicon-lock"></span> Favorites</a></li>
+            <li class="active"><a><span class="glyphicon glyphicon-signal"></span>  Following</a></li>
+        </ul>
+    </div>
+
+    <div class="col-sm-9 col-md-10 col-lg-10">
+        <h1>Following</h1>
+        <div>
+            <section ng-repeat="follow in model.follows" class="col-xs-12 col-sm-6 col-md-12">
+                <article class="search-result row">
+                    <div>
+                        <h3>{{follow.artist}}</h3>
+                    </div>
+                    <span class="clearfix borda"></span>
+                </article>
+            </section>
+        </div>
+    </div>
+</div>

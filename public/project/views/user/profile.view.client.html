@@ -1,3 +1,5 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<link href="../../css/profile-page.css" rel="stylesheet">
 <!-- Menu Toggle Script -->
 <script>
     $("#menu-toggle").click(function(e) {
@@ -6,19 +8,17 @@
     });
 </script>
 
-
-<div>
-    <div class="col-sm-3 col-md-2">
+<div class=row>
+    <div class="col-sm-3 col-md-2 col-lg-2">
         <ul class="nav nav-sidebar nav-pills nav-stacked">
             <li ng-show = "!isGuest" class="active"><a href=""><span class="glyphicon glyphicon-user"></span>  Profile</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-lock"></span> Favorites</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Attented</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-list"></span>  Upcoming</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-signal"></span>  Following</a></li>
+            <li><a href="#/user/{{model.userId}}/favorites"><span class="glyphicon glyphicon-lock"></span> Favorites</a></li>
+            <li><a href="#/user/{{model.userId}}/following"><span class="glyphicon glyphicon-signal"></span>  Following</a></li>
         </ul>
     </div>
 
-    <div class="col-sm-9 col-md-10">
-        <h1>{{currentUser}}</h1>
+    <div class="col-sm-9 col-md-10 col-lg-10">
+        <i class="fa fa-user fa-5x" aria-hidden="true"></i>
     </div>
-</div>
+    </div>
+

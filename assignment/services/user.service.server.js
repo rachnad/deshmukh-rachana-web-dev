@@ -20,6 +20,7 @@ module.exports = function(app, models) {
     app.post('/api/logout', logout);
     app.post ("/api/register", register);
     app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+    app.get ('/api/loggedin', loggedin);
 
 
     passport.use('wam', new LocalStrategy(localStrategy));
@@ -58,9 +59,17 @@ module.exports = function(app, models) {
     }
 
 
+    function loggedin(req, res) {
+        if(req.isAuthenticated()) {
+            res.send(req.user)
+        }
+        else {
+            res.send(0)
+        }}
+
 
     function serializeUser(user, done) {
-        return done(null, user);
+        done(null, user);
     }
 
 
@@ -69,10 +78,10 @@ module.exports = function(app, models) {
             .findUserById(user._id)
             .then(
                 function(user){
-                    return done(null, user);
+                    done(null, user);
                 },
                 function(err){
-                    return done(err, null);
+                    done(err, null);
                 }
             );
     }
@@ -83,7 +92,8 @@ module.exports = function(app, models) {
             .findUserByCredentials(username, password)
             .then(
                 function(user) {
-                    if(user[0].username === username && user[0].password === password) {
+                    console.log(user);
+                    if(user.username === username && user.password === password) {
                         return done(null, user);
                     } else {
                         return done(null, false);
@@ -134,7 +144,7 @@ module.exports = function(app, models) {
             .findUserByUsername(username)
             .then(
                 function(user) {
-                    res.send(user);
+                    res.json(user);
                 },
                 function(error) {
                     res.status(400).send(error);
@@ -156,7 +166,7 @@ module.exports = function(app, models) {
             .findUserByCredentials(username, password)
             .then(
                 function(user) {
-                    res.send(user);
+                    res.json(user);
                 },
                 function(error) {
                     res.status(400).send(error);

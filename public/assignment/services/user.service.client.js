@@ -18,9 +18,14 @@
             findUserByUsername : findUserByUsername,
             findUserByCredentials : findUserByCredentials,
             updateUser : updateUser,
-            deleteUser : deleteUser
+            deleteUser : deleteUser,
+            checkLoggedIn: checkLoggedIn
         };
         return api;
+
+        function checkLoggedIn() {
+            return $http.get("/api/loggedin");
+        }
 
         function login(user) {
             var url = "/api/login";

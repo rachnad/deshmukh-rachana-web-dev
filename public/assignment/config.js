@@ -32,8 +32,8 @@
             .when("/user/:uid", {
                 templateUrl: "views/user/profile.view.client.html",
                 controller: "ProfileController",
-                controllerAs: "model"
-                //resolve: {loggedin: checkLoggedin}
+                controllerAs: "model",
+                resolve: {loggedin: checkLoggedIn}
             })
             .when("/user/:uid/website", {
                 templateUrl: "views/website/website-list.view.client.html",
@@ -84,6 +84,31 @@
                 templateUrl: "views/widget/widget-flickr-search.view.client.html",
                 controller: "FlickrImageSearchController",
                 controllerAs: "model"
-            })
+            });
+
+
+
+        function checkLoggedIn(UserService, $location, $rootScope, $q) {
+            var deferred = $q.defer();
+            UserService
+                .checkLoggedIn()
+                .then(
+                    function(response) {
+                        var user = response.data;
+                        if(user == '0') {
+                            $location.url("/login");
+                            deferred.reject();
+                        }
+                        else {
+                            deferred.resolve();
+                        }
+                    },
+                    function(error) {
+                        deferred.reject();
+                    }
+                );
+            return deferred.promise;
+        }
+
     }
 })();

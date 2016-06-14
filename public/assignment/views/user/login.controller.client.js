@@ -18,7 +18,7 @@
             UserService
                 .login(user)
                 .then(function(response) {
-                    var user = response.data[0];
+                    var user = response.data;
                     if (user) {
                         $rootScope.currentUser = user;
                         var id = user._id;

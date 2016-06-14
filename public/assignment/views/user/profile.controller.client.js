@@ -6,15 +6,13 @@
         .module("WebAppMaker")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($rootScope, $routeParams, $location, UserService) {
+    function ProfileController($q, $rootScope, $routeParams, $http, $location, UserService, $timeout) {
         var vm = this;
         vm.userId = $routeParams["uid"];
         vm.updateUser = updateUser;
         vm.unregister = unregister;
         vm.logout = logout;
-        //get userID from url
-
-
+        //vm.checkLoggedIn = checkLoggedIn;
 
         function init() {
             UserService
@@ -65,7 +63,6 @@
                     $location.url("/login");
                 });
         }
-
 
     }
 })();

@@ -39,7 +39,6 @@ module.exports = function() {
             .find({_id: userId})
             .then(function(user) {
                 var removeIndex = user.websites.indexOf(websiteId);
-                console.log(removeIndex);
                 user.save();
             })
     }
@@ -49,11 +48,11 @@ module.exports = function() {
     }
 
     function findUserByCredentials(username, password) {
-        return User.find({username: username, password: password});
+        return User.findOne({username: username, password: password});
     }
 
     function findUserByUsername(username) {
-        return User.find({username: username});
+        return User.findOne({username: username});
     }
 
     function updateUser(userId, newUser) {

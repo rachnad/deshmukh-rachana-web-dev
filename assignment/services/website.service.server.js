@@ -12,7 +12,12 @@ module.exports = function(app, models) {
     app.get("/api/website/:websiteId", findWebsiteById);
     app.put("/api/website/:websiteId", updateWebsite);
     app.delete("/api/website/:websiteId", deleteWebsite);
+    app.get ('/api/loggedin', loggedin);
 
+
+    function loggedin(req, res) {
+        res.send(req.isAuthenticated() ? req.user : '0');
+    }
 
     function createWebsite(req, res) {
         var newWebsite = req.body;

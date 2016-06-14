@@ -9,7 +9,11 @@ module.exports = function() {
         email: String,
         websites: [String],
         dateCreated: {type: Date, default: Date.now},
-        dateUpdated: Date
+        dateUpdated: Date,
+        facebook: {
+            id:    String,
+            token: String
+        }
     }, {collection: "assignment.user"});
 
     return UserSchema

@@ -1,13 +1,35 @@
 var express = require('express');
 var app = express();
-var mongoose = require('mongoose');
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header('Access-Control-Allow-Credentials', true);
+    next();
+});
 
+var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var session      = require('express-session');
+var passport     = require('passport');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(cookieParser());
+app.use(session({ secret: "thesecret", resave: true, saveUninitialized: true}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
+
+var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
+var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+
+
 
 //var meanTest = require ("./test/app.js");
 var assignment = require("./assignment/app.js");
@@ -16,8 +38,5 @@ var project = require("./project/app.js");
 //meanTest(app);
 assignment(app);
 project(app);
-
-var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
-var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
 app.listen(port, ipaddress);

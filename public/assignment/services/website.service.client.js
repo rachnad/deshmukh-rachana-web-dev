@@ -14,9 +14,14 @@
             findWebsiteById : findWebsiteById,
             findWebsiteByUser : findWebsiteByUser,
             updateWebsite : updateWebsite,
-            deleteWebsite : deleteWebsite
+            deleteWebsite : deleteWebsite,
+            isLoggedIn: isLoggedIn
         };
         return api;
+
+        function isLoggedIn() {
+
+        }
 
         function createWebsite(website) {
             return $http.post("/api/user/"+website.developerId+"/website/", website);

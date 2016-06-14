@@ -7,7 +7,7 @@
         .controller("RegisterController", RegisterController);
 
 
-    function RegisterController($location, UserService) {
+    function RegisterController($rootScope, $location, UserService) {
         var vm = this;
         vm.addUser = addUser;
 
@@ -35,9 +35,10 @@
                                     "password": vm.user.password
                                 };
                                 UserService
-                                    .createUser(newUser)
+                                    .register(newUser)
                                     .then(function(response) {
                                         var user = response.data;
+                                        $rootScope.currentUser = user;
                                         $location.url("/user/" + user._id);
                                     })
 

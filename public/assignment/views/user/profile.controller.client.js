@@ -6,11 +6,12 @@
         .module("WebAppMaker")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($routeParams, $location, UserService) {
+    function ProfileController($rootScope, $routeParams, $location, UserService) {
         var vm = this;
         vm.userId = $routeParams["uid"];
         vm.updateUser = updateUser;
         vm.unregister = unregister;
+        vm.logout = logout;
         //get userID from url
 
 
@@ -20,6 +21,7 @@
                 .findUserById(vm.userId)
                 .then(function(response) {
                     vm.user = angular.copy(response.data);
+                    $rootScope = vm.user;
                 });
         }
         init();
@@ -54,5 +56,16 @@
                     });
             }
         }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(function(response) {
+                    $rootScope.currentUser = null;
+                    $location.url("/login");
+                });
+        }
+
+
     }
 })();

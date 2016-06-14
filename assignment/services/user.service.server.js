@@ -1,17 +1,13 @@
 /**
  * Created by rachanadeshmukh on 5/31/16.
  */
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 
 module.exports = function(app, models) {
 
     var userModel = models.userModel;
-
-    var users = [
-        {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-        {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-        {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-        {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
-    ];
 
     app.post("/api/user", createUser);
     app.get("/api/user", getUsers);
@@ -20,6 +16,86 @@ module.exports = function(app, models) {
     app.get("/api/user?username=username&password=password", findUserByCredentials);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
+    app.post('/api/login', passport.authenticate('wam'), login);
+    app.post('/api/logout', logout);
+    app.post ("/api/register", register);
+    app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+
+
+    passport.use('wam', new LocalStrategy(localStrategy));
+    //passport.use(new FacebookStrategy(facebookStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
+
+    function login(req, res) {
+        var user = req.user;
+        return res.json(user);
+    }
+
+    function logout(req, res) {
+        req.logOut();
+        res.send(200);
+    }
+
+    function register (req, res) {
+        var user = req.body;
+        userModel
+            .createUser(user)
+            .then(
+                function(user){
+                    if(user){
+                        req.login(user, function(err) {
+                            if(err) {
+                                return res.status(400).send(err);
+                            } else {
+                                return res.json(user);
+                            }
+                        });
+                    }
+            }
+        );
+    }
+
+
+
+    function serializeUser(user, done) {
+        return done(null, user);
+    }
+
+
+    function deserializeUser(user, done) {
+        userModel
+            .findUserById(user._id)
+            .then(
+                function(user){
+                    return done(null, user);
+                },
+                function(err){
+                    return done(err, null);
+                }
+            );
+    }
+
+
+    function localStrategy(username, password, done) {
+        userModel
+            .findUserByCredentials(username, password)
+            .then(
+                function(user) {
+                    if(user[0].username === username && user[0].password === password) {
+                        return done(null, user);
+                    } else {
+                        return done(null, false);
+                    }
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            );
+    }
+
+
 
     function createUser(req, res) {
         var newUser = req.body;
@@ -53,7 +129,7 @@ module.exports = function(app, models) {
             );
     }
 
-    function findUserByUsername(username, res) {
+    function findUserByUsername(username, req, res) {
         userModel
             .findUserByUsername(username)
             .then(
@@ -75,9 +151,7 @@ module.exports = function(app, models) {
         */
     }
 
-    function findUserByCredentials(username, password, res) {
-        //var username = req.params.username;
-        //var password  = req.params.password;
+    function findUserByCredentials(username, password, req, res) {
         userModel
             .findUserByCredentials(username, password)
             .then(
@@ -88,15 +162,6 @@ module.exports = function(app, models) {
                     res.status(400).send(error);
                 }
             );
-
-        /*
-        for (var i in users) {
-            if(users[i].username === username && users[i].password === password) {
-                return res.send(users[i]);
-            }
-        }
-        return res.send(null);
-        */
     }
 
     function updateUser(req, res) {
@@ -152,9 +217,9 @@ module.exports = function(app, models) {
         var username = req.query["username"];
         var password = req.query["password"];
         if(username && password) {
-            return findUserByCredentials(username, password, res);
+            return findUserByCredentials(username, password, req, res);
         } if(username) {
-            return findUserByUsername(username, res);
+            return findUserByUsername(username, req, res);
         } else {
             res.send(users);
         }

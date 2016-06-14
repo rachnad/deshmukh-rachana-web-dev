@@ -1,32 +1,40 @@
 /**
  * Created by rachanadeshmukh on 6/5/16.
  */
-module.exports = function(app) {
+module.exports = function(app, models) {
 
-    var following = [
-    ];
+    var followingModel = models.followingModel;
 
     app.post("/follow", followArtist);
     app.get("/following/:uid", getFollowing);
 
 
-
     function getFollowing(req, res) {
-        var results = [];
         var userId = req.params.uid;
-        for(var i in following) {
-            if(following[i].userId === userId) {
-                results.push(following[i]);
-            }
-        }
-        res.send(results);
+        followingModel
+            .getFollowingsForUser(userId)
+            .then(
+                function(followings) {
+                    res.send(followings);
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            );
     }
 
     function followArtist(req, res) {
-        console.log('testing server');
         var newFollow = req.body;
-        following.push(newFollow);
-        res.send(newFollow);
+        followingModel
+            .followArtist(newFollow)
+            .then(
+                function(follow) {
+                    res.send(follow);
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            );
     }
 
 };

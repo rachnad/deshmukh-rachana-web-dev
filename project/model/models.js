@@ -14,12 +14,15 @@ module.exports = function() {
     //mongoose.connect(url);
 
     var userModel = require("./user/user.model.server.js")();
-    //var favoritesModel = require("./website/website.model.server.js")();
-    //var followingModel = require("./page/page.model.server.js")();
-    //var commentModel = require("./widget/widget.model.server.js")();
+    //var favoritesModel = require("./favorites/favorites.model.server.js")();
+    var followingModel = require("./following/following.model.server.js")();
+    //var commentModel = require("./comment/comment.model.server.js")();
 
     var models = {
-        userModel: userModel
+        userModel: userModel,
+        followingModel: followingModel
+        //favoritesModel: favoritesModel,
+        //commentModel: commentModel
     };
 
     return models;

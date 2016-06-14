@@ -18,7 +18,7 @@
             ProjectUserService
                 .findUserByCredentials(username, password)
                 .then(function(response) {
-                    var user = response.data;
+                    var user = response.data[0];
                     if (user) {
                         var id = user._id;
                         $rootScope.currentUser = user;

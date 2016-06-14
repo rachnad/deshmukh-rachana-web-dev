@@ -20,8 +20,8 @@
                 .getEventDetails(vm.eventId)
                 .then(function(response) {
                     vm.concert = response.data.resultsPage.results.event;
-                    vm.artist = vm.concert.performance[0].artist.displayName;
-                    //vm.getArtistImage();
+                    vm.artist = vm.concert.performance[0].artist;
+                    vm.getArtistImage();
                 });
 
         }
@@ -30,7 +30,7 @@
 
         function getArtistImage() {
             FMService
-                .getArtistInfo(vm.artist)
+                .getArtistInfo(vm.artist.displayName)
                 .then(function(response) {
                     vm.artistImage = response.data.artist.image[3]['#text'];
                     vm.artistImageMobile = response.data.artist.image[1]['#text'];

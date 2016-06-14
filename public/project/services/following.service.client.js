@@ -15,10 +15,11 @@
 
         return api;
 
-        function followArtist(userId, artistName) {
+        function followArtist(userId, artist) {
             var artist = {
                 "userId": userId,
-                "artist": artistName
+                "artistId": artist.id,
+                "artistName": artist.displayName
             };
             return $http.post("/follow", artist);
         }

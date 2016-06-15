@@ -4,6 +4,13 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+var bcrypt = require("bcrypt-nodejs");
+
+var facebookConfig = {
+    clientID     : process.env.FACEBOOK_CLIENT_ID,
+    clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+    callbackURL  : process.env.FACEBOOK_CALLBACK_URL
+};
 
 module.exports = function(app, models) {
 
@@ -24,6 +31,8 @@ module.exports = function(app, models) {
 
 
     passport.use('wam', new LocalStrategy(localStrategy));
+    //passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+
     //passport.use(new FacebookStrategy(facebookStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
@@ -41,6 +50,8 @@ module.exports = function(app, models) {
 
     function register (req, res) {
         var user = req.body;
+        var password = user.password;
+        user.password = bcrypt.hashSync(password);
         userModel
             .createUser(user)
             .then(
@@ -50,6 +61,7 @@ module.exports = function(app, models) {
                             if(err) {
                                 return res.status(400).send(err);
                             } else {
+                                console.log(user);
                                 return res.json(user);
                             }
                         });
@@ -69,7 +81,7 @@ module.exports = function(app, models) {
 
 
     function serializeUser(user, done) {
-        done(null, user);
+        return done(null, user);
     }
 
 
@@ -78,10 +90,10 @@ module.exports = function(app, models) {
             .findUserById(user._id)
             .then(
                 function(user){
-                    done(null, user);
+                    return done(null, user);
                 },
                 function(err){
-                    done(err, null);
+                    return done(err, null);
                 }
             );
     }
@@ -89,11 +101,10 @@ module.exports = function(app, models) {
 
     function localStrategy(username, password, done) {
         userModel
-            .findUserByCredentials(username, password)
+            .findUserByUsername(username)
             .then(
                 function(user) {
-                    console.log(user);
-                    if(user.username === username && user.password === password) {
+                    if(user.username === username && (bcrypt.compareSync(password, user.password))) {
                         return done(null, user);
                     } else {
                         return done(null, false);
@@ -150,15 +161,6 @@ module.exports = function(app, models) {
                     res.status(400).send(error);
                 }
             );
-        //var username = req.params.username;
-        /*
-        for (var i in users) {
-            if (users[i].username === username) {
-                return res.send(users[i]);
-            }
-        }
-        return res.send({});
-        */
     }
 
     function findUserByCredentials(username, password, req, res) {
@@ -169,7 +171,7 @@ module.exports = function(app, models) {
                     res.json(user);
                 },
                 function(error) {
-                    res.status(400).send(error);
+                    res.send(error);
                 }
             );
     }

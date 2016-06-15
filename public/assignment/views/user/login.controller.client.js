@@ -19,6 +19,7 @@
                 .login(user)
                 .then(function(response) {
                     var user = response.data;
+                    console.log(user);
                     if (user) {
                         $rootScope.currentUser = user;
                         var id = user._id;

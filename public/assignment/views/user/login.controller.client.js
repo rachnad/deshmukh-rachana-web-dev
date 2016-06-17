@@ -11,24 +11,33 @@
         vm.login = login;
 
         function login(username, password) {
-            var user = {
-                username: username,
-                password: password
+
+            if (vm.user.username == undefined || vm.user.password == undefined) {
+                vm.error = "Fill out all required fields"
             }
-            UserService
-                .login(user)
-                .then(function(response) {
-                    var user = response.data;
-                    console.log(user);
-                    if (user) {
-                        $rootScope.currentUser = user;
-                        var id = user._id;
-                        $location.url("/user/" + id);
-                    }
-                    else {
-                        vm.error = "User not found";
-                    }
-            });
+
+            else {
+                vm.error = "";
+
+                var user = {
+                    username: username,
+                    password: password
+                };
+                UserService
+                    .login(user)
+                    .then(function (response) {
+                        var user = response.data;
+                        console.log(user);
+                        if (user) {
+                            $rootScope.currentUser = user;
+                            var id = user._id;
+                            $location.url("/user/" + id);
+                        }
+                        else {
+                            vm.error = "User not found";
+                        }
+                    });
+            }
         }
 
     }

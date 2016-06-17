@@ -12,7 +12,7 @@
         vm.addUser = addUser;
 
         function addUser() {
-            if (vm.user == undefined || vm.user.username == undefined || vm.user.password == undefined || vm.user.password == undefined) {
+            if (vm.user == undefined || vm.user.username == undefined || vm.user.password == undefined || vm.user.password2 == undefined) {
                 vm.error = "Fill out all required fields"
             }
 

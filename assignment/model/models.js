@@ -1,6 +1,6 @@
 module.exports = function() {
     var mongoose = require('mongoose');
-    var url = '127.0.0.1:27017/' + process.env.OPENSHIFT_APP_NAME;
+    var url = 'mongodb://127.0.0.1:27017/web-dev';
     if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
         url = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
             process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +

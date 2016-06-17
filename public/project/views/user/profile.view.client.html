@@ -1,4 +1,5 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<link href="../../css/profile-page.css" rel="stylesheet">
 <!-- Menu Toggle Script -->
 <script>
     $("#menu-toggle").click(function(e) {
@@ -7,17 +8,60 @@
     });
 </script>
 
-<div class=row>
+<div ng-show = "!isGuest" class= "row container">
     <div class="col-sm-3 col-md-2 col-lg-2">
         <ul class="nav nav-sidebar nav-pills nav-stacked">
             <li ng-show = "!isGuest" class="active"><a href=""><span class="glyphicon glyphicon-user"></span>  Profile</a></li>
             <li><a href="#/user/{{model.userId}}/favorites"><span class="glyphicon glyphicon-lock"></span> Favorites</a></li>
             <li><a href="#/user/{{model.userId}}/following"><span class="glyphicon glyphicon-signal"></span>  Following</a></li>
+            <li><a href="#/user/{{model.userId}}/friends"><span class="glyphicon glyphicon-signal"></span>  Friends</a></li>
+
         </ul>
     </div>
 
     <div class="col-sm-9 col-md-10 col-lg-10">
-        <i class="fa fa-user fa-5x" aria-hidden="true"></i>
+
+        <h1>PROFILE:</h1>
+
+        <p>{{model.user.dateCreated}}</p>
+        <div>
+
+            <div ng-show= "model.success" class="alert alert-success">
+                {{model.success}}
+            </div>
+
+            <div ng-show="model.error" class="alert alert-danger">
+                {{model.error}}
+            </div>
+
+            <form>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input ng-model="model.user.username" required type="text" class="form-control" id="username" value="rachana">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input ng-model="model.user.email" type="email" class="form-control" id="email" value="deshmukh.r@husky.neu.edu">
+                </div>
+                <div class="form-group">
+                    <label for="firstname">First Name</label>
+                    <input ng-model="model.user.firstName" required type="text" class="form-control" id="firstname" value="Rachana">
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Last Name</label>
+                    <input ng-model="model.user.lastName" required type="text" class="form-control" id="lastname" value="Deshmukh">
+                </div>
+            </form>
+
+            <a ng-click="model.updateUser()">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </a>
+            <a >
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </a>
+
+        </div>
+
     </div>
     </div>
 

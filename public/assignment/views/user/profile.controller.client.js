@@ -12,7 +12,6 @@
         vm.updateUser = updateUser;
         vm.unregister = unregister;
         vm.logout = logout;
-        //vm.checkLoggedIn = checkLoggedIn;
 
         function init() {
             UserService

@@ -8,13 +8,21 @@
 
     <form>
         <div class="form-group">
-            <input ng-model="model.user.username"  type="text" class="form-control" id="username" placeholder="username" required>
+            <input required ng-model="model.user.username"  type="text" class="form-control" id="username" placeholder="username" required>
         </div>
         <div class="form-group">
-            <input ng-model="model.user.password" type="password" class="form-control" id="password" placeholder="password" required>
+            <input required ng-model="model.user.password" type="password" class="form-control" id="password" placeholder="password" required>
         </div>
         <div class="form-group">
-            <input ng-model="model.user.password2" type="password" class="form-control" id="verifypassword" placeholder="verify password" required>
+            <input required ng-model="model.user.password2" type="password" class="form-control" id="verifypassword" placeholder="verify password" required>
+        </div>
+
+        <div class="form-group">
+            <label for="type">Account Type</label>
+            <select required ng-model="model.user.type" class="form-control" id="type">
+                <option>Standard</option>
+                <option>Premium</option>
+            </select>
         </div>
     </form>
 

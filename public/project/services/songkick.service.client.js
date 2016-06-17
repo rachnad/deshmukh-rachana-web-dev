@@ -14,15 +14,22 @@
         var artistCalenderURL = "http://api.songkick.com/api/3.0/artists/ARTISTID/calendar.json?apikey=APIKEY";
         var artistSearchURL = "http://api.songkick.com/api/3.0/search/artists.json?query=ARTISTNAME&apikey=APIKEY";
 
+        var venueSearchURL = "http://api.songkick.com/api/3.0/search/venues.json?query=VENUENAME&apikey=APIKEY";
+        var venueCalenderURL = "http://api.songkick.com/api/3.0/venues/VENUEID/calendar.json?apikey=APIKEY";
+
         var eventDetailsURL = "http://api.songkick.com/api/3.0/events/EVENTID.json?apikey=APIKEY";
 
 
         var api = {
             searchArtist : searchArtist,
             getartistCalender: getartistCalender,
-            getEventDetails: getEventDetails
+            getEventDetails: getEventDetails,
+            searchVenue: searchVenue,
+            getvenueCalender: getvenueCalender
         };
         return api;
+
+        //artist calls
 
         function searchArtist(artist) {
             var artistUrl = artistSearchURL.replace("ARTISTNAME", artist).replace("APIKEY", key);
@@ -34,11 +41,26 @@
             return $http.get(artistUrl);
         }
 
+        //event calls
+
         function getEventDetails(eventId) {
             var eventUrl = eventDetailsURL.replace("EVENTID", eventId).replace("APIKEY", key);
             return $http.get(eventUrl);
 
         }
+
+        //venue calls
+
+        function searchVenue(venue) {
+            var venueUrl = venueSearchURL.replace("VENUENAME", venue).replace("APIKEY", key);
+            return $http.get(venueUrl);
+        }
+
+        function getvenueCalender(venueId) {
+            var venueUrl = venueCalenderURL.replace("VENUEID", venueId).replace("APIKEY", key);
+            return $http.get(venueUrl);
+        }
+
 
     }
 })();

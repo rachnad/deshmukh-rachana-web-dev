@@ -1,3 +1,41 @@
 /**
  * Created by rachanadeshmukh on 6/5/16.
  */
+
+(function(){
+    "use strict";
+    angular
+        .module("Vibe")
+        .controller("ArtistController", ArtistController);
+
+    function ArtistController($routeParams, $rootScope, SongkickService, FMService, FollowingService, CommentsService, ProjectUserService) {
+        var vm = this;
+        vm.artistName = $routeParams.aid;
+        vm.userId = $routeParams.uid;
+        vm.followArtist = followArtist;
+
+        function init() {
+            FMService
+                .getArtistInfo(vm.artistName)
+                .then(function (response) {
+                    vm.artist = response.data.artist;
+                    vm.tags = vm.artist.tags;
+                })
+        }
+        init();
+
+
+        function followArtist() {
+            FollowingService
+                .followArtist(vm.userId, vm.artist)
+                .then(function(response) {
+                    console.log("Following: " + response.data);
+                })
+
+        }
+
+    }
+
+
+
+})();

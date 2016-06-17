@@ -18,8 +18,7 @@
         function followArtist(userId, artist) {
             var artist = {
                 "userId": userId,
-                "artistId": artist.id,
-                "artistName": artist.displayName
+                "artistName": artist.name
             };
             return $http.post("/follow", artist);
         }

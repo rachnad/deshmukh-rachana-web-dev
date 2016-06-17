@@ -10,10 +10,16 @@ module.exports = function() {
 
     var api = {
         followArtist: followArtist,
-        getFollowingsForUser: getFollowingsForUser
+        getFollowingsForUser: getFollowingsForUser,
+        findFollowbyName: findFollowbyName
 
     };
     return api;
+
+    function findFollowbyName(artist) {
+        return Following.find({artistName: artist});
+
+    }
 
     function followArtist(artist) {
         return Following.create(artist);

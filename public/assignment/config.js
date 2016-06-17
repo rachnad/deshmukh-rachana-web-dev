@@ -94,7 +94,6 @@
                 .checkLoggedIn()
                 .then(
                     function(response) {
-                        console.log(response.data);
                         var user = response.data;
                         if (user == '0') {
                             deferred.reject();

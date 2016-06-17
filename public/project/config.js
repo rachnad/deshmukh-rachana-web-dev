@@ -77,6 +77,16 @@
                 controller: "ConcertController",
                 controllerAs: "model"
             })
+            .when("/user/:uid/artist/:aid", {
+                templateUrl: "views/artist/artist.view.client.html",
+                controller: "ArtistController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid/friends", {
+                templateUrl: "views/user/friends.view.client.html",
+                controller: "FriendsController",
+                controllerAs: "model"
+            })
 
     }
 })();

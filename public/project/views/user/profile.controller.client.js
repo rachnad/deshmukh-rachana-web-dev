@@ -36,15 +36,18 @@
                     .updateUser(vm.userId, vm.user)
                     .then(function(response) {
                         var result = response.data;
-
-                        if (result === true) {
-
+                        console.log(result);
+                        if (result) {
                             vm.success = "User successfully updated";
                         } else {
                             vm.error = "User not found";
                         }
                     })
             }
+
+        }
+
+        function logout() {
 
         }
     }

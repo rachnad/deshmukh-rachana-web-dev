@@ -6,8 +6,8 @@ module.exports = function() {
     var mongoose = require("mongoose");
 
     var CommentSchema = mongoose.Schema({
-        uid: String,
-        eid: String,
+        userId: String,
+        eventId: String,
         datePosted: {type: Date, default: Date.now},
         comment: String
     }, {collection: "comments"});

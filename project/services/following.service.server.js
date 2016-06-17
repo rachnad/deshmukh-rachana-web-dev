@@ -26,15 +26,25 @@ module.exports = function(app, models) {
     function followArtist(req, res) {
         var newFollow = req.body;
         followingModel
-            .followArtist(newFollow)
+            .findFollowbyName(newFollow.artistName)
             .then(
-                function(follow) {
-                    res.send(follow);
+                function(artist) {
+                    followingModel
+                        .followArtist(newFollow)
+                        .then(
+                            function(follow) {
+                                res.send(follow);
+                            },
+                            function(error) {
+                                res.status(400).send(error);
+                            }
+                        );
                 },
                 function(error) {
                     res.status(400).send(error);
                 }
-            );
+            )
+
     }
 
 };

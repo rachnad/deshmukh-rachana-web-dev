@@ -4,6 +4,7 @@
             <li ng-show = "!isGuest"><a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span>  Profile</a></li>
             <li><a href="#/user/{{model.userId}}/favorites"><span class="glyphicon glyphicon-lock"></span> Favorites</a></li>
             <li class="active"><a><span class="glyphicon glyphicon-signal"></span>  Following</a></li>
+            <li><a href="#/user/{{model.userId}}/friends"><span class="glyphicon glyphicon-signal"></span>  Friends</a></li>
         </ul>
     </div>
 
@@ -13,7 +14,9 @@
             <section ng-repeat="follow in model.follows" class="col-xs-12 col-sm-6 col-md-12">
                 <article class="search-result row">
                     <div>
-                        <h3>{{follow.artistName}}</h3>
+                        <a href="#/user/{{model.userId}}/artist/{{follow.artistName}}">
+                            <h3>{{follow.artistName}}</h3>
+                        </a>
                     </div>
                     <span class="clearfix borda"></span>
                 </article>

@@ -6,7 +6,6 @@ module.exports = function() {
 
     var FollowingSchema = mongoose.Schema({
         userId: String,
-        artistId: String,
         artistName: String
     }, {collection: "followings"});
 

@@ -6,14 +6,15 @@
         .module("Vibe")
         .controller("FavoritesController", FavoritesController);
 
-    function FavoritesController($rootScope, $routeParams, UserService, FavoriteService) {
+    function FavoritesController($rootScope, $routeParams, ProjectUserService, FavoriteService) {
         var vm = this;
         $rootScope.landing = false;
         $rootScope.loggedIn = true;
         vm.userId = $routeParams["uid"];
+        vm.getFavorites = getFavorites;
 
         function init() {
-            UserService
+            ProjectUserService
                 .findUserById(vm.userId)
                 .then(function(response) {
                     vm.user = angular.copy(response.data);
@@ -27,9 +28,9 @@
 
         function getFavorites() {
             FavoriteService
-                .getFavorites(vm.userId)
+                .getAttendings(vm.userId)
                 .then(function(response) {
-                    vm.favorites = response.data;
+                    vm.attendings = response.data;
                 })
 
         }

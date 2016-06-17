@@ -1,30 +1,40 @@
 /**
  * Created by rachanadeshmukh on 6/5/16.
  */
-module.exports = function(app) {
+module.exports = function(app, models) {
 
-        var favorites = [
-            {"userId": "123", "eventId": 1, "title": "Rihanna Concert", "artist": "Rihanna", "venue": "Boston"}
-        ];
+    var favoriteModel = models.favoritesModel;
 
-        app.get("/favorites/:uid", getFavorites);
-        app.post("/favorite/:eid", favoriteEvent);
+        app.get("/favorites/:uid", getAttendings);
+        app.post("/attend/", attendEvent);
 
 
-        function getFavorites(req, res) {
+        function getAttendings(req, res) {
             var userId = req.params.uid;
-            var results = [];
-            for (var i in favorites) {
-                if (favorites[i].userId === userId) {
-                    results.push(favorites[i]);
-                }
-            }
-            res.send(results);
+            favoriteModel
+                .getAttendingsForUser(userId)
+                .then(
+                    function(attendings) {
+                        res.send(attendings);
+                    },
+                    function(error) {
+                        res.status(400).send(error);
+                    }
+                );
         }
 
-        function favoriteEvent(req, res) {
-
-
+        function attendEvent(req, res) {
+            var event = req.body;
+            favoriteModel
+                .attendEvent(event)
+                .then(
+                    function(response) {
+                        res.send(response)
+                    },
+                    function(error) {
+                        res.status(400).send(error);
+                    }
+                )
         }
 
 };

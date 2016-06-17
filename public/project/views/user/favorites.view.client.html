@@ -4,16 +4,17 @@
             <li ng-show = "!isGuest"><a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span>  Profile</a></li>
             <li class="active"><a href="#"><span class="glyphicon glyphicon-lock"></span> Favorites</a></li>
             <li><a href="#/user/{{model.userId}}/following"><span class="glyphicon glyphicon-signal"></span>  Following</a></li>
+            <li><a href="#/user/{{model.userId}}/friends"><span class="glyphicon glyphicon-signal"></span>  Friends</a></li>
         </ul>
     </div>
 
     <div class="col-sm-9 col-md-10 col-lg-10">
         <h1>Favorites</h1>
         <div>
-            <section ng-repeat="favorite in model.favorites" class="col-xs-12 col-sm-6 col-md-12">
+            <section ng-repeat="attending in model.attendings" class="col-xs-12 col-sm-6 col-md-12">
                 <article class="search-result row">
                     <div>
-                        <h3>{{favorite.title}}</h3>
+                        <h3>{{attending.eid}}</h3>
                     </div>
                     <span class="clearfix borda"></span>
                 </article>

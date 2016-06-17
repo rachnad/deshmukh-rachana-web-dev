@@ -11,7 +11,7 @@ module.exports = function() {
         firstName: String,
         lastName: String,
         email: String,
-        type: String,
+        type: ["Standard", "Premium"],
         dateCreated: {type: Date, default: Date.now},
     }, {collection: "project.user"});
 

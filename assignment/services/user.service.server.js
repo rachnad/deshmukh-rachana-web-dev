@@ -40,7 +40,7 @@ module.exports = function(app, models) {
         res.redirect("/assignment/#/user/"+req.user._id);
     });
     app.get('auth/failure', function (req, res) {
-        res.render('/assigment/#/login');
+        res.render('/assignment/#/login');
     });
     app.get ('/api/loggedin', loggedin);
 
@@ -59,10 +59,6 @@ module.exports = function(app, models) {
         return res.json(user);
     }
 
-    function loginFB(req, res) {
-        var user = req.user;
-        return res.json(user);
-    }
 
     function logout(req, res) {
         req.logOut();
@@ -125,6 +121,7 @@ module.exports = function(app, models) {
             .findUserByUsername(username)
             .then(
                 function(user) {
+                    console.log(user);
                     if(user.username === username && (bcrypt.compareSync(password, user.password))) {
                         return done(null, user);
                     } else {
@@ -231,10 +228,10 @@ module.exports = function(app, models) {
             .findUserByCredentials(username, password)
             .then(
                 function(user) {
-                    res.json(user);
+                    return res.send(user);
                 },
                 function(error) {
-                    res.send(error);
+                    return res.send(error);
                 }
             );
     }

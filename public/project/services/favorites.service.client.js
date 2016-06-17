@@ -11,18 +11,18 @@
         var api = {
             favorite: favorite,
             unfavorite: unfavorite,
-            getFavorites: getFavorites
+            getAttendings: getAttendings
 
-        }
+        };
 
         return api;
 
-        function getFavorites(userId) {
+        function getAttendings(userId) {
             return $http.get("/favorites/"+userId);
         }
 
-        function favorite() {
-
+        function favorite(event) {
+            return $http.post("/attend/", event);
         }
 
         function unfavorite() {

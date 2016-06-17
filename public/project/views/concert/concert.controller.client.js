@@ -7,11 +7,14 @@
         .module("Vibe")
         .controller("ConcertController", ConcertController);
 
-    function ConcertController($routeParams, $rootScope, SongkickService, FMService, FollowingService) {
+    function ConcertController($routeParams, $rootScope, SongkickService, FMService, FollowingService, CommentsService, FavoriteService, ProjectUserService) {
         var vm = this;
+        vm.userId = $routeParams.uid;
+        vm.eventId = $routeParams.eid;
         vm.getArtistImage = getArtistImage;
         vm.followArtist = followArtist;
-        vm.eventId = $routeParams.eid;
+        vm.addComment = addComment;
+        vm.attendEvent = attendEvent;
 
         function init() {
             $rootScope.loggedIn = true;
@@ -47,7 +50,34 @@
 
         }
 
-        function favoriteEvent() {
+        function attendEvent() {
+            var event = {
+                uid: vm.userId,
+                eid: vm.eventId
+            }
+
+            FavoriteService
+                .favorite(event)
+                .then(function(response) {
+                    console.log("Attending:" + response.data);
+                })
+
+
+
+
+        }
+
+        function addComment() {
+            var comment = {
+                userId: vm.userId,
+                eventId: vm.eventId,
+                comment: vm.commentInput
+            };
+            CommentsService
+                .postComment(comment)
+                .then(function() {
+
+                })
 
         }
     }

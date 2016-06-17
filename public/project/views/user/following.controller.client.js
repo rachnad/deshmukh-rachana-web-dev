@@ -6,7 +6,7 @@
         .module("Vibe")
         .controller("FollowingController", FollowingController);
 
-    function FollowingController($rootScope, $routeParams, ProjectUserService, FollowingService) {
+    function FollowingController($rootScope, $routeParams, ProjectUserService, FollowingService, FMService) {
         var vm = this;
         $rootScope.landing = false;
         $rootScope.loggedIn = true;
@@ -33,6 +33,7 @@
                     vm.follows = response.data;
                 })
         }
+
     }
 
 })();

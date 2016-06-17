@@ -27,23 +27,23 @@
                     ProjectUserService
                         .findUserByCredentials(vm.user.username, vm.user.password)
                         .then(function(response) {
-                            var result = response.data[0];
+                            var result = response.data;
                             console.log(result);
-
-                            if (result) {
+                            if (result.length > 0) {
                                 vm.error = "User already exists"
                             }
                             else {
                                 var newUser = {
                                     "username": vm.user.username,
-                                    "password": vm.user.password
+                                    "password": vm.user.password,
+                                    "type": vm.user.type
                                 };
                                 ProjectUserService
                                     .createUser(newUser)
                                     .then(function(response) {
                                         $rootScope.currentUser = newUser;
                                         $rootScope.loggedIn = true;
-                                        var user = response.data
+                                        var user = response.data;
                                         $location.url("/user/" + user._id);
                                     })
                             }

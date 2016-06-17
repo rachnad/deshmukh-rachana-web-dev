@@ -14,6 +14,23 @@ var cookieParser = require('cookie-parser');
 var session      = require('express-session');
 var passport     = require('passport');
 
+
+//var meanTest = require ("./test/app.js");
+var assignment = require("./assignment/app.js");
+var project = require("./project/app.js");
+
+
+var url = 'mongodb://127.0.0.1:27017/web-dev';
+if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
+    url = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
+        process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
+        process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
+        process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
+        process.env.OPENSHIFT_APP_NAME;
+}
+mongoose.connect(url);
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -32,10 +49,6 @@ app.use(express.static(__dirname + '/public'));
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
-
-//var meanTest = require ("./test/app.js");
-var assignment = require("./assignment/app.js");
-var project = require("./project/app.js");
 
 //meanTest(app);
 assignment(app);

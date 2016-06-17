@@ -181,8 +181,6 @@ module.exports = function(app, models) {
     }
 
 
-
-
         function createUser(req, res) {
         var newUser = req.body;
 

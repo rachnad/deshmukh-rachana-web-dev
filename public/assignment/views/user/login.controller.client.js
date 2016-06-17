@@ -12,7 +12,8 @@
 
         function login(username, password) {
 
-            if (vm.user.username == undefined || vm.user.password == undefined) {
+
+            if (username == undefined || password == undefined) {
                 vm.error = "Fill out all required fields"
             }
 

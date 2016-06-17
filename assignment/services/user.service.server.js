@@ -14,6 +14,7 @@ module.exports = function(app, models) {
         clientID     : process.env.FACEBOOK_CLIENT_ID,
         clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
         callbackURL  : process.env.FACEBOOK_CALLBACK_URL
+        //passReqToCallback: true
     };
 
     app.post("/api/user", createUser);
@@ -28,12 +29,20 @@ module.exports = function(app, models) {
     app.post ("/api/register", register);
     app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
     app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {
-            successRedirect: '/#/user',
-            failureRedirect: '/#/login'
-        }));
-    app.get ('/api/loggedin', loggedin);
+        passport.authenticate('facebook',
+            {
+                successRedirect: '/auth/success',
+                failureRedirect: '/auth/failure'
+            }
+        ));
 
+    app.get('/auth/success', function (req, res) {
+        res.redirect("/assignment/#/user/"+req.user._id);
+    });
+    app.get('auth/failure', function (req, res) {
+        res.render('/assigment/#/login');
+    });
+    app.get ('/api/loggedin', loggedin);
 
     passport.use('wam', new LocalStrategy(localStrategy));
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
@@ -45,6 +54,12 @@ module.exports = function(app, models) {
 
 
     function login(req, res) {
+        var user = req.user;
+        console.log(user);
+        return res.json(user);
+    }
+
+    function loginFB(req, res) {
         var user = req.user;
         return res.json(user);
     }
@@ -134,8 +149,8 @@ module.exports = function(app, models) {
                             username: profile.displayName.replace(/ /g, '').toLowerCase(),
                             facebook: {
                                 id: profile.id,
-                                token: token
-                                //displayName: profile.displayName
+                                token: token,
+                                displayName: profile.displayName
                             }
                         };
                         return userModel

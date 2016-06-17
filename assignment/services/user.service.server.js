@@ -97,7 +97,7 @@ module.exports = function(app, models) {
             res.send(req.user)
         }
         else {
-            res.send(0)
+            res.send('0')
         }}
 
 

@@ -94,17 +94,21 @@
                 .checkLoggedIn()
                 .then(
                     function(response) {
+                        console.log(response.data);
                         var user = response.data;
-                        if(user == '0') {
-                            $location.url("/login");
+                        if (user == '0') {
                             deferred.reject();
+                            $rootScope.currentUser = null;
+                            $location.url("/login")
                         }
                         else {
+                            $rootScope.currentUser = user;
                             deferred.resolve();
                         }
                     },
                     function(error) {
                         deferred.reject();
+                        $rootScope.currentUser = null;
                     }
                 );
             return deferred.promise;

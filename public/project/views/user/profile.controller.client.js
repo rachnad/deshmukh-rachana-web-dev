@@ -32,6 +32,7 @@
             }
             else {
                 vm.error = "";
+                delete vm.user._id;
                 ProjectUserService
                     .updateUser(vm.userId, vm.user)
                     .then(function(response) {

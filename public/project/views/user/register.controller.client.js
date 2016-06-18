@@ -7,7 +7,7 @@
         .controller("RegisterController", RegisterController);
 
 
-    function RegisterController($rootScope, $location, ProjectUserService, FriendsService) {
+    function RegisterController($rootScope, $location, ProjectUserService) {
         $rootScope.landing = false;
         var vm = this;
         vm.addUser = addUser;

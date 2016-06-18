@@ -21,13 +21,13 @@
                     <label>Comments</label>
                 </div>
                 <div class="actionBox">
-                    <ul class="commentList" ng-repeat="comment in vm.comments">
+                    <ul class="commentList" ng-repeat="comment in model.comments">
                         <li>
                             <div class="commenterImage">
                                 <span class="glyphicon glyphicon-user"></span>
                             </div>
                             <div class="commentText">
-                                <p class="">{{comment.comment}}</p> <span class="date sub-text">{{comment.datePosted}}</span>
+                                <p class="">{{comment.comment}}</p> <span class="date sub-text">{{comment.datePosted}} by {{comment.username}}</span>
                             </div>
                         </li>
                     </ul>

@@ -33,6 +33,7 @@
 
         function searchArtist(artist) {
             var artistUrl = artistSearchURL.replace("ARTISTNAME", artist).replace("APIKEY", key);
+
             return $http.get(artistUrl);
         }
 

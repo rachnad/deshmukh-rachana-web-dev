@@ -7,6 +7,7 @@ module.exports = function() {
 
     var CommentSchema = mongoose.Schema({
         userId: String,
+        username: String,
         eventId: String,
         datePosted: {type: Date, default: Date.now},
         comment: String

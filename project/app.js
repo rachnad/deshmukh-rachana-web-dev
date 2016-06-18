@@ -5,4 +5,5 @@ module.exports = function(app) {
     require("./services/songkick.service.server.js")(app, models);
     require("./services/favorites.service.server.js")(app, models);
     require("./services/following.service.server.js")(app, models);
+    require("./services/comments.service.server.js")(app, models);
 }

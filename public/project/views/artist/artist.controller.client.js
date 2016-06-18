@@ -19,7 +19,9 @@
                 .getArtistInfo(vm.artistName)
                 .then(function (response) {
                     vm.artist = response.data.artist;
-                    vm.tags = vm.artist.tags;
+                    vm.artistImage = vm.artist.image[2]['#text'];
+                    //vm.tags = vm.artist.tags;
+                    console.log(vm.artistImage);
                 })
         }
         init();

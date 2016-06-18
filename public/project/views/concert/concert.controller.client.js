@@ -7,13 +7,14 @@
         .module("Vibe")
         .controller("ConcertController", ConcertController);
 
-    function ConcertController($routeParams, $rootScope, SongkickService, FMService, FollowingService, CommentsService, FavoriteService, ProjectUserService) {
+    function ConcertController($scope, $routeParams, $rootScope, SongkickService, FMService, FollowingService, CommentsService, FavoriteService, ProjectUserService) {
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.eventId = $routeParams.eid;
         vm.getArtistImage = getArtistImage;
         vm.followArtist = followArtist;
         vm.addComment = addComment;
+        vm.getComments = getComments;
         vm.attendEvent = attendEvent;
 
         function init() {
@@ -26,6 +27,16 @@
                     vm.artist = vm.concert.performance[0].artist;
                     vm.getArtistImage();
                 });
+
+            ProjectUserService
+                .findUserById(vm.userId)
+                .then(function(user) {
+                    vm.user = user.data;
+                });
+
+
+            getComments();
+
 
         }
         init();
@@ -54,7 +65,7 @@
             var event = {
                 uid: vm.userId,
                 eid: vm.eventId
-            }
+            };
 
             FavoriteService
                 .favorite(event)
@@ -70,15 +81,25 @@
         function addComment() {
             var comment = {
                 userId: vm.userId,
+                username: vm.user.username,
                 eventId: vm.eventId,
                 comment: vm.commentInput
             };
             CommentsService
                 .postComment(comment)
                 .then(function() {
-
+                    getComments()
                 })
 
+        }
+
+        function getComments() {
+            CommentsService
+                .getComments(vm.eventId)
+                .then(function(comments) {
+                    vm.comments = comments.data;
+                    console.log(vm.comments)
+                })
         }
     }
 

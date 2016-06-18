@@ -13,6 +13,7 @@
         vm.artistName = $routeParams.aid;
         vm.userId = $routeParams.uid;
         vm.followArtist = followArtist;
+        vm.getSimilarArtists = getSimilarArtists;
 
         function init() {
             FMService
@@ -24,20 +25,30 @@
                     console.log(vm.artistImage);
                 })
         }
+
         init();
+        getSimilarArtists();
 
 
         function followArtist() {
             FollowingService
                 .followArtist(vm.userId, vm.artist)
-                .then(function(response) {
+                .then(function (response) {
                     console.log("Following: " + response.data);
                 })
 
         }
 
+        function getSimilarArtists() {
+            FMService
+                .getSimilar(vm.artistName)
+                .then(function (response) {
+                    vm.similars = response.data.similarartists.artist;
+                    vm.similars.length = 5;
+                })
+        }
+
+
     }
-
-
 
 })();

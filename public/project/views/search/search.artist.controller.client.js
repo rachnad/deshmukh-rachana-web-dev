@@ -32,8 +32,10 @@
         }
     }
 
-    function ArtistListController($routeParams, FMService, SongkickService) {
+    function ArtistListController($rootScope, $routeParams, FMService, SongkickService) {
         vm = this;
+        $rootScope.landing = false;
+        $rootScope.loggedIn = true;
         vm.userId = $routeParams.uid;
         vm.searched = true;
         vm.artist = $routeParams.artist;

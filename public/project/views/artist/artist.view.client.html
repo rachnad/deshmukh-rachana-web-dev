@@ -6,3 +6,11 @@
 <h4>{{model.artist.bio.summary}}</h4>
 
 <a ng-click="model.followArtist()"><h2>Follow</h2></a>
+
+
+<h2>Similar Artists:</h2>
+<ul ng-repeat = "similar in model.similars">
+    <a href="#/user/{{model.userId}}/searchArtist/{{similar.name}}">
+        <li>{{similar.name}}</li>
+    </a>
+</ul>

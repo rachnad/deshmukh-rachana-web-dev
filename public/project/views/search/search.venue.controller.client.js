@@ -9,12 +9,13 @@
 
     function SearchVenueController($routeParams, $rootScope, $location, ProjectUserService) {
         var vm = this;
+        $rootScope.landing = false;
+        $rootScope.loggedIn = true;
         vm.userId = $routeParams.uid;
         vm.searched = false;
         vm.event=[];
         vm.searchVenue = searchVenue;
-        $rootScope.landing = false;
-        $rootScope.loggedIn = true;
+
 
         function init() {
             ProjectUserService
@@ -32,8 +33,10 @@
         }
     }
 
-    function VenueListController($routeParams, SongkickService) {
+    function VenueListController($rootScope, $routeParams, SongkickService) {
         vm = this;
+        $rootScope.landing = false;
+        $rootScope.loggedIn = true;
         vm.userId = $routeParams.uid;
         vm.searched = true;
         vm.venue = $routeParams.venue;

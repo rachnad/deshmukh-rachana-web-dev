@@ -6,6 +6,7 @@ module.exports = function(app, models) {
     var favoriteModel = models.favoritesModel;
 
         app.get("/favorites/:uid", getAttendings);
+        app.get("/attendings/:eid", showAttendingsForEvent);
         app.post("/attend/", attendEvent);
 
 
@@ -35,6 +36,20 @@ module.exports = function(app, models) {
                         res.status(400).send(error);
                     }
                 )
+        }
+
+        function showAttendingsForEvent(req, res) {
+            var eventid = req.params.eid;
+            favoriteModel
+                .getAttendingsForEvent(eventid)
+                .then(
+                    function(response) {
+                        res.send(response);
+                    },
+                    function(error) {
+                        res.status(400).send(error);
+                    }
+                );
         }
 
 };

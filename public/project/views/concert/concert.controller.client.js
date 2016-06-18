@@ -16,6 +16,7 @@
         vm.addComment = addComment;
         vm.getComments = getComments;
         vm.attendEvent = attendEvent;
+        vm.getAttendings = getAttendings;
 
         function init() {
             $rootScope.loggedIn = true;
@@ -38,6 +39,7 @@
 
 
             getComments();
+            getAttendings()
 
 
         }
@@ -67,6 +69,7 @@
             var event = {
                 uid: vm.userId,
                 eid: vm.eventId,
+                username: vm.user.username,
                 eventName: vm.concert.displayName
             };
 
@@ -103,6 +106,18 @@
                     vm.comments = comments.data;
                     console.log(vm.comments)
                 })
+        }
+
+
+        function getAttendings() {
+            FavoriteService
+                .showAttendings(vm.eventId)
+                .then(function(response) {
+                    console.log(response.data);
+                    vm.attendings = response.data;
+                })
+
+
         }
     }
 

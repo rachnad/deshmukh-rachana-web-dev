@@ -11,7 +11,7 @@ module.exports = function() {
         userModel: userModel,
         followingModel: followingModel,
         favoritesModel: favoritesModel,
-        commentModel: commentModel
+        commentModel: commentModel,
     };
 
     return models;

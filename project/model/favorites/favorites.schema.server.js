@@ -6,6 +6,7 @@ module.exports = function() {
 
     var FavoritesSchema = mongoose.Schema({
         uid: String,
+        username: String,
         eventName: String,
         eid: String
     }, {collection: "favorites"});

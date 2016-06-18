@@ -22,9 +22,25 @@
                 </div>
                 <div class="actionBox">
                     <ul class="commentList" ng-repeat="comment in model.comments">
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">{{comment.username}}</h4>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <li>
                             <div class="commenterImage">
-                                <span class="glyphicon glyphicon-user"></span>
+                                <a data-toggle="modal" data-target="#myModal">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                </a>
                             </div>
                             <div class="commentText">
                                 <p class="">{{comment.comment}}</p> <span class="date sub-text">{{comment.datePosted}} by {{comment.username}}</span>
@@ -41,7 +57,29 @@
                     </form>
                 </div>
             </div>
+
+            <div class="detailBox">
+                <div class="titleBox">
+                    <label>Attending</label>
+                </div>
+                <div class="actionBox">
+                    <ul class="commentList" ng-repeat="attend in model.attendings">
+                        <li>
+                            <div class="commenterImage">
+                                <a><span class="glyphicon glyphicon-user"></span></a>
+                            </div>
+                            <div class="commentText">
+                                <p class="">{{attend.username}}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <span class="clearfix borda"></span>
     </article>
 </section>
+
+
+
+

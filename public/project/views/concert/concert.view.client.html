@@ -1,16 +1,5 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<section class="col-xs-12 col-sm-6 col-md-12">
-    <article class="search-result row">
-        <div class="col-xs-5 col-sm-12 col-md-3">
-            <ul class="meta-search">
-                <li><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i><span>{{model.event.location.city}}</span></li>
-                <li><i class="glyphicon glyphicon-time"></i> <span>{{model.event.start.date}}</span></li>
-                <li><i class="glyphicon glyphicon-time"></i> <span>{{model.event.start.time}}</span></li>
-                <li><i class="fa fa-camera-retro fa-2x"></i>{{model.event.start.time}}</li>
-
-            </ul>
-        </div>
-        <div class="col-xs-7 col-sm-12 col-md-9">
+<div class="container">
             <h3>{{model.concert.displayName}}</h3>
             <a href="#/user/{{model.userId}}/artist/{{model.concert.performance[0].artist.displayName}}"><h3>{{model.concert.performance[0].artist.displayName}}</h3></a>
             <img src= "{{model.artistImage}}" class="img-responsive">
@@ -22,23 +11,9 @@
                 </div>
                 <div class="actionBox">
                     <ul class="commentList" ng-repeat="comment in model.comments">
-                        <!-- Modal -->
-                        <div class="modal fade" id="myModal" role="dialog">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">{{comment.username}}</h4>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <li>
                             <div class="commenterImage">
-                                <a data-toggle="modal" data-target="#myModal">
+                                <a href="#/user/{{model.userId}}/view/{{comment.userId}}">
                                     <span class="glyphicon glyphicon-user"></span>
                                 </a>
                             </div>
@@ -52,7 +27,7 @@
                             <input ng-model="model.commentInput" class="form-control" type="text" placeholder="Your comments" />
                         </div>
                         <div class="form-group">
-                            <button ng-click = "model.addComment()" class="btn btn-default">Add</button>
+                            <button ng-click = "model.addComment()" class="btn btn-success">Add</button>
                         </div>
                     </form>
                 </div>
@@ -66,7 +41,9 @@
                     <ul class="commentList" ng-repeat="attend in model.attendings">
                         <li>
                             <div class="commenterImage">
-                                <a><span class="glyphicon glyphicon-user"></span></a>
+                                <a href="#/user/{{model.userId}}/view/{{attend.uid}}">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                </a>
                             </div>
                             <div class="commentText">
                                 <p class="">{{attend.username}}</p>
@@ -77,8 +54,7 @@
             </div>
         </div>
         <span class="clearfix borda"></span>
-    </article>
-</section>
+
 
 
 

@@ -92,6 +92,11 @@
                 controller: "ConcertController",
                 controllerAs: "model"
             })
+            .when("/user/:uid/view/:userID", {
+                templateUrl: "views/user/viewUser.view.client.html",
+                controller: "ViewUserController",
+                controllerAs: "model"
+            })
 
     }
 })();

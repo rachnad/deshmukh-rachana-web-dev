@@ -11,6 +11,7 @@
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.eventId = $routeParams.eid;
+        $rootScope.loggedIn = true;
         vm.getArtistImage = getArtistImage;
         vm.followArtist = followArtist;
         vm.addComment = addComment;
@@ -34,14 +35,8 @@
                 .then(function(user) {
                     vm.user = user.data;
                 });
-
-
-
-
             getComments();
             getAttendings()
-
-
         }
         init();
 
@@ -91,11 +86,14 @@
                 eventId: vm.eventId,
                 comment: vm.commentInput
             };
+            if (vm.commentInput) {
+
             CommentsService
                 .postComment(comment)
-                .then(function() {
+                .then(function () {
                     getComments()
                 })
+        }
 
         }
 
@@ -116,7 +114,9 @@
                     console.log(response.data);
                     vm.attendings = response.data;
                 })
+        }
 
+        function gotoUser(userId) {
 
         }
     }

@@ -10,12 +10,14 @@ body {
     background: url("../images/concert-audience.jpg") center center no-repeat fixed;
     width:100%;
     height: 100%;
-    background-size: cover;
-    min-height:100%;
-    background-attachment: fixed;
     background-position: center;
     padding-top: 40px;
+    webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
+
 
 
 .landing-text {

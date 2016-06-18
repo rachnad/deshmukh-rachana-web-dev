@@ -23,38 +23,6 @@ module.exports = function(app) {
                 res.send(data);
             });
 
-
-
-
-
-
-
-            /*
-             var events = [{
-             "id": 1,
-             "artist": "Rihanna",
-             "date": (new Date).getDate().toString(),
-             "price": 100,
-             "title": "Rihanna Concert",
-             "location": "Boston, MA",
-             "type": "Concert"
-             }, {"id": 2,
-             "artist": "Rihanna",
-             "date": (new Date).getDate().toString(),
-             "price": 100,
-             "title": "Rihanna Concert",
-             "location": "New York, NY",
-             "type": "Concert"
-             }, {"id": 3,
-             "artist": "Rihanna",
-             "date": (new Date).getDate().toString(),
-             "price": 100,
-             "title": "Rihanna Concert",
-             "location": "DC",
-             "type": "Concert"}];
-
-             return events;
-             */
         }
 
         function searchVenue(venueName) {

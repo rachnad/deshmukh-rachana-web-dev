@@ -32,11 +32,20 @@
         }
     }
 
-    function VenueListController($routeParams, EventfulService) {
+    function VenueListController($routeParams, SongkickService) {
         vm = this;
         vm.userId = $routeParams.uid;
         vm.searched = true;
         vm.venue = $routeParams.venue;
-        vm.events = EventfulService.searchVenue(vm.venue);
+        SongkickService
+            .searchVenue(vm.venue)
+            .then(function(events) {
+                vm.searchedVenue = events.data.resultsPage.results.venue[0];
+                SongkickService
+                    .getvenueCalender(vm.searchedVenue.id)
+                    .then(function(response) {
+                        vm.venueCalender = response.data.resultsPage.results.event;
+                    });
+            });
     }
 })();

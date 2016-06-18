@@ -87,6 +87,11 @@
                 controller: "FriendsController",
                 controllerAs: "model"
             })
+            .when("/user/:uid/event/:eid", {
+                templateUrl: "views/concert/concert.view.client.html",
+                controller: "ConcertController",
+                controllerAs: "model"
+            })
 
     }
 })();

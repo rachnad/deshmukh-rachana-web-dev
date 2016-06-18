@@ -35,6 +35,8 @@
                 });
 
 
+
+
             getComments();
 
 
@@ -64,7 +66,8 @@
         function attendEvent() {
             var event = {
                 uid: vm.userId,
-                eid: vm.eventId
+                eid: vm.eventId,
+                eventName: vm.concert.displayName
             };
 
             FavoriteService

@@ -24,7 +24,7 @@
             SongkickService
                 .getEventDetails(vm.eventId)
                 .then(function(response) {
-                    vm.concert = response.data.resultsPage.results.event;
+                    vm.concert = response.resultsPage.results.event;
                     vm.artist = vm.concert.performance[0].artist;
                     vm.getArtistImage();
                 });

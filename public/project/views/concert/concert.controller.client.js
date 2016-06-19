@@ -37,6 +37,7 @@
                 });
             getComments();
             getAttendings()
+            isPremium();
         }
         init();
 
@@ -116,8 +117,15 @@
                 })
         }
 
-        function gotoUser(userId) {
 
+        function isPremium() {
+            ProjectUserService
+                .findUserById(vm.userId)
+                .then(
+                    function(user) {
+                        vm.premium = (user.data.type[0] === "Premium");
+                    }
+                )
         }
     }
 

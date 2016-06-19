@@ -54,12 +54,12 @@
 
         function searchVenue(venue) {
             var venueUrl = venueSearchURL.replace("VENUENAME", venue).replace("APIKEY", key);
-            return $http.get(venueUrl);
+            return $.getJSON(venueUrl);
         }
 
         function getvenueCalender(venueId) {
             var venueUrl = venueCalenderURL.replace("VENUEID", venueId).replace("APIKEY", key);
-            return $http.get(venueUrl);
+            return $.getJSON(venueUrl);
         }
 
 

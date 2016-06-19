@@ -32,31 +32,42 @@
         }
     }
 
-    function ArtistListController($rootScope, $scope, $routeParams, FMService, SongkickService) {
+    function ArtistListController($rootScope, $scope, $routeParams, FMService, ProjectUserService, SongkickService) {
         vm = this;
         $rootScope.landing = false;
         $rootScope.loggedIn = true;
         vm.userId = $routeParams.uid;
         vm.searched = true;
         vm.artist = $routeParams.artist;
+        vm.isPremium = isPremium;
+
+        function init() {
+            SongkickService.searchArtist(vm.artist)
+                .then(function (response) {
+                    vm.searchedArtist = response.resultsPage.results.artist[0];
+                    console.log(vm.searchedArtist.onTourUntil);
+                    SongkickService.getartistCalender(vm.searchedArtist.id)
+                        .then(function (response) {
+                            var artistCalender = response.resultsPage.results.event;
+                            vm.artistCalender = artistCalender;
+                            console.log(vm.artistCalender);
+                            $scope.$apply();
+                        })
+                })
+        }
+        init();
+        isPremium();
 
 
-        //vm.searchedArtist = SongkickService.searchArtist(vm.artist);
-        //vm.artistCalender = SongkickService.getartistCalender(vm.searchedArtist.id);
-
-
-        SongkickService.searchArtist(vm.artist)
-            .then(function(response) {
-                vm.searchedArtist = response.resultsPage.results.artist[0];
-                console.log(vm.searchedArtist);
-                SongkickService.getartistCalender(vm.searchedArtist.id)
-                    .then(function(response) {
-                        var artistCalender = response.resultsPage.results.event;
-                        vm.artistCalender = artistCalender;
-                        console.log(vm.artistCalender);
-                        $scope.$apply();
-                    })
-            })
+        function isPremium() {
+            ProjectUserService
+                .findUserById(vm.userId)
+                .then(
+                    function(user) {
+                        vm.premium = (user.data.type[0] === "Premium");
+                    }
+                )
+        }
 
 
 

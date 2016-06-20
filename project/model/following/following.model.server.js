@@ -12,7 +12,8 @@ module.exports = function() {
         followArtist: followArtist,
         getFollowingsForUser: getFollowingsForUser,
         getFollowingsForUserandArtist: getFollowingsForUserandArtist,
-        findFollowbyName: findFollowbyName
+        findFollowbyName: findFollowbyName,
+        unfollowForUserandArtist: unfollowForUserandArtist
 
     };
     return api;
@@ -33,6 +34,10 @@ module.exports = function() {
     function getFollowingsForUserandArtist(userId, artist) {
         return Following.find({userId: userId, artistName:artist})
 
+    }
+
+    function unfollowForUserandArtist(userId, artist) {
+        return Following.remove({userId: userId, artistName:artist})
     }
 
 };

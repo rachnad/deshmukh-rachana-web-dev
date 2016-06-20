@@ -8,6 +8,7 @@ module.exports = function(app, models) {
     app.post("/follow", followArtist);
     app.get("/following/:uid", getFollowing);
     app.get("/following/user/:uid/artist/:artist", getFollowingsForUserandArtist);
+    app.delete("/unfollow/user/:uid/artist/:artist", unfollowForUserandArtist);
 
 
     function getFollowing(req, res) {
@@ -52,6 +53,21 @@ module.exports = function(app, models) {
         var artistName = req.params.artist
         followingModel
             .getFollowingsForUserandArtist(userId, artistName)
+            .then(
+                function(follow) {
+                    res.send(follow);
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            );
+    }
+
+    function unfollowForUserandArtist(req, res) {
+        var userId = req.params.uid;
+        var artistName = req.params.artist;
+        followingModel
+            .unfollowForUserandArtist(userId, artistName)
             .then(
                 function(follow) {
                     res.send(follow);

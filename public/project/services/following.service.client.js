@@ -11,7 +11,8 @@
         var api = {
             followArtist: followArtist,
             getFollows: getFollows,
-            getFollowingsForUserandArtist: getFollowingsForUserandArtist
+            getFollowingsForUserandArtist: getFollowingsForUserandArtist,
+            unfollowForUserandArtist: unfollowForUserandArtist
         };
 
         return api;
@@ -30,6 +31,10 @@
 
         function getFollowingsForUserandArtist(userId, artist) {
             return $http.get("/following/user/" +userId + "/artist/" + artist);
+        }
+
+        function unfollowForUserandArtist(userId, artist) {
+            return $http.delete("/unfollow/user/" +userId+ "/artist/" +artist);
         }
 
     }

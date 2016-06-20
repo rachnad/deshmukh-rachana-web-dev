@@ -14,6 +14,7 @@
         vm.userId = $routeParams.uid;
         $rootScope.loggedIn = true;
         vm.followArtist = followArtist;
+        vm.unfollowArtist = unfollowArtist;
         vm.getSimilarArtists = getSimilarArtists;
 
         function init() {
@@ -36,6 +37,16 @@
                 .followArtist(vm.userId, vm.artist)
                 .then(function (response) {
                     vm.following = true;
+                })
+
+        }
+
+        function unfollowArtist() {
+            console.log(vm.artist);
+            FollowingService
+                .unfollowForUserandArtist(vm.userId, vm.artist.name)
+                .then(function(response) {
+                    vm.following = false;
                 })
 
         }

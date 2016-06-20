@@ -56,15 +56,6 @@
 
         }
 
-        function followArtist() {
-            FollowingService
-                .followArtist(vm.userId, vm.artist)
-                .then(function(response) {
-                console.log("Following: " + response.data);
-            })
-
-        }
-
         function attendEvent() {
             var event = {
                 uid: vm.userId,

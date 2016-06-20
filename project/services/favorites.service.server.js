@@ -9,6 +9,7 @@ module.exports = function(app, models) {
         app.get("/attendings/:eid", showAttendingsForEvent);
         app.get("/attendings/user/:uid/event/:eid", getAttendingsForUserandEvent);
         app.post("/attend/", attendEvent);
+        app.delete("/attending/user/:uid/event/:eid", unattendEvent);
 
 
         function getAttendings(req, res) {
@@ -67,5 +68,22 @@ module.exports = function(app, models) {
                     }
                 );
         }
+
+        function unattendEvent(req, res) {
+            var userId = req.params.uid;
+            var eventId = req.params.eid;
+            favoriteModel
+                .unattendEvent(userId, eventId)
+                .then(
+                    function(response) {
+                        res.send(response);
+                    },
+                    function(error) {
+                        res.status(400).send(error);
+                    }
+                );
+        }
+
+
 
 };

@@ -12,7 +12,8 @@ module.exports = function() {
         attendEvent: attendEvent,
         getAttendingsForUser: getAttendingsForUser,
         getAttendingsForEvent: getAttendingsForEvent,
-        getAttendingsForUserandEvent: getAttendingsForUserandEvent
+        getAttendingsForUserandEvent: getAttendingsForUserandEvent,
+        unattendEvent: unattendEvent
 
     };
     return api;
@@ -31,6 +32,10 @@ module.exports = function() {
 
     function getAttendingsForUserandEvent(userId, eventId) {
         return Favorite.find({uid: userId, eid: eventId})
+    }
+
+    function unattendEvent(userId, eventId) {
+        return Favorite.remove({uid: userId, eid: eventId});
     }
 
 };

@@ -4,7 +4,7 @@
             <a href="#/user/{{model.userId}}/artist/{{model.concert.performance[0].artist.displayName}}"><h3>{{model.concert.performance[0].artist.displayName}}</h3></a>
             <img src= "{{model.artistImage}}" class="img-responsive">
             <a ng-show="!model.attending" ng-click="model.attendEvent()"><h2>Attend</h2></a>
-            <a ng-show="model.attending"><h2>Attending</h2></a>
+            <a ng-show="model.attending" ng-click="model.unattendEvent()"><h2>Attending</h2></a>
 
             <div class="detailBox">
                 <div class="titleBox">

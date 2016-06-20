@@ -9,11 +9,11 @@
     function FavoriteService($http) {
 
         var api = {
-            favorite: favorite,
-            unfavorite: unfavorite,
+            attendEvent: attendEvent,
             getAttendings: getAttendings,
             showAttendings: showAttendings,
-            getAttendingForUserandEvent: getAttendingForUserandEvent
+            getAttendingForUserandEvent: getAttendingForUserandEvent,
+            unattendEvent: unattendEvent
 
         };
 
@@ -31,13 +31,12 @@
             return $http.get("/attendings/user/" + userId + "/event/" + eventId);
         }
 
-        function favorite(event) {
+        function attendEvent(event) {
             return $http.post("/attend/", event);
         }
 
-        function unfavorite() {
-
-
+        function unattendEvent(userId, eventId) {
+            return $http.delete("/attending/user/" +userId+ "/event/" +eventId)
         }
 
     }

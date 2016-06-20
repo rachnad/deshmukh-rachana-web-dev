@@ -13,10 +13,10 @@
         vm.eventId = $routeParams.eid;
         $rootScope.loggedIn = true;
         vm.getArtistImage = getArtistImage;
-        vm.followArtist = followArtist;
         vm.addComment = addComment;
         vm.getComments = getComments;
         vm.attendEvent = attendEvent;
+        vm.unattendEvent = unattendEvent;
         vm.getAttendings = getAttendings;
         vm.isAttending = isAttending;
 
@@ -65,10 +65,19 @@
             };
 
             FavoriteService
-                .favorite(event)
+                .attendEvent(event)
                 .then(function(response) {
                     vm.attending = true;
                 })
+        }
+
+        function unattendEvent() {
+            FavoriteService
+                .unattendEvent(vm.userId, vm.eventId)
+                .then(function(response) {
+                    vm.attending = false;
+                })
+
         }
 
         function addComment() {

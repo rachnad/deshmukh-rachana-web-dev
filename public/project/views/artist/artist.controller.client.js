@@ -12,6 +12,7 @@
         var vm = this;
         vm.artistName = $routeParams.aid;
         vm.userId = $routeParams.uid;
+        $rootScope.loggedIn = true;
         vm.followArtist = followArtist;
         vm.getSimilarArtists = getSimilarArtists;
 
@@ -21,20 +22,20 @@
                 .then(function (response) {
                     vm.artist = response.data.artist;
                     vm.artistImage = vm.artist.image[2]['#text'];
-                    //vm.tags = vm.artist.tags;
-                    console.log(vm.artistImage);
+                    vm.artistBio = (vm.artist.bio.summary).replace(/(<([^>]+)>)/ig,"");
                 })
         }
 
         init();
         getSimilarArtists();
+        isFollowing();
 
 
         function followArtist() {
             FollowingService
                 .followArtist(vm.userId, vm.artist)
                 .then(function (response) {
-                    console.log("Following: " + response.data);
+                    vm.following = true;
                 })
 
         }
@@ -46,6 +47,17 @@
                     vm.similars = response.data.similarartists.artist;
                     vm.similars.length = 5;
                 })
+        }
+
+        function isFollowing() {
+            FollowingService
+                .getFollowingsForUserandArtist(vm.userId, vm.artistName)
+                .then(
+                    function(response) {
+                        vm.following = (response.data.length > 0);
+                        console.log(vm.following);
+                    }
+                )
         }
 
 

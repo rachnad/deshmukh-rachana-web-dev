@@ -32,5 +32,14 @@
         init()
 
 
+        function getAttendings() {
+
+        }
+
+        function getFollowings() {
+
+        }
+
+
     }
 })();

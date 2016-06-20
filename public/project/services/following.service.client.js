@@ -10,7 +10,8 @@
 
         var api = {
             followArtist: followArtist,
-            getFollows: getFollows
+            getFollows: getFollows,
+            getFollowingsForUserandArtist: getFollowingsForUserandArtist
         };
 
         return api;
@@ -25,6 +26,10 @@
 
         function getFollows(userId) {
             return $http.get("/following/" + userId);
+        }
+
+        function getFollowingsForUserandArtist(userId, artist) {
+            return $http.get("/following/user/" +userId + "/artist/" + artist);
         }
 
     }

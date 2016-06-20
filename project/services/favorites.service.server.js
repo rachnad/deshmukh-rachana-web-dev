@@ -7,6 +7,7 @@ module.exports = function(app, models) {
 
         app.get("/favorites/:uid", getAttendings);
         app.get("/attendings/:eid", showAttendingsForEvent);
+        app.get("/attendings/user/:uid/event/:eid", getAttendingsForUserandEvent);
         app.post("/attend/", attendEvent);
 
 
@@ -42,6 +43,21 @@ module.exports = function(app, models) {
             var eventid = req.params.eid;
             favoriteModel
                 .getAttendingsForEvent(eventid)
+                .then(
+                    function(response) {
+                        res.send(response);
+                    },
+                    function(error) {
+                        res.status(400).send(error);
+                    }
+                );
+        }
+
+        function getAttendingsForUserandEvent(req, res) {
+            var userId = req.params.uid;
+            var eventId = req.params.eid;
+            favoriteModel
+                .getAttendingsForUserandEvent(userId, eventId)
                 .then(
                     function(response) {
                         res.send(response);

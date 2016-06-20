@@ -18,6 +18,7 @@
         vm.getComments = getComments;
         vm.attendEvent = attendEvent;
         vm.getAttendings = getAttendings;
+        vm.isAttending = isAttending;
 
         function init() {
             $rootScope.loggedIn = true;
@@ -35,9 +36,12 @@
                 .then(function(user) {
                     vm.user = user.data;
                 });
+
+            isAttending();
             getComments();
-            getAttendings()
+            getAttendings();
             isPremium();
+
         }
         init();
 
@@ -72,12 +76,8 @@
             FavoriteService
                 .favorite(event)
                 .then(function(response) {
-                    console.log("Attending:" + response.data);
+                    vm.attending = true;
                 })
-
-
-
-
         }
 
         function addComment() {
@@ -103,7 +103,6 @@
                 .getComments(vm.eventId)
                 .then(function(comments) {
                     vm.comments = comments.data;
-                    console.log(vm.comments)
                 })
         }
 
@@ -112,7 +111,6 @@
             FavoriteService
                 .showAttendings(vm.eventId)
                 .then(function(response) {
-                    console.log(response.data);
                     vm.attendings = response.data;
                 })
         }
@@ -124,6 +122,21 @@
                 .then(
                     function(user) {
                         vm.premium = (user.data.type[0] === "Premium");
+                    }
+                )
+        }
+
+        function isAttending() {
+            FavoriteService
+                .getAttendingForUserandEvent(vm.userId, vm.eventId)
+                .then(
+                    function(attendings) {
+                        if(attendings.data.length > 0) {
+                            vm.attending = true;
+                        }
+                        else {
+                            vm.attending = false;
+                        }
                     }
                 )
         }

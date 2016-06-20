@@ -37,7 +37,6 @@
                     .updateUser(vm.userId, vm.user)
                     .then(function(response) {
                         var result = response.data;
-                        console.log(result);
                         if (result) {
                             vm.success = "User successfully updated";
                         } else {

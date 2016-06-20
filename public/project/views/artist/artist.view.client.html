@@ -3,9 +3,11 @@
 <img class=img-responsive" src="{{model.artistImage}}">
 
 
-<h4>{{model.artist.bio.summary}}</h4>
+<h4>{{model.artistBio}}</h4>
 
-<a ng-click="model.followArtist()"><h2>Follow</h2></a>
+<a ng-show="!model.following" ng-click="model.followArtist()"><h2>Follow</h2></a>
+<a ng-show="model.following" ng-click="model.followArtist()"><h2>Following</h2></a>
+
 
 
 <h2>Similar Artists:</h2>

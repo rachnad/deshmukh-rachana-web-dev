@@ -11,6 +11,7 @@ module.exports = function() {
     var api = {
         followArtist: followArtist,
         getFollowingsForUser: getFollowingsForUser,
+        getFollowingsForUserandArtist: getFollowingsForUserandArtist,
         findFollowbyName: findFollowbyName
 
     };
@@ -27,6 +28,11 @@ module.exports = function() {
 
     function getFollowingsForUser(userId) {
         return Following.find({userId: userId});
+    }
+
+    function getFollowingsForUserandArtist(userId, artist) {
+        return Following.find({userId: userId, artistName:artist})
+
     }
 
 };

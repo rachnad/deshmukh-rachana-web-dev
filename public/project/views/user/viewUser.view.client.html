@@ -1,11 +1,12 @@
 <div class="col-sm-9 col-md-10 col-lg-10">
-    <h1>
+    <img class="img-responsive profile-head" src="./images/user-head.png">
+    <h4 class="center">
         Username: {{model.viewUser.username}}
-    </h1>
+    </h4>
 </div>
 
 
-<div class="col-sm-9 col-md-10 col-lg-10">
+<div class="col-sm-9 col-md-10 col-lg-10 center">
     <h1>Attending</h1>
     <div>
         <section ng-repeat="attending in model.attendings" class="col-xs-12 col-sm-6 col-md-12">
@@ -22,7 +23,7 @@
 </div>
 
 
-<div class="col-sm-9 col-md-10 col-lg-10">
+<div class="col-sm-9 col-md-10 col-lg-10 center">
     <h1>Following</h1>
     <div>
         <section ng-repeat="following in model.followings" class="col-xs-12 col-sm-6 col-md-12">

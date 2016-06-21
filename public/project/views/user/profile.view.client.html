@@ -19,9 +19,8 @@
 
     <div ng-show = "!isGuest" class="col-sm-9 col-md-10 col-lg-10">
 
-        <h1>PROFILE:</h1>
+        <img class="img-responsive profile-head" src="./images/user-head.png">
 
-        <p>Joined on: <i>{{model.user.dateCreated}}</i></p>
         <div class="profile-page">
             <div ng-show= "model.success" class="alert alert-success">
                 {{model.success}}

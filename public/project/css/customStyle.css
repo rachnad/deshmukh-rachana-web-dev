@@ -145,15 +145,62 @@ hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; 
 }
 
 .profile-sidebar {
-    padding-left: 0px;
-    padding-right:0px;
+    padding-left: 0;
+    padding-right:0;
 }
 
 .follow-button {
     padding:1em 1em 1em 1em;
     display:inline-block;
-    background-color: #ffbbbb;
+    background-color: #AFEEEE;
     font-size:25px;
     line-height:8px;
     border-radius: 20px;
+
+}
+
+.search-button {
+    min-height: 100px;
+    min-width :100px;
+    border-radius: 20px;
+    word-wrap: break-word;
+    font-size: 20px;
+}
+
+btn {
+    border: none
+}
+
+.btn-primary {
+    background-color: lightseagreen;
+}
+
+.btn-primary:hover {
+    background-color: darkcyan;
+}
+
+.btn-danger {
+    background-color: lightcoral;
+}
+
+.btn-success {
+    background-color: darkseagreen;
+}
+
+.songkick-logo {
+    max-width: 100px;
+}
+
+.profile-head {
+    max-width: 100px;
+    max-height: 100px;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.center {
+    text-align: center;
 }

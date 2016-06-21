@@ -38,6 +38,7 @@
             }
             else {
                 $rootScope.loggedIn = true;
+                $rootScope.userId = $routeParams.uid;
                 $location.url("/landing");
 
             }

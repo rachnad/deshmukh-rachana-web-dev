@@ -87,12 +87,14 @@
                 eventId: vm.eventId,
                 comment: vm.commentInput
             };
+
             if (vm.commentInput) {
 
             CommentsService
                 .postComment(comment)
                 .then(function () {
                     getComments()
+                    vm.commentInput = null;
                 })
         }
 

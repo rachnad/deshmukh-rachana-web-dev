@@ -1,11 +1,5 @@
-<script>
-    var colors = ['#AFEEEE'];
-    var random_color = colors[Math.floor(Math.random() * colors.length)];
-    document.getElementById('artist-follow').style.backgroundColor = random_color;
-</script>
-
-<div class=row>
-    <div class="col-sm-3 col-md-2 col-lg-2">
+<div class="row container-fluid">
+    <div class="col-sm-3 col-md-2 col-lg-2 profile-sidebar">
         <ul class="nav nav-sidebar nav-pills nav-stacked">
             <li><a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span>  Profile</a></li>
             <li><a href="#/user/{{model.userId}}/favorites"><span class="glyphicon glyphicon-calendar"></span> Attending</a></li>

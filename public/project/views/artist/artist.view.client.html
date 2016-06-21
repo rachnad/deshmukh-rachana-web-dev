@@ -1,26 +1,34 @@
 <div class="container">
-<h1>{{model.artist.name}}</h1>
+    <h1 class="center">{{model.artist.name}}</h1>
 
-<img class="img-responsive concert-image" src="{{model.artistImage}}">
-
-
-<h4><i>{{model.artistBio}}</i></h4>
-
-<a ng-show="!model.following" ng-click="model.followArtist()">
-    <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>Follow</button>
-
-</a>
-<a ng-show="model.following" ng-click="model.unfollowArtist()">
-    <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-minus"></i>Following</button>
-
-</a>
+    <img class="img-responsive concert-image" src="{{model.artistImage}}">
 
 
+    <h4><i>{{model.artistBio}}</i></h4>
 
-<h2>Similar Artists</h2>
-<ul class="similar-list" ng-repeat = "similar in model.similars" >
-    <a href="#/user/{{model.userId}}/searchArtist/{{similar.name}}">
-        <li>{{similar.name}}</li>
+    <a ng-show="!model.following" ng-click="model.followArtist()">
+        <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>Follow</button>
+
     </a>
-</ul>
+    <a ng-show="model.following" ng-click="model.unfollowArtist()">
+        <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-minus"></i>Following</button>
+    </a>
+
+     <a href="#/user/{{model.userId}}/searchArtist/{{model.artist.name}}">
+         <button type="submit" class="btn btn-success">
+             <span class="glyphicon glyphicon-calendar"></span>
+             {{model.artist.name}}'s Calender
+         </button>
+     </a>
+
+
+
+
+
+    <h2>Similar Artists</h2>
+    <ul class="similar-list" ng-repeat = "similar in model.similars" >
+        <a href="#/user/{{model.userId}}/searchArtist/{{similar.name}}">
+            <li>{{similar.name}}</li>
+        </a>
+    </ul>
 </div>

@@ -1,9 +1,15 @@
+<script>
+    var colors = ['#AFEEEE'];
+    var random_color = colors[Math.floor(Math.random() * colors.length)];
+    document.getElementById('artist-follow').style.backgroundColor = random_color;
+</script>
+
 <div class=row>
     <div class="col-sm-3 col-md-2 col-lg-2">
         <ul class="nav nav-sidebar nav-pills nav-stacked">
-            <li ng-show = "!isGuest"><a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span>  Profile</a></li>
-            <li><a href="#/user/{{model.userId}}/favorites"><span class="glyphicon glyphicon-lock"></span> Favorites</a></li>
-            <li class="active"><a><span class="glyphicon glyphicon-signal"></span>  Following</a></li>
+            <li><a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span>  Profile</a></li>
+            <li><a href="#/user/{{model.userId}}/favorites"><span class="glyphicon glyphicon-calendar"></span> Attending</a></li>
+            <li class="active"><a><span class="glyphicon glyphicon-music"></span>  Following</a></li>
         </ul>
     </div>
 
@@ -14,7 +20,7 @@
                 <article class="search-result row">
                     <div>
                         <a href="#/user/{{model.userId}}/artist/{{follow.artistName}}">
-                            <h3>{{follow.artistName}}</h3>
+                            <h3 id="artist-follow" class="follow-button">{{follow.artistName}}</h3>
                         </a>
                     </div>
                     <span class="clearfix borda"></span>

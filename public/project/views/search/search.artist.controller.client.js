@@ -28,6 +28,7 @@
 
         function searchArtist() {
             vm.inputArtist = vm.artist;
+            console.log(vm.inputArtist);
             $location.url("/user/"+vm.userId+"/searchArtist/" +vm.inputArtist);
         }
     }
@@ -45,12 +46,10 @@
             SongkickService.searchArtist(vm.artist)
                 .then(function (response) {
                     vm.searchedArtist = response.resultsPage.results.artist[0];
-                    console.log(vm.searchedArtist.onTourUntil);
                     SongkickService.getartistCalender(vm.searchedArtist.id)
                         .then(function (response) {
                             var artistCalender = response.resultsPage.results.event;
                             vm.artistCalender = artistCalender;
-                            console.log(vm.artistCalender);
                             $scope.$apply();
                         })
                 })

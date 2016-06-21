@@ -1,10 +1,29 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<div class="container">
-            <h3>{{model.concert.displayName}}</h3>
-            <a href="#/user/{{model.userId}}/artist/{{model.concert.performance[0].artist.displayName}}"><h3>{{model.concert.performance[0].artist.displayName}}</h3></a>
-            <img src= "{{model.artistImage}}" class="img-responsive">
-            <a ng-show="!model.attending" ng-click="model.attendEvent()"><h2>Attend</h2></a>
-            <a ng-show="model.attending" ng-click="model.unattendEvent()"><h2>Attending</h2></a>
+<div class="container concert-details">
+            <h3>Concert: {{model.concert.displayName}}</h3>
+            <h4>Performer:
+                <a href="#/user/{{model.userId}}/artist/{{model.concert.performance[0].artist.displayName}}">{{model.concert.performance[0].artist.displayName}}</a>
+            </h4>
+            <img src= "{{model.artistImage}}" class="img-responsive concert-image">
+
+    <div class="concert-details-box">
+        <article class="search-result row">
+            <ul class="meta-search">
+                <li><i class="glyphicon glyphicon-time"></i> {{model.concert.start.date}} </li>
+                <li><i class="glyphicon glyphicon-tags"></i> {{model.concert.venue.displayName}}, {{model.concert.venue.metroArea.displayName}}</li>
+                <li><i class="glyphicon glyphicon-time"></i> <a href="{{model.concert.uri}}">{{model.concert.uri}}</a> </li>
+            </ul>
+        </article>
+        <span class="clearfix borda"></span>
+    </div>
+
+
+            <a ng-show="!model.attending" ng-click="model.attendEvent()">
+                <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>Attend</button>
+            </a>
+            <a ng-show="model.attending" ng-click="model.unattendEvent()">
+                <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-minus"></i>Attending</button>
+            </a>
 
             <div class="detailBox">
                 <div class="titleBox">

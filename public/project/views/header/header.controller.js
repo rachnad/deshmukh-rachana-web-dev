@@ -11,6 +11,7 @@
 
         $scope.gotoSearch = gotoSearch;
         $scope.gotoProfile = gotoProfile;
+        $scope.gotoHome = gotoHome;
         $scope.logout = logout;
 
 
@@ -29,6 +30,17 @@
             $rootScope.loggedIn= false;
             $location.url("/landing");
 
+        }
+
+        function gotoHome() {
+            if ($rootScope.currentUser === undefined) {
+                $location.url("/landing");
+            }
+            else {
+                $rootScope.loggedIn = true;
+                $location.url("/landing");
+
+            }
         }
 
     }

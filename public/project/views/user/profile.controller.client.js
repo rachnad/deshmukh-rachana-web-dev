@@ -6,13 +6,14 @@
         .module("Vibe")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($rootScope, $routeParams, ProjectUserService) {
+    function ProfileController($location,$rootScope, $routeParams, ProjectUserService) {
         var vm = this;
         $rootScope.landing = false;
         $rootScope.loggedIn = true;
         vm.updateUser = updateUser;
         //get userID from url
         vm.userId = $routeParams["uid"];
+        vm.logout = logout;
 
 
         function init() {
@@ -20,6 +21,7 @@
                 .findUserById(vm.userId)
                 .then(function(response) {
                     vm.user = angular.copy(response.data);
+
                 });
             $rootScope.currentUser = vm.user;
         }
@@ -48,7 +50,9 @@
         }
 
         function logout() {
-
+            $rootScope.currentUser= null;
+            $rootScope.loggedIn= false;
+            $location.url("/landing");
         }
     }
 

@@ -1,5 +1,6 @@
 body {
-    padding-top: 75px
+    padding-top: 75px;
+    font-family: Futura;
 }
 
 .btn {
@@ -28,11 +29,14 @@ body {
     width: 100%;
     background-color: #ffffff;
     opacity: 0.6;
+    color: black;
 }
 
 .title {
-    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-weight: 700;
+    font-family: Futura;
+    font-weight: 500;
+    font-size: 60px;
+    text-shadow:6px 6px   #FFFFFF;
 }
 
 .btn {
@@ -67,6 +71,7 @@ body {
 hgroup { padding-left: 0px; border-bottom: 1px solid #ccc; }
 hgroup h1 { font: 500 normal 1.625em "Roboto",Arial,Verdana,sans-serif; color: #2a3644; margin-top: 0; line-height: 1.15; }
 hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; color: #2a3644; margin: 0; padding-bottom: 10px; }
+
 
 .search-result .meta-search {
     margin-left: 0px;
@@ -113,4 +118,42 @@ hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; 
 
 :required {
     box-shadow: 0  0 5px rgba(255,0,0,0.5);
+}
+
+.concert-details-box {
+    margin-left: 13px;
+    margin-right: 13px;
+    margin-top: 15px;
+    word-wrap: break-word;
+}
+
+.concert-image {
+    border-radius: 10px;
+    margin-top: 25px;
+    margin-bottom:15px;
+}
+
+.similar-list li{
+    display: block;
+}
+
+.similar-list li:before{
+    content: "\e005";
+    margin-left: -15px;
+    margin-right: 5px;
+
+}
+
+.profile-sidebar {
+    padding-left: 0px;
+    padding-right:0px;
+}
+
+.follow-button {
+    padding:1em 1em 1em 1em;
+    display:inline-block;
+    background-color: #ffbbbb;
+    font-size:25px;
+    line-height:8px;
+    border-radius: 20px;
 }

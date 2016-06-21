@@ -22,7 +22,7 @@
                 .getArtistInfo(vm.artistName)
                 .then(function (response) {
                     vm.artist = response.data.artist;
-                    vm.artistImage = vm.artist.image[2]['#text'];
+                    vm.artistImage = vm.artist.image[3]['#text'];
                     vm.artistBio = (vm.artist.bio.summary).replace(/(<([^>]+)>)/ig,"");
                 })
         }

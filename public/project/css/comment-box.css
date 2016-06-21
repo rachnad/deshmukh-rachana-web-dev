@@ -2,9 +2,10 @@
     width:100%;
     border:1px solid #bbb;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 .titleBox {
-    background-color:#fdfdfd;
+    background-color:lightblue;
     padding:10px;
 }
 .titleBox label{
@@ -18,10 +19,12 @@
     border-top:1px dotted #bbb;
 }
 .commentBox .form-group:first-child, .actionBox .form-group:first-child {
-    width:80%;
+    width:100%;
 }
 .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
-    width:18%;
+    width:50%;
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 .actionBox .form-group * {
     width:100%;

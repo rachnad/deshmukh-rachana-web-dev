@@ -6,20 +6,21 @@
         .module("Vibe")
         .controller("LandingController", LandingController);
 
-    function LandingController($rootScope, $location) {
+    function LandingController($rootScope, $location, ProjectUserService) {
         $rootScope.landing = true;
         var vm = this;
         vm.user = $rootScope.currentUser;
         vm.guestLogin = guestLogin;
 
         function guestLogin() {
-            $rootScope.isGuest = true;
-            var newUser = {
-                "_id": (new Date).getTime().toString()
-            };
-
-            $rootScope.currentUser = newUser;
-            $location.url("/user/" + newUser._id);
+            var newUser = {type: "Standard"};
+            ProjectUserService
+                .createUser(newUser)
+                .then(function(user) {
+                    $rootScope.isGuest = true;
+                    $rootScope.currentUser = user.data;
+                    $location.url("/user/" + user.data._id);
+                })
         }
     }
 })();

@@ -26,6 +26,10 @@ module.exports = function(app, models) {
     app.get("/project/user?username=username&password=password", findUserByCredentials);
     app.put("/project/user/:userId", updateUser);
     app.delete("/project/user/:userId", deleteUser);
+    //app.put("/project/user/:uid/friend/:fid", addFriendtoUser);
+    app.put("/project/user/:uid/unfriend/:fid", unFriendtoUser);
+    app.get("/project/user/:uid/friend/:fid", findUserbyFriendID);
+
 
     app.post  ('/project/api/login', passport.authenticate('vibe-user'), login);
     app.post  ('/project/api/logout',         logout);
@@ -277,6 +281,79 @@ module.exports = function(app, models) {
             res.send(users);
         }
     }
+
+    /*
+    function addFriendtoUser(req, res) {
+        var userId = req.params.uid;
+        var friendID = req.params.fid;
+
+        userModel
+            .findUserById(userId)
+            .then(
+                function(user) {
+                    user.friends.push(friendID);
+                    userModel
+                        .updateUser(user)
+                        .then(
+                            function(user) {
+                                res.send(user);
+                            },
+                            function(error) {
+                                res.status(400).send(error);
+                            })
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            )
+    }
+    */
+
+    function unFriendtoUser(req, res) {
+        var userId = req.params.uid;
+        var friendID = req.params.fid;
+
+        userModel
+            .findUserById(userId)
+            .then(
+                function(user) {
+                    var fIndex = user.friends.indexOf(friendID);
+                    user.friends.splice(fIndex, 1);
+
+                    userModel
+                        .updateUser(user)
+                        .then(
+                            function(user) {
+                                res.send(user);
+                            },
+                            function(error) {
+                                res.status(400).send(error);
+                            })
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            )
+    }
+
+    function findUserbyFriendID(req, res) {
+        var userId = req.params.uid;
+        var friendID = req.params.fid;
+
+        userModel
+            .findUserbyFriendID(userId, friendID)
+            .then(
+                function(user) {
+                    console.log(user);
+                    res.send(user);
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            )
+    }
+
+
 };
 
 

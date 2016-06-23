@@ -19,6 +19,10 @@
             findUserByCredentials : findUserByCredentials,
             updateUser : updateUser,
             deleteUser : deleteUser,
+            addFriend: addFriend,
+            unFriend: unFriend,
+            findUserbyFriendID: findUserbyFriendID
+
 
         };
         return api;
@@ -58,6 +62,19 @@
         function deleteUser(userID) {
             return $http.delete("/project/user/" + userID);
         }
+
+        function addFriend(userID, friendID) {
+            return $http.put("/project/user/" +userID+ "/friend/" +friendID);
+        }
+
+        function unFriend(userID, friendID) {
+            return $http.put("/project/user/" +userID+ "/unfriend/" +friendID);
+        }
+
+        function findUserbyFriendID(userID, friendID) {
+            return $http.get("/project/user/" +userID+ "/friend/" +friendID);
+        }
+
     }
 })();
 

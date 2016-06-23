@@ -1,12 +1,13 @@
-<div class="col-sm-9 col-md-10 col-lg-10">
+<div class="col-sm-12 col-md-12 col-lg-12">
     <img class="img-responsive profile-head" src="./images/user-head.png">
     <h4 class="center">
         Username: {{model.viewUser.username}}
     </h4>
+    <p ng-show="model.isAdded" class="center"><i>Friends with you</i></p>
 </div>
 
 
-<div class="col-sm-9 col-md-10 col-lg-10 center">
+<div class="col-sm-12 col-md-12 col-lg-12 center">
     <h1>Attending</h1>
     <div>
         <section ng-repeat="attending in model.attendings" class="col-xs-12 col-sm-6 col-md-12">
@@ -23,7 +24,7 @@
 </div>
 
 
-<div class="col-sm-9 col-md-10 col-lg-10 center">
+<div class="col-sm-12 col-md-12 col-lg-12 center">
     <h1>Following</h1>
     <div>
         <section ng-repeat="following in model.followings" class="col-xs-12 col-sm-6 col-md-12">
@@ -38,3 +39,16 @@
         </section>
     </div>
 </div>
+
+<div ng-show="!model.sameUser" class="col-sm-12 col-md-12 col-lg-12 friend-button center">
+    <button ng-show="!model.isAdded" ng-click ="model.addFriend()" type="submit" class="btn btn-primary">
+        <span class="gyliphicon glyphicon-plus"></span>
+        Add as Friend
+    </button>
+    <button ng-show="model.isAdded" ng-click ="model.unFriend()" type="submit" class="btn btn-primary">
+        <span class="gyliphicon glyphicon-minus"></span>
+        Unfriend
+    </button>
+</div>
+
+

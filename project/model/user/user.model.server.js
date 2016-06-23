@@ -14,7 +14,8 @@ module.exports = function() {
         findUserById: findUserById,
         updateUser: updateUser,
         deleteUser: deleteUser,
-        findUserByGoogleId: findUserByGoogleId
+        findUserByGoogleId: findUserByGoogleId,
+        findUserbyFriendID: findUserbyFriendID
     };
     return api;
 
@@ -44,5 +45,10 @@ module.exports = function() {
 
     function findUserByGoogleId(googleID) {
         return User.findOne({'google.id': googleID})
+    }
+
+    function findUserbyFriendID(userId, friendId) {
+        return User.find({_id: userId, friends: friendId});
+
     }
 };

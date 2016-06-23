@@ -63,7 +63,7 @@
                 .then(
                     function(response) {
                         var user = response.data;
-                        user.friends.push(vm.viewUser._id);
+                        user.friends.push(vm.viewUser.username);
                         delete user._id;
                         ProjectUserService
                             .updateUser(vm.user._id, user)
@@ -83,7 +83,7 @@
                 .then(
                     function(response) {
                         var user = response.data;
-                        var fIndex = user.friends.indexOf(vm.viewUser._id);
+                        var fIndex = user.friends.indexOf(vm.viewUser.username);
                         user.friends.splice(fIndex, 1);
                         delete user._id;
                         ProjectUserService

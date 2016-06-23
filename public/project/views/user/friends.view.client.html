@@ -1,15 +1,28 @@
-<div class="col-sm-10 col-md-10 col-lg-10">
-    <h1>Friends</h1>
-    <div>
-        <section ng-repeat="friend in model.friends" class="col-xs-12 col-sm-6 col-md-12">
-            <article class="search-result row">
-                <div>
-                    <a>
-                        <h1>Test</h1>
-                    </a>
-                </div>
-                <span class="clearfix borda"></span>
-            </article>
-        </section>
+<div class="row container-fluid">
+    <div class="col-sm-3 col-md-2 col-lg-2 profile-sidebar">
+        <ul class="nav nav-sidebar nav-pills nav-stacked">
+            <li><a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span>  Profile</a></li>
+            <li><a href="#/user/{{model.userId}}/favorites"><span class="glyphicon glyphicon-calendar"></span> Attending</a></li>
+            <li><a href="#/user/{{model.userId}}/following"><span class="glyphicon glyphicon-music"></span>  Following</a></li>
+            <li class="active"><a href=""><span class="glyphicon glyphicon-music"></span>  Friends</a></li>
+        </ul>
+    </div>
+
+
+    <div class="col-sm-10 col-md-10 col-lg-10">
+        <h1>Friends</h1>
+        <div>
+            <section ng-repeat="friend in model.friends" class="col-xs-6 col-sm-6 col-md-4 col-md-3">
+                <article class="search-result row">
+                    <div>
+                        <a>
+                            <img src="./images/user-head.png" class="img-responsive friend-head">
+                            <p class="center">{{friend}}</p>
+                        </a>
+                    </div>
+                    <span class="clearfix borda"></span>
+                </article>
+            </section>
+        </div>
     </div>
 </div>

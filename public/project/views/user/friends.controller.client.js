@@ -12,7 +12,8 @@
         $rootScope.landing = false;
         $rootScope.loggedIn = true;
         vm.userId = $routeParams["uid"];
-    }
+        vm.getName = getName;
+
 
         function init() {
             ProjectUserService
@@ -24,5 +25,15 @@
                 });
         }
         init();
+
+        function getName(friendID) {
+            ProjectUserService
+                .findUserById(friendID)
+                .then(function(response) {
+                    return response.data;
+                })
+
+        }
+    }
 
 })();

@@ -1,6 +1,6 @@
 <div class="container">
     <h2>Search by Venue</h2>
-    <div class="input-group">
+    <div ng-show = "!model.searched" class="input-group">
         <input ng-model="model.venue" type="text"  class="form-control" placeholder="Search"/>
         <span class="input-group-addon">
             <a ng-click="model.searchVenue()">

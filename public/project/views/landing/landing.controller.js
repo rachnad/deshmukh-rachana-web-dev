@@ -19,7 +19,7 @@
                 .then(function(user) {
                     $rootScope.isGuest = true;
                     $rootScope.currentUser = user.data;
-                    $location.url("/user/" + user.data._id);
+                    $location.url("/user/" + user.data._id +"/search");
                 })
         }
     }

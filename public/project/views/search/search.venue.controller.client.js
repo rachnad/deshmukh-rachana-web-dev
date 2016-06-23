@@ -33,22 +33,29 @@
         }
     }
 
-    function VenueListController($rootScope, $routeParams, SongkickService) {
+    function VenueListController($rootScope, $scope, $routeParams, SongkickService) {
         vm = this;
         $rootScope.landing = false;
         $rootScope.loggedIn = true;
         vm.userId = $routeParams.uid;
         vm.searched = true;
         vm.venue = $routeParams.venue;
-        SongkickService
-            .searchVenue(vm.venue)
-            .then(function(events) {
-                vm.searchedVenue = events.data.resultsPage.results.venue[0];
-                SongkickService
-                    .getvenueCalender(vm.searchedVenue.id)
-                    .then(function(response) {
-                        vm.venueCalender = response.data.resultsPage.results.event;
-                    });
-            });
+
+        function init() {
+            console.log('test');
+            SongkickService
+                .searchVenue(vm.venue)
+                .then(function(events) {
+                    vm.searchedVenue = events.resultsPage.results.venue[0];
+                    SongkickService
+                        .getvenueCalender(vm.searchedVenue.id)
+                        .then(function(response) {
+                            vm.venueCalender = response.resultsPage.results.event;
+                            console.log(vm.venueCalender)
+                            $scope.$apply()
+                        });
+                })
+        };
+        init();
     }
 })();

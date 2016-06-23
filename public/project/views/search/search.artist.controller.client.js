@@ -28,7 +28,6 @@
 
         function searchArtist() {
             vm.inputArtist = vm.artist;
-            console.log(vm.inputArtist);
             $location.url("/user/"+vm.userId+"/searchArtist/" +vm.inputArtist);
         }
     }

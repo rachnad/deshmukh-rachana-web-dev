@@ -10,14 +10,31 @@
 
     function ProjectUserService($http) {
         var api = {
+            login: login,
+            logout: logout,
+            register: register,
             createUser   : createUser,
             findUserById : findUserById,
             findUserByUsername : findUserByUsername,
             findUserByCredentials : findUserByCredentials,
             updateUser : updateUser,
-            deleteUser : deleteUser
+            deleteUser : deleteUser,
+
         };
         return api;
+
+        function login(user) {
+            return $http.post("/project/api/login", user);
+        }
+
+        function logout(user) {
+            return $http.post("/project/api/logout");
+        }
+
+        function register(user) {
+            return $http.post("/project/api/register", user);
+        }
+
         function createUser(user) {
             return $http.post("/project/user/", user);
         }

@@ -41,7 +41,7 @@ var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
 
 //meanTest(app);
-assignment(app);
 project(app);
+assignment(app);
 
 app.listen(port, ipaddress);

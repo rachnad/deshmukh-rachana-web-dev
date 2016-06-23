@@ -15,10 +15,14 @@
 
 
         function login(username, password) {
+            var user = {
+                username: username,
+                password: password
+            };
             ProjectUserService
-                .findUserByCredentials(username, password)
+                .login(user)
                 .then(function(response) {
-                    var user = response.data[0];
+                    var user = response.data;
                     if (user) {
                         var id = user._id;
                         $rootScope.currentUser = user;

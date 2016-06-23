@@ -36,8 +36,9 @@
                                     "type": vm.user.type
                                 };
                                 ProjectUserService
-                                    .createUser(newUser)
+                                    .register(newUser)
                                     .then(function(response) {
+                                        console.log(response.data)
                                         $rootScope.currentUser = newUser;
                                         $rootScope.loggedIn = true;
                                         var user = response.data;

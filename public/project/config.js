@@ -31,6 +31,8 @@
                 templateUrl: "views/user/profile.view.client.html",
                 controller: "ProfileController",
                 controllerAs: "model"
+                //resolve: {loggedin: checkLoggedIn}
+
             })
             .when("/user/:uid/favorites", {
                 templateUrl: "views/user/favorites.view.client.html",

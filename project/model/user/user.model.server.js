@@ -13,7 +13,8 @@ module.exports = function() {
         findUserByUsername: findUserByUsername,
         findUserById: findUserById,
         updateUser: updateUser,
-        deleteUser: deleteUser
+        deleteUser: deleteUser,
+        findUserByGoogleId: findUserByGoogleId
     };
     return api;
 
@@ -26,11 +27,11 @@ module.exports = function() {
     }
 
     function findUserByCredentials(username, password) {
-        return User.find({username: username, password: password});
+        return User.findOne({username: username, password: password});
     }
 
     function findUserByUsername(username) {
-        return User.find({username: username});
+        return User.findOne({username: username});
     }
 
     function updateUser(userId, newUser) {
@@ -39,5 +40,9 @@ module.exports = function() {
 
     function deleteUser(userId) {
         return User.findByIdAndRemove(userId);
+    }
+
+    function findUserByGoogleId(googleID) {
+        return User.findOne({'google.id': googleID})
     }
 };

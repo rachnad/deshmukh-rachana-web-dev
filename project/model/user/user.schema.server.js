@@ -13,6 +13,12 @@ module.exports = function() {
         email: String,
         type: ["Standard", "Premium"],
         dateCreated: {type: Date, default: Date.now},
+        friends: [String],
+        google: {
+            id:    String,
+            token: String,
+            displayName: String
+        }
     }, {collection: "project.user"});
 
     return VibeUserSchema;

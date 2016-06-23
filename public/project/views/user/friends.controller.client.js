@@ -7,12 +7,12 @@
         .module("Vibe")
         .controller("FriendsController", FriendsController);
 
-    function FriendsController($routeParams, $rootScope, ProjectUserService) {
+    function FriendsController($routeParams, $rootScope, $location, ProjectUserService) {
         var vm = this;
         $rootScope.landing = false;
         $rootScope.loggedIn = true;
         vm.userId = $routeParams["uid"];
-        vm.getName = getName;
+        vm.gotoUser = gotoUser;
 
 
         function init() {
@@ -26,12 +26,15 @@
         }
         init();
 
-        function getName(friendID) {
+        function gotoUser(friend) {
             ProjectUserService
-                .findUserById(friendID)
-                .then(function(response) {
-                    return response.data;
-                })
+                .findUserByUsername(friend)
+                .then(
+                    function(response) {
+                        console.log(response.data);
+                        $location.url('/user/' +vm.userId+"/view/" + response.data._id)
+                    }
+                )
 
         }
     }

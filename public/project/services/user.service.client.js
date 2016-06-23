@@ -48,7 +48,7 @@
         }
 
         function findUserByUsername(username) {
-            return $http.get("/project/user?username="+userID);
+            return $http.get("/project/user?username="+username);
         }
 
         function findUserByCredentials(username, password) {

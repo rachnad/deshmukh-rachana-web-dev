@@ -15,7 +15,7 @@
             <section ng-repeat="friend in model.friends" class="col-xs-6 col-sm-6 col-md-4 col-md-3">
                 <article class="search-result row">
                     <div>
-                        <a>
+                        <a ng-click = "model.gotoUser(friend)">
                             <img src="./images/user-head.png" class="img-responsive friend-head">
                             <p class="center">{{friend}}</p>
                         </a>

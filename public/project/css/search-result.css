@@ -10,7 +10,9 @@ hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; 
 .search-result .meta-search {
     background-color: peachpuff;
     border-radius: 5px;
+    margin-top: 12px;
 }
+
 
 .search-result .thumbnail { border-radius: 0 !important; }
 .search-result:first-child { margin-top: 0 !important; }

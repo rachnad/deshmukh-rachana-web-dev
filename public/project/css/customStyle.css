@@ -121,16 +121,32 @@ hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; 
 }
 
 .concert-details-box {
-    margin-left: 13px;
-    margin-right: 13px;
+
     margin-top: 15px;
     word-wrap: break-word;
+
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-bottom: 10px;
+
+}
+
+@media only screen and (max-width: 480px) {
+    .concert-details-box {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
 }
 
 .concert-image {
     border-radius: 10px;
     margin-top: 25px;
     margin-bottom:15px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 .similar-list li{
@@ -218,5 +234,27 @@ btn {
 
 .friend-button {
     width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
+.attending-detail {
+    background-color: moccasin;
+    border-radius: 20px;
+    padding: 10px;
+}
+.attending-detail-friend {
+    background-color: moccasin;
+    border-radius: 20px;
+    padding: 2px;
+    margin-bottom:5px;
+}
+
+
+.form-group {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}

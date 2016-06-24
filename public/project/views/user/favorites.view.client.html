@@ -4,18 +4,18 @@
             <li><a href="#/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span>  Profile</a></li>
             <li class="active"><a href=""><span class="glyphicon glyphicon-calendar"></span> Attending</a></li>
             <li><a href="#/user/{{model.userId}}/following"><span class="glyphicon glyphicon-music"></span>  Following</a></li>
-            <li><a href="#/user/{{model.userId}}/friends"><span class="glyphicon glyphicon-music"></span>  Friends</a></li>
+            <li><a href="#/user/{{model.userId}}/friends"><span class="glyphicon glyphicon-heart"></span>  Friends</a></li>
         </ul>
     </div>
 
     <div class="col-sm-9 col-md-10 col-lg-10">
         <h1>Attending</h1>
         <div>
-            <section ng-repeat="attending in model.attendings" class="col-xs-12 col-sm-6 col-md-12">
-                <article class="search-result row">
+            <section ng-repeat="attending in model.attendings" class="col-xs-12 col-sm-12 col-md-12">
+                <article class="search-result row attending-detail">
                     <div>
                         <a href="#/user/{{model.userId}}/event/{{attending.eid}}">
-                            <h3>{{attending.eventName}}</h3>
+                            <h4>{{attending.eventName}}</h4>
                         </a>
                     </div>
                     <span class="clearfix borda"></span>

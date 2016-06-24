@@ -10,11 +10,11 @@
 <div class="col-sm-12 col-md-12 col-lg-12 center">
     <h1>Attending</h1>
     <div>
-        <section ng-repeat="attending in model.attendings" class="col-xs-12 col-sm-6 col-md-12">
-            <article class="search-result row">
+        <section ng-repeat="attending in model.attendings" class="col-xs-12 col-sm-12 col-md-12">
+            <article class="search-result row attending-detail-friend">
                 <div>
                     <a href="#/user/{{model.user._id}}/event/{{attending.eid}}">
-                        <h3>{{attending.eventName}}</h3>
+                        <h5 class="center">{{attending.eventName}}</h5>
                     </a>
                 </div>
                 <span class="clearfix borda"></span>
@@ -27,7 +27,7 @@
 <div class="col-sm-12 col-md-12 col-lg-12 center">
     <h1>Following</h1>
     <div>
-        <section ng-repeat="following in model.followings" class="col-xs-12 col-sm-6 col-md-12">
+        <section ng-repeat="following in model.followings" class="col-xs-12 col-sm-12 col-md-12">
             <article class="search-result row">
                 <div>
                     <a href="#/user/{{model.user._id}}/artist/{{following.artistName}}">
@@ -40,7 +40,7 @@
     </div>
 </div>
 
-<div ng-show="!model.sameUser" class="col-sm-12 col-md-12 col-lg-12 friend-button center">
+<div ng-show="!model.sameUser" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 friend-button center">
     <button ng-show="!model.isAdded" ng-click ="model.addFriend()" type="submit" class="btn btn-primary">
         <span class="gyliphicon glyphicon-plus"></span>
         Add as Friend

@@ -63,7 +63,9 @@
                 .then(
                     function(response) {
                         var user = response.data;
-                        user.friends.push(vm.viewUser.username);
+                        if(!(user.friends.indexOf(vm.viewUser.username) > -1)) {
+                            user.friends.push(vm.viewUser.username);
+                        }
                         delete user._id;
                         ProjectUserService
                             .updateUser(vm.user._id, user)

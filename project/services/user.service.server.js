@@ -346,7 +346,6 @@ module.exports = function(app, models) {
             .findUserbyFriendID(userId, friendID)
             .then(
                 function(user) {
-                    console.log(user);
                     res.send(user);
                 },
                 function(error) {

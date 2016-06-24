@@ -14,34 +14,51 @@
         vm.events = [];
         vm.searchArtist = searchArtist;
         $rootScope.landing = false;
-        $rootScope.loggedIn = true;
 
         function init() {
-            ProjectUserService
+            if (!isGuest()) {
+                $rootScope.loggedIn = true;
+                ProjectUserService
                 .findUserById(vm.userId)
-                .then(function(response) {
+                .then(function (response) {
                     vm.user = response.data;
                     $rootScope.currentUser = vm.user;
                 })
+            }
         }
         init();
 
+        function isGuest() {
+            var guest = $routeParams.uid;
+            if(guest===undefined) {
+                return true;
+            }
+        }
+
         function searchArtist() {
             vm.inputArtist = vm.artist;
-            $location.url("/user/"+vm.userId+"/searchArtist/" +vm.inputArtist);
+            if(isGuest()) {
+                $location.url("/searchArtist/" +vm.inputArtist);
+            }
+            else {
+                $location.url("/user/"+vm.userId+"/searchArtist/" +vm.inputArtist);
+            }
         }
     }
 
-    function ArtistListController($rootScope, $scope, $routeParams, FMService, ProjectUserService, SongkickService) {
+    function ArtistListController($rootScope, $scope, $location, $routeParams, FMService, ProjectUserService, SongkickService) {
         vm = this;
         $rootScope.landing = false;
-        $rootScope.loggedIn = true;
         vm.userId = $routeParams.uid;
         vm.searched = true;
         vm.artist = $routeParams.artist;
         vm.isPremium = isPremium;
+        vm.gotoEvent = gotoEvent;
 
         function init() {
+            if(!isGuest()) {
+                $rootScope.loggedIn = true;
+            }
             SongkickService.searchArtist(vm.artist)
                 .then(function (response) {
                     vm.searchedArtist = response.resultsPage.results.artist[0];
@@ -56,15 +73,34 @@
         init();
         isPremium();
 
+        function isGuest() {
+            var guest = $routeParams.uid;
+            if(guest===undefined) {
+                return true;
+            }
+        }
+
 
         function isPremium() {
-            ProjectUserService
-                .findUserById(vm.userId)
-                .then(
-                    function(user) {
-                        vm.premium = (user.data.type[0] === "Premium");
-                    }
-                )
+            if(!isGuest()) {
+                ProjectUserService
+                    .findUserById(vm.userId)
+                    .then(
+                        function (user) {
+                            vm.premium = (user.data.type[0] === "Premium");
+                        }
+                    )
+            }
+        }
+
+        function gotoEvent(event) {
+            if(isGuest()) {
+                $location.url("/login")
+
+            }
+            else {
+                $location.url("/user/"+vm.userId+"/searchArtist/"+vm.artist+"/details/" + event.id);
+            }
         }
 
 

@@ -6,6 +6,18 @@
     <p ng-show="model.isAdded" class="center"><i>Friends with you</i></p>
 </div>
 
+<div ng-show="!model.sameUser" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <button ng-show="!model.isAdded" ng-click ="model.addFriend()" type="submit" class="btn btn-primary friend-button center">
+        <span class="gyliphicon glyphicon-plus"></span>
+        Add as Friend
+    </button>
+    <button ng-show="model.isAdded" ng-click ="model.unFriend()" type="submit" class="btn btn-primary friend-button center">
+        <span class="gyliphicon glyphicon-minus"></span>
+        Unfriend
+    </button>
+</div>
+<div class="clearfix"></div>
+
 
 <div class="col-sm-12 col-md-12 col-lg-12 center">
     <h1>Attending</h1>
@@ -31,7 +43,7 @@
             <article class="search-result row">
                 <div>
                     <a href="#/user/{{model.user._id}}/artist/{{following.artistName}}">
-                        <h3>{{following.artistName}}</h3>
+                        <h3 class="following-detail-friend">{{following.artistName}}</h3>
                     </a>
                 </div>
                 <span class="clearfix borda"></span>
@@ -40,15 +52,5 @@
     </div>
 </div>
 
-<div ng-show="!model.sameUser" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 friend-button center">
-    <button ng-show="!model.isAdded" ng-click ="model.addFriend()" type="submit" class="btn btn-primary">
-        <span class="gyliphicon glyphicon-plus"></span>
-        Add as Friend
-    </button>
-    <button ng-show="model.isAdded" ng-click ="model.unFriend()" type="submit" class="btn btn-primary">
-        <span class="gyliphicon glyphicon-minus"></span>
-        Unfriend
-    </button>
-</div>
 
 

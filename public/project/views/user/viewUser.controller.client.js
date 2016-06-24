@@ -27,9 +27,10 @@
                             vm.viewUser = user.data;
                             vm.sameUser = (vm.viewUser.username === vm.user.username);
                             ProjectUserService
-                                .findUserbyFriendID(vm.user._id, vm.viewUser._id)
+                                .findUserbyFriendID(vm.user._id, vm.viewUser.username)
                                 .then(function(user) {
                                     vm.isAdded = (user.data.length > 0);
+                                    console.log(vm.isAdded)
                                     getAttendings();
                                     getFollowings();
                                 })

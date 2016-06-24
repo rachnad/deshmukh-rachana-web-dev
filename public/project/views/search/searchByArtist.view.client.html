@@ -32,7 +32,7 @@
                 </ul>
             </div>
             <div class="col-xs-5 col-sm-7 col-md-8 col-lg-7">
-                <h5><a href="#/user/{{model.userId}}/searchArtist/{{model.artist}}/details/{{event.id}}" title="">{{event.displayName}}</a></h5>
+                <h5><a ng-click="model.gotoEvent(event)" title="">{{event.displayName}}</a></h5>
             </div>
             <span class="clearfix borda"></span>
         </article>

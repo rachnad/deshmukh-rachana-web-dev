@@ -17,7 +17,7 @@
         </ul>
     </div>
 
-    <div ng-show = "!isGuest" class="col-sm-9 col-md-10 col-lg-10">
+    <div class="col-sm-9 col-md-10 col-lg-10">
 
         <img class="img-responsive profile-head" src="./images/user-head.png">
 
@@ -49,13 +49,13 @@
                 </div>
             </form>
 
-            <a ng-click="model.updateUser()">
-                <button type="submit" class="btn btn-primary">Update</button>
-            </a>
-            <a ng-click="model.logout()">
-                <button type="submit" class="btn btn-danger">Logout</button>
-            </a>
 
+             <a ng-click="model.updateUser()">
+                 <button type="submit" class="btn btn-primary center">Update</button>
+             </a>
+             <a ng-click="model.logout()">
+                 <button type="submit" class="btn btn-danger center">Logout</button>
+             </a>
         </div>
 
     </div>

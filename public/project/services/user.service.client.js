@@ -21,14 +21,14 @@
             deleteUser : deleteUser,
             addFriend: addFriend,
             unFriend: unFriend,
-            findUserbyFriendID: findUserbyFriendID
-
-
+            findUserbyFriendID: findUserbyFriendID,
         };
         return api;
 
+
         function login(user) {
             return $http.post("/project/api/login", user);
+
         }
 
         function logout(user) {
@@ -71,8 +71,8 @@
             return $http.put("/project/user/" +userID+ "/unfriend/" +friendID);
         }
 
-        function findUserbyFriendID(userID, friendID) {
-            return $http.get("/project/user/" +userID+ "/friend/" +friendID);
+        function findUserbyFriendID(userID, friendname) {
+            return $http.get("/project/user/" +userID+ "/friend/" +friendname);
         }
 
     }

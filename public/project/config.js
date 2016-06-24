@@ -100,5 +100,43 @@
                 controllerAs: "model"
             })
 
+            //for Guest Searching
+
+            .when("/search", {
+                templateUrl: "views/search/searchMain.view.client.html",
+                controller: "SearchController",
+                controllerAs: "model"
+            })
+            .when("/searchArtist", {
+                templateUrl: "views/search/searchByArtist.view.client.html",
+                controller: "SearchArtistController",
+                controllerAs: "model"
+            })
+            .when("/searchArtist/:artist", {
+                templateUrl: "views/search/searchByArtist.view.client.html",
+                controller: "ArtistListController",
+                controllerAs: "model"
+            })
+            .when("/searchArtist/:artist/details/:eid", {
+                templateUrl: "views/concert/concert.view.client.html",
+                controller: "ConcertController",
+                controllerAs: "model"
+            })
+            .when("/searchVenue", {
+                templateUrl: "views/search/searchByVenue.view.client.html",
+                controller: "SearchVenueController",
+                controllerAs: "model"
+            })
+            .when("/searchVenue/:venue", {
+                templateUrl: "views/search/searchByVenue.view.client.html",
+                controller: "VenueListController",
+                controllerAs: "model"
+            })
+            .when("/searchVenue/:venue/details/:eid", {
+                templateUrl: "views/concert/concert.view.client.html",
+                controller: "ConcertController",
+                controllerAs: "model"
+            })
+
     }
 })();

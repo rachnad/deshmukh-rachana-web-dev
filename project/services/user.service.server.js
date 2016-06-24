@@ -30,7 +30,7 @@ module.exports = function(app, models) {
     app.delete("/project/user/:userId", deleteUser);
     //app.put("/project/user/:uid/friend/:fid", addFriendtoUser);
     app.put("/project/user/:uid/unfriend/:fid", unFriendtoUser);
-    app.get("/project/user/:uid/friend/:fid", findUserbyFriendID);
+    app.get("/project/user/:uid/friend/:fid", findUserbyFriendName);
 
 
     app.post  ('/project/api/login', passport.authenticate('vibe-user'), login);
@@ -338,12 +338,12 @@ module.exports = function(app, models) {
             )
     }
 
-    function findUserbyFriendID(req, res) {
+    function findUserbyFriendName(req, res) {
         var userId = req.params.uid;
-        var friendID = req.params.fid;
+        var friendname = req.params.fid;
 
         userModel
-            .findUserbyFriendID(userId, friendID)
+            .findUserbyFriendID(userId, friendname)
             .then(
                 function(user) {
                     res.send(user);

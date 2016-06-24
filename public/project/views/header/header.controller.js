@@ -7,11 +7,10 @@
         .module("Vibe")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController($scope, $routeParams, $location, $rootScope) {
+    function HeaderController($scope, $routeParams, $location, $rootScope, ProjectUserService) {
 
         $scope.gotoSearch = gotoSearch;
         $scope.gotoProfile = gotoProfile;
-        $scope.gotoHome = gotoHome;
         $scope.logout = logout;
 
 
@@ -32,17 +31,6 @@
 
         }
 
-        function gotoHome() {
-            if ($rootScope.currentUser === undefined) {
-                $location.url("/landing");
-            }
-            else {
-                $rootScope.loggedIn = true;
-                $rootScope.userId = $routeParams.uid;
-                $location.url("/landing");
-
-            }
-        }
 
     }
 

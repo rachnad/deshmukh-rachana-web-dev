@@ -121,12 +121,10 @@ hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; 
 }
 
 .concert-details-box {
-
     margin-top: 15px;
     word-wrap: break-word;
-
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 10px;
+    margin-right: 10px;
     display: block;
     margin-bottom: 10px;
 
@@ -149,16 +147,7 @@ hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; 
     display: block;
 }
 
-.similar-list li{
-    display: block;
-}
 
-.similar-list li:before{
-    content: "\e005";
-    margin-left: -15px;
-    margin-right: 5px;
-
-}
 
 .profile-sidebar {
     padding-left: 0;
@@ -168,7 +157,7 @@ hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; 
 .follow-button {
     padding:1em 1em 1em 1em;
     display:inline-block;
-    background-color: #AFEEEE;
+    background-color:  #f7f7f7;
     font-size:25px;
     line-height:8px;
     border-radius: 20px;
@@ -183,8 +172,8 @@ hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; 
     font-size: 20px;
 }
 
-btn {
-    border: none
+.btn {
+    border: none;
 }
 
 .btn-primary {
@@ -213,13 +202,14 @@ btn {
     display:block;
     margin-left:auto;
     margin-right:auto;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
     margin-top: 10px;
+    border:1px solid #021a40;
 }
 
 .friend-head {
-    max-width: 50px;
-    max-height: 50px;
+    max-width: 100px;
+    max-height: 100px;
     display:block;
     margin-left:auto;
     margin-right:auto;
@@ -230,6 +220,9 @@ btn {
 
 .center {
     text-align: center;
+    margin-left:auto;
+    margin-right: auto;
+    display: block;
 }
 
 .friend-button {
@@ -240,21 +233,37 @@ btn {
 }
 
 .attending-detail {
-    background-color: moccasin;
+    background-color: #f7f7f7;
     border-radius: 20px;
     padding: 10px;
+    margin-bottom: 10px;
 }
 .attending-detail-friend {
-    background-color: moccasin;
+    background-color: #f7f7f7;
     border-radius: 20px;
     padding: 2px;
     margin-bottom:5px;
-}
-
-
-.form-group {
-    max-width: 700px;
-    margin-left: auto;
+    margin-left:auto;
     margin-right: auto;
     display: block;
 }
+
+@media only screen and (min-width: 800px) {
+    .attending-detail-friend {
+        width: 50%
+    }
+    .attending-detail{
+        width: 50%
+    }
+
+}
+
+.following-detail-friend {
+    padding:0.5em 0.5em 0.5em 0.5em;
+    display:inline-block;
+    background-color:  #f7f7f7;
+    font-size:25px;
+    line-height:8px;
+    border-radius: 20px;
+}
+

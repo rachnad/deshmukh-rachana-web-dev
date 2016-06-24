@@ -47,8 +47,8 @@ module.exports = function() {
         return User.findOne({'google.id': googleID})
     }
 
-    function findUserbyFriendID(userId, friendId) {
-        return User.find({_id: userId, friends: friendId});
+    function findUserbyFriendID(userId, friendName) {
+        return User.find({_id: userId, friends: friendName});
 
     }
 };

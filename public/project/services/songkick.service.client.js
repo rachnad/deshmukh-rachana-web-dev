@@ -14,8 +14,8 @@
         var artistCalenderURL = "http://api.songkick.com/api/3.0/artists/ARTISTID/calendar.json?apikey=APIKEY&jsoncallback=?";
         var artistSearchURL = "http://api.songkick.com/api/3.0/search/artists.json?query=ARTISTNAME&apikey=APIKEY&jsoncallback=?";
 
-        var venueSearchURL = "http://api.songkick.com/api/3.0/search/venues.json?query=VENUENAME&apikey=APIKEY";
-        var venueCalenderURL = "http://api.songkick.com/api/3.0/venues/VENUEID/calendar.json?apikey=APIKEY";
+        var venueSearchURL = "http://api.songkick.com/api/3.0/search/venues.json?query=VENUENAME&apikey=APIKEY&jsoncallback=?";
+        var venueCalenderURL = "http://api.songkick.com/api/3.0/venues/VENUEID/calendar.json?apikey=APIKEY&jsoncallback=?";
 
         var eventDetailsURL = "http://api.songkick.com/api/3.0/events/EVENTID.json?apikey=APIKEY&jsoncallback=?";
 

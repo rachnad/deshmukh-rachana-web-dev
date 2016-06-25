@@ -187,3 +187,8 @@ a.contact {
 .glyphicon-envelope {
     margin-right: 5px
 }
+
+.home-image{
+    max-height:250px;
+
+}

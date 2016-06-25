@@ -13,6 +13,4 @@
         $rootScope.landing= true;
     }
 
-
-
 })();

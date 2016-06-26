@@ -28,7 +28,7 @@
         }
 
         function getAttendingForUserandEvent(userId, eventId) {
-            return $http.get("/attendings/user/" + userId + "/event/" + eventId);
+            return $http.get("/favorites/user/" + userId + "/event/" + eventId);
         }
 
         function attendEvent(event) {

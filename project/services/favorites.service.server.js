@@ -6,7 +6,7 @@ module.exports = function(app, models) {
     var favoriteModel = models.favoritesModel;
 
         app.get("/favorites/:uid", getAttendings);
-        app.get("/favorites/:eid", showAttendingsForEvent);
+        app.get("/attendings/:eid", showAttendingsForEvent);
         app.get("/favorites/user/:uid/event/:eid", getAttendingsForUserandEvent);
         app.post("/attend/", attendEvent);
         app.delete("/attending/user/:uid/event/:eid", unattendEvent);

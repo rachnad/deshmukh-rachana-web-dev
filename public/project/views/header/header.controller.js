@@ -25,7 +25,13 @@
         function logout() {
             $rootScope.currentUser= null;
             $rootScope.loggedIn= false;
-            $location.url("/landing");
+            ProjectUserService
+                .logout()
+                .then(
+                    function(response) {
+                        $location.url("/landing");
+                    }
+                )
         }
     }
 })();

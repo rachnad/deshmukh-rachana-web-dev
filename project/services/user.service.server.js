@@ -18,9 +18,6 @@ module.exports = function(app, models) {
         callbackURL  : process.env.GOOGLE_CALLBACK_URL
     };
 
-
-    console.log(googleConfig);
-
     app.post("/project/user", createUser);
     app.get("/project/user", getUsers);
     app.get("/project/user/:userId", findUserById);
@@ -28,7 +25,6 @@ module.exports = function(app, models) {
     app.get("/project/user?username=username&password=password", findUserByCredentials);
     app.put("/project/user/:userId", updateUser);
     app.delete("/project/user/:userId", deleteUser);
-    //app.put("/project/user/:uid/friend/:fid", addFriendtoUser);
     app.put("/project/user/:uid/unfriend/:fid", unFriendtoUser);
     app.get("/project/user/:uid/friend/:fid", findUserbyFriendName);
 
@@ -51,6 +47,8 @@ module.exports = function(app, models) {
     app.get('/project/auth/failure', function (req, res) {
         res.render('/project/#/login');
     });
+
+    app.get ('/api/loggedin', loggedin);
 
 
     passport.use('vibe-user', new LocalStrategy(localStrategy));

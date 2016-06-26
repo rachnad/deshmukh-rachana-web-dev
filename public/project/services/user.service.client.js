@@ -21,8 +21,13 @@
             addFriend: addFriend,
             unFriend: unFriend,
             findUserbyFriendID: findUserbyFriendID,
+            checkLoggedIn: checkLoggedIn
         };
         return api;
+
+        function checkLoggedIn() {
+            return $http.get("/api/loggedin");
+        }
 
         function login(user) {
             return $http.post("/project/api/login", user);

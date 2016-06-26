@@ -35,8 +35,8 @@
             .when("/user/:uid", {
                 templateUrl: "views/user/profile/profile.view.client.html",
                 controller: "ProfileController",
-                controllerAs: "model"
-                //resolve: {loggedin: checkLoggedIn}
+                controllerAs: "model",
+                resolve: {loggedin: checkLoggedIn}
 
             })
             .when("/user/:uid/favorites", {
@@ -141,7 +141,32 @@
                 templateUrl: "views/concert/concert.view.client.html",
                 controller: "ConcertController",
                 controllerAs: "model"
-            })
+            });
+
+        function checkLoggedIn(ProjectUserService, $location, $rootScope, $q) {
+            var deferred = $q.defer();
+            ProjectUserService
+                .checkLoggedIn()
+                .then(
+                    function(response) {
+                        var user = response.data;
+                        if (user == '0') {
+                            deferred.reject();
+                            $rootScope.currentUser = null;
+                            $location.url("/login")
+                        }
+                        else {
+                            $rootScope.currentUser = user;
+                            deferred.resolve();
+                        }
+                    },
+                    function(error) {
+                        deferred.reject();
+                        $rootScope.currentUser = null;
+                    }
+                );
+            return deferred.promise;
+        }
 
     }
 })();

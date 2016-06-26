@@ -7,21 +7,18 @@
         .controller("ProfileController", ProfileController);
 
     function ProfileController($location,$rootScope, $routeParams, ProjectUserService) {
-        var vm = this;
         $rootScope.landing = false;
         $rootScope.loggedIn = true;
-        vm.updateUser = updateUser;
-        //get userID from url
+        var vm = this;
         vm.userId = $routeParams["uid"];
+        vm.updateUser = updateUser;
         vm.logout = logout;
-
 
         function init() {
             ProjectUserService
                 .findUserById(vm.userId)
                 .then(function(response) {
                     vm.user = angular.copy(response.data);
-
                 });
             $rootScope.currentUser = vm.user;
         }

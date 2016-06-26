@@ -15,7 +15,7 @@
                 controllerAs: "model"
             })
             .when("/login", {
-            templateUrl: "views/user/login.view.client.html",
+            templateUrl: "views/user/login/login.view.client.html",
             controller: "LoginController",
             controllerAs: "model"
             })
@@ -28,39 +28,49 @@
                 templateUrl: "views/about/about.view.client.html"
             })
             .when("/register", {
-                templateUrl: "views/user/register.view.client.html",
+                templateUrl: "views/user/register/register.view.client.html",
                 controller: "RegisterController",
                 controllerAs: "model"
             })
             .when("/user/:uid", {
-                templateUrl: "views/user/profile.view.client.html",
+                templateUrl: "views/user/profile/profile.view.client.html",
                 controller: "ProfileController",
                 controllerAs: "model"
                 //resolve: {loggedin: checkLoggedIn}
 
             })
             .when("/user/:uid/favorites", {
-                templateUrl: "views/user/favorites.view.client.html",
-                controller: "FavoritesController",
+                templateUrl: "views/user/attendings/attendings.view.client.html",
+                controller: "AttendingsController",
                 controllerAs: "model"
             })
             .when("/user/:uid/following", {
-                templateUrl: "views/user/following.view.client.html",
+                templateUrl: "views/user/following/following.view.client.html",
                 controller: "FollowingController",
                 controllerAs: "model"
             })
+            .when("/user/:uid/friends", {
+                templateUrl: "views/user/friends/friends.view.client.html",
+                controller: "FriendsController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid/view/:userID", {
+                templateUrl: "views/user/viewUser/viewUser.view.client.html",
+                controller: "ViewUserController",
+                controllerAs: "model"
+            })
             .when("/user/:uid/search", {
-                templateUrl: "views/search/searchMain.view.client.html",
+                templateUrl: "views/search/searchMain/searchMain.view.client.html",
                 controller: "SearchController",
                 controllerAs: "model"
             })
             .when("/user/:uid/searchArtist", {
-                templateUrl: "views/search/searchByArtist.view.client.html",
+                templateUrl: "views/search/searchArtist/searchByArtist.view.client.html",
                 controller: "SearchArtistController",
                 controllerAs: "model"
             })
             .when("/user/:uid/searchArtist/:artist", {
-                templateUrl: "views/search/searchByArtist.view.client.html",
+                templateUrl: "views/search/searchArtist/searchByArtist.view.client.html",
                 controller: "ArtistListController",
                 controllerAs: "model"
             })
@@ -70,12 +80,12 @@
                 controllerAs: "model"
             })
             .when("/user/:uid/searchVenue", {
-                templateUrl: "views/search/searchByVenue.view.client.html",
+                templateUrl: "views/search/searchVenue/searchByVenue.view.client.html",
                 controller: "SearchVenueController",
                 controllerAs: "model"
             })
             .when("/user/:uid/searchVenue/:venue", {
-                templateUrl: "views/search/searchByVenue.view.client.html",
+                templateUrl: "views/search/searchVenue/searchByVenue.view.client.html",
                 controller: "VenueListController",
                 controllerAs: "model"
             })
@@ -89,36 +99,26 @@
                 controller: "ArtistController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/friends", {
-                templateUrl: "views/user/friends.view.client.html",
-                controller: "FriendsController",
-                controllerAs: "model"
-            })
             .when("/user/:uid/event/:eid", {
                 templateUrl: "views/concert/concert.view.client.html",
                 controller: "ConcertController",
-                controllerAs: "model"
-            })
-            .when("/user/:uid/view/:userID", {
-                templateUrl: "views/user/viewUser.view.client.html",
-                controller: "ViewUserController",
                 controllerAs: "model"
             })
 
             //for Guest Searching
 
             .when("/search", {
-                templateUrl: "views/search/searchMain.view.client.html",
+                templateUrl: "views/search/searchMain/searchMain.view.client.html",
                 controller: "SearchController",
                 controllerAs: "model"
             })
             .when("/searchArtist", {
-                templateUrl: "views/search/searchByArtist.view.client.html",
+                templateUrl: "views/search/searchArtist/searchByArtist.view.client.html",
                 controller: "SearchArtistController",
                 controllerAs: "model"
             })
             .when("/searchArtist/:artist", {
-                templateUrl: "views/search/searchByArtist.view.client.html",
+                templateUrl: "views/search/searchArtist/searchByArtist.view.client.html",
                 controller: "ArtistListController",
                 controllerAs: "model"
             })
@@ -128,12 +128,12 @@
                 controllerAs: "model"
             })
             .when("/searchVenue", {
-                templateUrl: "views/search/searchByVenue.view.client.html",
+                templateUrl: "views/search/searchVenue/searchByVenue.view.client.html",
                 controller: "SearchVenueController",
                 controllerAs: "model"
             })
             .when("/searchVenue/:venue", {
-                templateUrl: "views/search/searchByVenue.view.client.html",
+                templateUrl: "views/search/searchVenue/searchByVenue.view.client.html",
                 controller: "VenueListController",
                 controllerAs: "model"
             })

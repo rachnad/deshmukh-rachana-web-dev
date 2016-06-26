@@ -22,25 +22,27 @@
     <script src="services/user.service.client.js"></script>
     <script src="services/songkick.service.client.js"></script>
     <script src="services/lastfm.service.client.js"></script>
-    <script src="services/favorites.service.client.js"></script>
+    <script src="services/attendings.service.client.js"></script>
     <script src="services/following.service.client.js"></script>
     <script src="services/comments.service.client.js"></script>
 
-    <script src="views/user/login.controller.client.js"></script>
-    <script src="views/user/register.controller.client.js"></script>
-    <script src="views/user/profile.controller.client.js"></script>
-    <script src="views/search/search.controller.client.js"></script>
+    <script src="views/user/login/login.controller.client.js"></script>
+    <script src="views/user/register/register.controller.client.js"></script>
+    <script src="views/user/profile/profile.controller.client.js"></script>
+    <script src="views/search/searchMain/search.controller.client.js"></script>
     <script src="views/landing/landing.controller.js"></script>
-    <script src="views/search/search.artist.controller.client.js"></script>
-    <script src="views/search/search.venue.controller.client.js"></script>
+    <script src="views/search/searchArtist/search.artist.controller.client.js"></script>
+    <script src="views/search/searchArtist/artistList.controller.client.js"></script>
+    <script src="views/search/searchVenue/search.venue.controller.client.js"></script>
+    <script src="views/search/searchVenue/venueList.controller.client.js"></script>
     <script src="views/header/header.controller.js"></script>
     <script src="views/concert/concert.controller.client.js"></script>
-    <script src="views/user/favorites.controller.client.js"></script>
-    <script src="views/user/following.controller.client.js"></script>
+    <script src="views/user/attendings/attendings.controller.client.js"></script>
+    <script src="views/user/following/following.controller.client.js"></script>
     <script src="views/artist/artist.controller.client.js"></script>
-    <script src="views/user/viewUser.controller.client.js"></script>
+    <script src="views/user/viewUser/viewUser.controller.client.js"></script>
     <script src="views/about/about.controller.client.js"></script>
-    <script src="views/user/friends.controller.client.js"></script>
+    <script src="views/user/friends/friends.controller.client.js"></script>
 
     <title>Vibe</title>
 </head>
@@ -55,11 +57,8 @@
 
 <body ng-class="{'landing-page': landing}">
 <div>
-
     <div ng-include="'views/header/header.view.client.html'"></div>
-
     <div ng-view></div>
-
 </div>
 </body>
 </html>

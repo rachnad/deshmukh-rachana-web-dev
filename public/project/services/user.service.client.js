@@ -2,7 +2,6 @@
  * Created by rachanadeshmukh on 5/31/16.
  */
 
-
 (function() {
     angular
         .module("Vibe")
@@ -24,7 +23,6 @@
             findUserbyFriendID: findUserbyFriendID,
         };
         return api;
-
 
         function login(user) {
             return $http.post("/project/api/login", user);
@@ -74,7 +72,6 @@
         function findUserbyFriendID(userID, friendname) {
             return $http.get("/project/user/" +userID+ "/friend/" +friendname);
         }
-
     }
 })();
 

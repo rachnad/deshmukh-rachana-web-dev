@@ -12,6 +12,7 @@
 
 
 <div ng-show = "model.searched" class="container">
+
     <hgroup class="mb20">
         <h2>Search Results</h2>
         <h3 class="lead"><strong class="text-danger">{{model.artistCalender.length}}</strong> results were found for the search for <strong class="text-danger">{{model.artist}}</strong></h3>
@@ -20,7 +21,6 @@
         <h3 class="lead">On Tour Until: <strong class="text-danger">{{model.searchedArtist.onTourUntil}}</strong></h3>
     </hgroup>
     <br>
-
 
     <div>
     <section ng-repeat="event in model.artistCalender" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

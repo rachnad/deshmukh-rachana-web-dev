@@ -7,11 +7,11 @@
         .module("Vibe")
         .controller("ConcertController", ConcertController);
 
-    function ConcertController($scope, $routeParams, $rootScope, SongkickService, FMService, FollowingService, CommentsService, FavoriteService, ProjectUserService) {
+    function ConcertController($scope, $routeParams, $rootScope, SongkickService, FMService, FollowingService, CommentsService, AttendingsService, ProjectUserService) {
+        $rootScope.loggedIn = true;
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.eventId = $routeParams.eid;
-        $rootScope.loggedIn = true;
         vm.getArtistImage = getArtistImage;
         vm.addComment = addComment;
         vm.getComments = getComments;
@@ -30,18 +30,15 @@
                     vm.artist = vm.concert.performance[0].artist;
                     vm.getArtistImage();
                 });
-
             ProjectUserService
                 .findUserById(vm.userId)
                 .then(function(user) {
                     vm.user = user.data;
                 });
-
             isAttending();
             getComments();
             getAttendings();
             isPremium();
-
         }
         init();
 
@@ -53,7 +50,6 @@
                     vm.artistImage = response.data.artist.image[3]['#text'];
                     vm.artistImageMobile = response.data.artist.image[1]['#text'];
                 })
-
         }
 
         function attendEvent() {
@@ -63,8 +59,7 @@
                 username: vm.user.username,
                 eventName: vm.concert.displayName
             };
-
-            FavoriteService
+            AttendingsService
                 .attendEvent(event)
                 .then(function(response) {
                     vm.attending = true;
@@ -72,12 +67,11 @@
         }
 
         function unattendEvent() {
-            FavoriteService
+            AttendingsService
                 .unattendEvent(vm.userId, vm.eventId)
                 .then(function(response) {
                     vm.attending = false;
                 })
-
         }
 
         function addComment() {
@@ -87,17 +81,14 @@
                 eventId: vm.eventId,
                 comment: vm.commentInput
             };
-
             if (vm.commentInput) {
-
-            CommentsService
-                .postComment(comment)
-                .then(function () {
-                    getComments()
-                    vm.commentInput = null;
-                })
-        }
-
+                CommentsService
+                    .postComment(comment)
+                    .then(function () {
+                        getComments()
+                        vm.commentInput = null;
+                    })
+            }
         }
 
         function getComments() {
@@ -110,7 +101,7 @@
 
 
         function getAttendings() {
-            FavoriteService
+            AttendingsService
                 .showAttendings(vm.eventId)
                 .then(function(response) {
                     vm.attendings = response.data;
@@ -129,7 +120,7 @@
         }
 
         function isAttending() {
-            FavoriteService
+            AttendingsService
                 .getAttendingForUserandEvent(vm.userId, vm.eventId)
                 .then(
                     function(attendings) {
@@ -143,7 +134,4 @@
                 )
         }
     }
-
-
-
 })();

@@ -4,9 +4,9 @@
 (function() {
     angular
         .module("Vibe")
-        .factory("FavoriteService", FavoriteService);
+        .factory("AttendingsService", AttendingsService);
 
-    function FavoriteService($http) {
+    function AttendingsService($http) {
 
         var api = {
             attendEvent: attendEvent,

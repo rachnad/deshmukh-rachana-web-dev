@@ -18,62 +18,62 @@
     </div>
 
 
-            <a ng-show="!model.attending" ng-click="model.attendEvent()">
-                <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>Attend</button>
-            </a>
-            <a ng-show="model.attending" ng-click="model.unattendEvent()">
-                <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-minus"></i>Attending</button>
-            </a>
+    <a ng-show="!model.attending" ng-click="model.attendEvent()">
+        <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>Attend</button>
+    </a>
+    <a ng-show="model.attending" ng-click="model.unattendEvent()">
+        <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-minus"></i>Attending</button>
+    </a>
 
-            <div class="detailBox">
-                <div class="titleBox center">
-                    <label>Comments</label>
-                </div>
-                <div class="actionBox">
-                    <ul class="commentList" ng-repeat="comment in model.comments">
-                        <li>
-                            <div class="commenterImage">
-                                <a href="#/user/{{model.userId}}/view/{{comment.userId}}">
-                                    <span class="glyphicon glyphicon-user"></span>
-                                </a>
-                            </div>
-                            <div class="commentText">
-                                <p class="">{{comment.comment}}</p> <span class="date sub-text"><i>{{comment.datePosted}}</i> by <b>{{comment.username}}</b></span>
-                            </div>
-                        </li>
-                    </ul>
-                    <form class="form-inline" role="form" ng-show="model.premium">
-                        <div class="form-group">
-                            <input ng-model="model.commentInput" class="form-control" type="text" placeholder="Your comments" />
-                        </div>
-                        <div class="form-group">
-                            <button ng-click = "model.addComment()" class="btn btn-success">Add</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="detailBox center">
-                <div class="titleBox">
-                    <label>Attending</label>
-                </div>
-                <div class="actionBox">
-                    <ul class="commentList" ng-repeat="attend in model.attendings">
-                        <li>
-                            <div class="commenterImage">
-                                <a href="#/user/{{model.userId}}/view/{{attend.uid}}">
-                                    <span class="glyphicon glyphicon-user"></span>
-                                </a>
-                            </div>
-                            <div class="commentText">
-                                <p class="">{{attend.username}}</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+    <div class="detailBox">
+        <div class="titleBox center">
+            <label>Comments</label>
         </div>
-        <span class="clearfix borda"></span>
+        <div class="actionBox">
+            <ul class="commentList" ng-repeat="comment in model.comments">
+                <li>
+                    <div class="commenterImage">
+                        <a href="#/user/{{model.userId}}/view/{{comment.userId}}">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                    </div>
+                    <div class="commentText">
+                        <p class="">{{comment.comment}}</p> <span class="date sub-text"><i>{{comment.datePosted}}</i> by <b>{{comment.username}}</b></span>
+                    </div>
+                </li>
+            </ul>
+            <form class="form-inline" role="form" ng-show="model.premium">
+                <div class="form-group">
+                    <input ng-model="model.commentInput" class="form-control" type="text" placeholder="Your comments" />
+                </div>
+                <div class="form-group">
+                    <button ng-click = "model.addComment()" class="btn btn-success">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="detailBox center">
+        <div class="titleBox">
+            <label>Attending</label>
+        </div>
+        <div class="actionBox">
+            <ul class="commentList" ng-repeat="attend in model.attendings">
+                <li>
+                    <div class="commenterImage">
+                        <a href="#/user/{{model.userId}}/view/{{attend.uid}}">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                    </div>
+                    <div class="commentText">
+                        <p class="">{{attend.username}}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<span class="clearfix borda"></span>
 
 
 

@@ -31,11 +31,9 @@
                 .findUserByUsername(friend)
                 .then(
                     function(response) {
-                        console.log(response.data);
                         $location.url('/user/' +vm.userId+"/view/" + response.data._id)
                     }
                 )
-
         }
     }
 

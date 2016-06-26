@@ -7,9 +7,9 @@
         .controller("FollowingController", FollowingController);
 
     function FollowingController($rootScope, $routeParams, ProjectUserService, FollowingService, FMService) {
-        var vm = this;
         $rootScope.landing = false;
         $rootScope.loggedIn = true;
+        var vm = this;
         vm.userId = $routeParams["uid"];
         vm.getFollowing= getFollowing;
 

@@ -6,7 +6,6 @@
         .module("Vibe")
         .controller("RegisterController", RegisterController);
 
-
     function RegisterController($rootScope, $location, ProjectUserService) {
         $rootScope.landing = false;
         var vm = this;
@@ -17,7 +16,6 @@
                 || vm.user.password == undefined || vm.user.type === undefined) {
                 vm.error = "Fill out all required fields"
             }
-
             else {
                 if (vm.user.password !== vm.user.password2) {
                     vm.error = "Passwords do not match"
@@ -39,15 +37,14 @@
                                 ProjectUserService
                                     .register(newUser)
                                     .then(function(response) {
-                                        console.log(response.data)
-                                        $rootScope.currentUser = newUser;
-                                        $rootScope.loggedIn = true;
+                                        console.log(response.data);
                                         var user = response.data;
+                                        $rootScope.currentUser = user;
+                                        $rootScope.loggedIn = true;
                                         $location.url("/user/" + user._id);
                                     })
                             }
                         })
-
                 }
             }
         }

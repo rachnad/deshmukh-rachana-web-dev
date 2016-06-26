@@ -9,10 +9,10 @@
         .controller("ArtistController", ArtistController);
 
     function ArtistController($routeParams, $rootScope, SongkickService, FMService, FollowingService, CommentsService, ProjectUserService) {
+        $rootScope.loggedIn = true;
         var vm = this;
         vm.artistName = $routeParams.aid;
         vm.userId = $routeParams.uid;
-        $rootScope.loggedIn = true;
         vm.followArtist = followArtist;
         vm.unfollowArtist = unfollowArtist;
         vm.getSimilarArtists = getSimilarArtists;
@@ -26,11 +26,9 @@
                     vm.artistBio = (vm.artist.bio.summary).replace(/(<([^>]+)>)/ig,"");
                 })
         }
-
         init();
         getSimilarArtists();
         isFollowing();
-
 
         function followArtist() {
             FollowingService
@@ -38,7 +36,6 @@
                 .then(function (response) {
                     vm.following = true;
                 })
-
         }
 
         function unfollowArtist() {
@@ -48,7 +45,6 @@
                 .then(function(response) {
                     vm.following = false;
                 })
-
         }
 
         function getSimilarArtists() {
@@ -70,8 +66,5 @@
                     }
                 )
         }
-
-
     }
-
 })();

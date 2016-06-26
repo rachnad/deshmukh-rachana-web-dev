@@ -9,7 +9,7 @@ module.exports = function() {
         username: String,
         eventName: String,
         eid: String
-    }, {collection: "favorites"});
+    }, {collection: "attendings"});
 
     return FavoritesSchema;
 };

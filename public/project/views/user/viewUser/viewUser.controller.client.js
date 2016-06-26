@@ -7,11 +7,11 @@
         .module("Vibe")
         .controller("ViewUserController", ViewUserController);
 
-    function ViewUserController($rootScope, $scope, $routeParams, ProjectUserService, FollowingService, FavoriteService) {
+    function ViewUserController($rootScope, $scope, $routeParams, ProjectUserService, FollowingService, AttendingsService) {
+        $rootScope.loggedIn = true;
         var vm = this;
         vm.viewUserId = $routeParams.userID;
         vm.userId = $routeParams.uid;
-        $rootScope.loggedIn = true;
         vm.addFriend = addFriend;
         vm.unFriend = unFriend;
 
@@ -30,7 +30,6 @@
                                 .findUserbyFriendID(vm.user._id, vm.viewUser.username)
                                 .then(function(user) {
                                     vm.isAdded = (user.data.length > 0);
-                                    console.log(vm.isAdded)
                                     getAttendings();
                                     getFollowings();
                                 })
@@ -41,7 +40,7 @@
 
 
         function getAttendings() {
-            FavoriteService
+            AttendingsService
                 .getAttendings(vm.viewUser._id)
                 .then(function(attendings) {
                     vm.attendings = attendings.data;
@@ -73,7 +72,6 @@
                             .then(
                                 function(response) {
                                     vm.isAdded = true;
-                                    //$scope.$apply();
                                 }
                             )
                     }
@@ -94,7 +92,6 @@
                             .then(
                                 function(response) {
                                     vm.isAdded = false;
-                                    //$scope.$apply();
                                 }
                             )
                     }

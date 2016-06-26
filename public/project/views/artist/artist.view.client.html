@@ -1,14 +1,10 @@
 <div class="container">
     <h1 class="center">{{model.artist.name}}</h1>
-
     <img class="img-responsive concert-image" src="{{model.artistImage}}">
-
-
     <h4><i>{{model.artistBio}}</i></h4>
 
     <a ng-show="!model.following" ng-click="model.followArtist()">
         <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>Follow</button>
-
     </a>
     <a ng-show="model.following" ng-click="model.unfollowArtist()">
         <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-minus"></i>Following</button>
@@ -20,10 +16,6 @@
              {{model.artist.name}}'s Calender
          </button>
      </a>
-
-
-
-
 
     <h2>Similar Artists</h2>
     <ul class="similar-list" ng-repeat = "similar in model.similars" >

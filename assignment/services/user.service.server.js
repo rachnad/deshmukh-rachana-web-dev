@@ -48,10 +48,6 @@ module.exports = function(app, models) {
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
-
-    console.log(facebookConfig);
-
-
     function login(req, res) {
         var user = req.user;
         console.log(user);

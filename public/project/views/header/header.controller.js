@@ -16,24 +16,16 @@
 
         function gotoSearch() {
             $location.url("/user/"+$routeParams.uid+"/search");
-
         }
 
         function gotoProfile() {
             $location.url("/user/" +$routeParams.uid);
-
         }
 
         function logout() {
             $rootScope.currentUser= null;
             $rootScope.loggedIn= false;
             $location.url("/landing");
-
         }
-
-
     }
-
-
-
 })();

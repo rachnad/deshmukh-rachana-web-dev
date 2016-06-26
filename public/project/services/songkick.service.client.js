@@ -19,7 +19,6 @@
 
         var eventDetailsURL = "http://api.songkick.com/api/3.0/events/EVENTID.json?apikey=APIKEY&jsoncallback=?";
 
-
         var api = {
             searchArtist : searchArtist,
             getartistCalender: getartistCalender,
@@ -61,8 +60,6 @@
             var venueUrl = venueCalenderURL.replace("VENUEID", venueId).replace("APIKEY", key);
             return $.getJSON(venueUrl);
         }
-
-
     }
 })();
 

@@ -4,14 +4,14 @@
 (function() {
     angular
         .module("Vibe")
-        .controller("FavoritesController", FavoritesController);
+        .controller("AttendingsController", AttendingsController);
 
-    function FavoritesController($rootScope, $routeParams, ProjectUserService, FavoriteService) {
+    function AttendingsController($rootScope, $routeParams, ProjectUserService, AttendingsService) {
         var vm = this;
         $rootScope.landing = false;
         $rootScope.loggedIn = true;
         vm.userId = $routeParams["uid"];
-        vm.getFavorites = getFavorites;
+        vm.getAttendings = getAttendings;
 
         function init() {
             ProjectUserService
@@ -21,13 +21,13 @@
                 });
             $rootScope.currentUser = vm.user;
 
-            getFavorites();
+            getAttendings();
         }
         init();
 
 
-        function getFavorites() {
-            FavoriteService
+        function getAttendings() {
+            AttendingsService
                 .getAttendings(vm.userId)
                 .then(function(response) {
                     vm.attendings = response.data;

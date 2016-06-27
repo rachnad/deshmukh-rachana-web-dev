@@ -65,14 +65,25 @@
                         var user = response.data;
                         if(!(user.friends.indexOf(vm.viewUser.username) > -1)) {
                             user.friends.push(vm.viewUser.username);
+                            ProjectUserService
+                                .findUserByUsername(vm.viewUser.username)
+                                .then(
+                                    function(response) {
+                                        var friend = response.data;
+                                        friend.friends.push(user.username);
+                                    }
+                                )
                         }
                         delete user._id;
+                        delete friend._id;
                         ProjectUserService
                             .updateUser(vm.user._id, user)
                             .then(
-                                function(response) {
-                                    vm.isAdded = true;
-                                }
+                                ProjectUserService
+                                    .updateUser(vm.viewUser._id, friend)
+                                    .then(function(response) {
+                                        vm.isAdded = true;
+                                    })
                             )
                     }
                 )

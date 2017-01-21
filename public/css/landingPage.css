@@ -190,5 +190,8 @@ a.contact {
 
 .home-image{
     max-height:250px;
+}
 
+.project-image {
+    margin-top: 20px;
 }

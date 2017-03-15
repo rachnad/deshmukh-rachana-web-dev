@@ -21,6 +21,13 @@ h6 {
     font-weight: 700;
 }
 
+.pro-pic {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  margin-left: -30px;
+}
+
 
 
 .topnav {
@@ -64,6 +71,14 @@ h6 {
 }
 
 @media(max-width:767px) {
+    .pro-pic {
+      margin-left: 0px;
+    }
+
+    .home-pic {
+      display: inherit;
+      margin: auto;
+    }
     .intro-message {
         padding-bottom: 15%;
     }
